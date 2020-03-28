@@ -1,26 +1,54 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Route } from 'react-router-dom'
+import Home from './Components/Home';
+import PrivateRoute from './PrivateRoute';
+import Login from './Components/Login';
+import SignUp from './Components/SignUp';
+import { AuthContext } from './Auth';
+import app from './base'
+import NavBar from './Components/NavBar';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+
+  state = {
+    currentUser: null
+  }
+
+  handleSetUser = user => {
+    this.setState({currentUser: user})
+  }
+
+  handleLogout = () => {
+    app.auth().signOut()
+    this.setState({currentUser: null})
+}
+
+  componentDidMount(){
+    const { currentUser } = AuthContext
+    this.setState({currentUser})
+  }
+
+  render() { 
+    const  { currentUser } = this.state
+    return (
+      <>
+        <NavBar logout={this.handleLogout} currentUser={currentUser}/>
+        {/* <PrivateRoute exact path='/' component={Home}/> */}
+        <Route exact path='/'>
+          <Home/>
+        </Route>
+        <Route exact path='/login'>
+          <Login setUser={this.handleSetUser}/>
+        </Route>
+        <Route exact path='/signup' component={SignUp}/>
+      </>
+    );
+  }
 }
 
 export default App;
+
+
