@@ -23,7 +23,7 @@ function Login(props) {
 
     if (currentUser) {
         props.setUser(currentUser)
-        return <Redirect to='/'/>;
+        return <Redirect to='/classes'/>;
     }
 
     return (
