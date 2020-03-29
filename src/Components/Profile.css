@@ -12,3 +12,20 @@
     }
 
 }
+
+.tokens{
+    text-align: center;
+}
+
+.upcoming-classes-title{
+    text-align: center;
+}
+
+.none{
+    text-align: center;
+}
+
+.upcoming-classes-container{
+    overflow: scroll;
+    margin-bottom: 5%;
+}

@@ -51,6 +51,29 @@ export default class Classes extends Component {
         this.setState({chosenClass: pickedClass})
      }
 
+     deductToken = () => {
+        const { user } = this.state 
+        this.setState({user: {
+            id: user.id,
+            coach: user.coach,
+            first_name: user.first_name,
+            last_name: user.last_name, 
+            email: user.email,
+            tokens: user.tokens - 1
+        }})
+     }
+     addToken = () => {
+        const { user } = this.state 
+        this.setState({user: {
+            id: user.id,
+            coach: user.coach,
+            first_name: user.first_name,
+            last_name: user.last_name, 
+            email: user.email,
+            tokens: user.tokens + 1
+        }})
+     }
+
 
     render() {
         const  { date, classes, isLoading } = this.state
@@ -63,7 +86,7 @@ export default class Classes extends Component {
                     {isLoading&& <button className='loading'></button >}
                     {classes[0]?
                     filteredClasses.map(oneClass => (
-                        <ClassModal user={this.state.user} oneClass={oneClass} handlePickClass={this.handlePickClass}/>
+                        <ClassModal addToken={this.addToken} deductToken={this.deductToken} user={this.state.user} oneClass={oneClass} handlePickClass={this.handlePickClass}/>
                     ))
                     :
                     !isLoading&& <h1>No Classes</h1>
