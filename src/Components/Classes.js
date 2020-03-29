@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import DatePick from './DatePick'
 import './Classes.css'
+import ClassModal from './ClassModal'
 
 let today = new Date()
 let dd = today.getDate(); 
@@ -20,19 +21,29 @@ export default class Classes extends Component {
     state = {
         classes: [],
         date: todaydate, 
-        chosenClass: null
+        chosenClass: null,
+        user: null,
+        isLoading: true
     }
 
     componentDidMount(){
-        fetch("http://localhost:3000/sessions")
+        fetch(`http://localhost:3000/sessions?date=${this.state.date}`)
         .then(resp => resp.json())
-        .then(classes => this.setState({classes}))
+        .then(classes => this.setState({classes: classes, isLoading: false}))
+
+        fetch(`http://localhost:3000/user/getuser?email=${this.props.currentUser.email}`)
+        .then(resp => resp.json())
+        .then(user => this.setState({user}))
     }
 
-    handleChange = e => {
+    handleDateChange = e => {
         this.setState({
-           [e.target.name]: e.target.value
+           [e.target.name]: e.target.value,
+           isLoading: true
         })
+        fetch(`http://localhost:3000/sessions?date=${e.target.value}`)
+        .then(resp => resp.json())
+        .then(classes => this.setState({classes: classes, isLoading: false}))
      }
 
      handlePickClass = id => { 
@@ -40,18 +51,22 @@ export default class Classes extends Component {
         this.setState({chosenClass: pickedClass})
      }
 
+
     render() {
-        const  { date, classes } = this.state
+        const  { date, classes, isLoading } = this.state
         const filteredClasses = classes.filter(oneClass => oneClass.date === date)
         return (
             <div>
                 <h1>Book Class</h1>
-                <DatePick date={date} handleChange={this.handleChange}/>
+                <DatePick date={date} handleChange={this.handleDateChange}/>
                 <div className='container'>
-                    {filteredClasses.map(oneClass => (
-                        <button onClick={() => this.handlePickClass(oneClass.id)} className='class-btn'>{oneClass.time + " " + oneClass.name}</button>
+                    {isLoading&& <button className='loading'></button >}
+                    {classes[0]?
+                    filteredClasses.map(oneClass => (
+                        <ClassModal user={this.state.user} oneClass={oneClass} handlePickClass={this.handlePickClass}/>
                     ))
-
+                    :
+                    !isLoading&& <h1>No Classes</h1>
                     }
                 </div>
             </div>

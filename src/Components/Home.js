@@ -7,6 +7,19 @@ export default class Home extends Component {
         currentUser: this.props.currentUser
     }
 
+    componentDidMount(){
+        app.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                setUser(user)
+            }
+        });
+    
+        const setUser = user => {
+            this.setState({currentUser: user})
+            this.props.setUser(user)
+        }
+    }
+
     render() {
         return (
             <div>

@@ -19,6 +19,8 @@ class App extends React.Component {
     currentUser: null
   }
 
+
+
   handleSetUser = user => {
     this.setState({currentUser: user})
   }
@@ -41,7 +43,7 @@ class App extends React.Component {
         <PrivateRoute exact path='/classes' component={Classes}/>
         <PrivateRoute exact path='/profile' component={Profile}/>
         <Route exact path='/'>
-          <Home/>
+          <Home setUser={this.handleSetUser}/>
         </Route>
         <Route exact path='/login'>
           <Login setUser={this.handleSetUser}/>

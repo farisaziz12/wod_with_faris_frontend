@@ -1,0 +1,14 @@
+
+
+@media (min-width: 768px) {
+    
+    .profile-container{
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        border: solid white 2px;
+        width: 800px;
+        height: 600px;
+    }
+
+}
