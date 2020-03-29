@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
+.date-picker{
+    border-color: white;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    height: 25px;
+    border-radius: 15px;
+    text-align: center;
+    font-family: 'Fredoka One', cursive;
+    font-size: 15px;
+    margin-bottom: 5%;
+}
+input[type="date"]::-webkit-clear-button {
+    -webkit-appearance: none;
+     display: none;
+   }
+
+.class-btn{
+    text-align: center;
+    margin-top: 4%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    color: white;
+    border-color: white;
+    background-color: rgb(3, 151, 250);
+    width: 210px;
+    height: 40px;
+    border-radius: 15px;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 15px;
+    transition: all 0.2s ease-in-out;
+}
+
+.class-btn:hover{
+    background-color: lightslategray;
+    border-radius: 10px;
+}
+
+@media (min-width: 768px) {
+    
+    .container{
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        border: solid white 2px;
+        width: 700px;
+        height: 500px;
+    }
+
+    .date-picker{
+        width: 250px;
+        height: 30px;
+
+    }
+
+    .class-btn{
+        margin-top: 2%;
+        width: 300px;
+        height: 60px;
+    }
+}

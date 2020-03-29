@@ -38,6 +38,20 @@ class SignUp extends React.Component {
             .auth()
             .createUserWithEmailAndPassword(email, password);
             this.setState({passwordMatchError: ""})
+
+            fetch("http://localhost:3000/user/create", {
+            method: "POST", 
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: this.state.email,
+                first_name: this.state.firstName,
+                last_name: this.state.lastName
+            })
+            }).then(resp => resp.json()).then(resp => console.log(resp))
+
            } else {
                this.setState({passwordMatchError: "Passwords do not match"})
            }
