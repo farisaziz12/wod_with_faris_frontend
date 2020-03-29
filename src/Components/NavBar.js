@@ -23,12 +23,17 @@ export default class NavBar extends Component {
 
     render() {
         const { page } = this.state 
-        const { currentUser } = this.props
+        const { currentUser, userData } = this.props
         return (
             <div className='nav-bar'>
                 <NavLink to='/'>
                     <button onClick={this.handleActiveBtnChange} name='/' className={page === '/'? 'nav-btn active' : 'nav-btn'}>Home</button>
                 </NavLink>
+                {userData&& userData.coach&&
+                    <NavLink to='/createclass'>
+                        <button onClick={this.handleActiveBtnChange} name='/createclass' className={page === '/createclass'? 'nav-btn active' : 'nav-btn'}>Create Class</button>
+                    </NavLink>
+                }
                 {currentUser&&
                 <>
                 <NavLink to='/classes'>
@@ -46,6 +51,7 @@ export default class NavBar extends Component {
                     <button onClick={this.handleActiveBtnChange} name='/login' className={page === '/login'? 'nav-btn active' : 'nav-btn'}>Log In</button>
                 </NavLink>
                 }
+                <h3 className='logo-2'>WOD WITH FARIS</h3>
             </div>
         )
     }

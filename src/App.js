@@ -11,18 +11,23 @@ import app from './base'
 import NavBar from './Components/NavBar';
 import Classes from './Components/Classes';
 import Profile from './Components/Profile';
+import CreateClass from './Components/CreateClass';
 
 
 class App extends React.Component {
 
   state = {
-    currentUser: null
+    currentUser: null, 
+    userData: null
   }
 
 
 
   handleSetUser = user => {
     this.setState({currentUser: user})
+    fetch(`http://localhost:3000/user/getuser?email=${user.email}`)
+        .then(resp => resp.json())
+        .then(userData => this.setState({userData}))
   }
 
   handleLogout = () => {
@@ -30,18 +35,15 @@ class App extends React.Component {
     this.setState({currentUser: null})
 }
 
-  componentDidMount(){
-    const { currentUser } = AuthContext
-    this.setState({currentUser})
-  }
 
   render() { 
-    const  { currentUser } = this.state
+    const  { currentUser, userData } = this.state
     return (
       <>
-        <NavBar logout={this.handleLogout} currentUser={currentUser}/>
+        <NavBar userData={userData} logout={this.handleLogout} currentUser={currentUser}/>
         <PrivateRoute exact path='/classes' component={Classes}/>
         <PrivateRoute exact path='/profile' component={Profile}/>
+        <PrivateRoute exact path='/createclass' component={CreateClass}/>
         <Route exact path='/'>
           <Home setUser={this.handleSetUser}/>
         </Route>

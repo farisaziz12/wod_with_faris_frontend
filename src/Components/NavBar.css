@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
+
 .nav-bar{
-    /* background-color: whitesmoke; */
     background: linear-gradient(to top, #141e30);
     height: 50px;
     margin-right: 1%;
@@ -38,6 +39,34 @@
         background-color: rgb(228, 228, 228);
         border-radius: 15px;
     }
+
     
 }
 
+@media (min-width: 768px) {
+    .logo-2{
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 500px) {
+ .logo-2{
+     font-size: 15px;
+ }
+}
+@media (max-width: 465px) {
+ .logo-2{
+     display: none;
+ }
+}
+
+.logo-2{
+    float: left;
+    margin-top: 1%;
+    margin-left: 1.5%;
+    font-family: 'Permanent Marker', cursive;
+    letter-spacing: 1.5px;
+    border: solid white 1px;
+    padding: 2px 6px 1px;
+    border-radius: 12px;
+}

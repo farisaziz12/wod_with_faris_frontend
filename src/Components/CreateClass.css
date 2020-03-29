@@ -1,0 +1,66 @@
+.create-class-input{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 200px;
+    height: 30px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.create-class-textarea{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 200px;
+    height: 50px;
+    border-radius: 15px;
+}
+
+.create-class-div{
+    text-align: center;
+}
+
+.create-class-h3{
+    margin-bottom: 2%;
+}
+
+.create-class-btn{
+    background-color: white;
+    margin-top: 5%;
+    width: 150px;
+    height: 40px;
+    border-radius: 13px;
+    font-size: 17px;
+}
+
+.create-class-btn:hover{
+    background-color: rgb(209, 208, 208);
+}
+
+.create-class-title{
+    margin-bottom: 3%;
+    margin-top: 5%;
+}
+
+.success{
+    color: green;
+    background-color: lightblue;
+    width: 200px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.error-message{
+    color: red;
+    background-color: rgb(35, 68, 138);
+    width: 300px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 10px;
+    text-align: center;
+}
