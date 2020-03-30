@@ -14,7 +14,8 @@ class SignUp extends React.Component {
         password: null,
         passwordConfirm: null,
         currentUser: null,
-        passwordMatchError: ""
+        passwordMatchError: "",
+        emailSent: false
     }
 
 
@@ -37,7 +38,6 @@ class SignUp extends React.Component {
             await app
             .auth()
             .createUserWithEmailAndPassword(email, password);
-
             this.setState({passwordMatchError: ""})
 
             fetch("https://wod-with-faris.herokuapp.com/user/create", {
@@ -76,10 +76,12 @@ class SignUp extends React.Component {
 
     
     render (){
-        const {currentUser} = this.state
-        console.log(currentUser)
-    
-        if (this.state.currentUser) {
+        const {currentUser, emailSent} = this.state
+        if (currentUser) {
+            if(!currentUser.emailVerified && !emailSent){
+                currentUser.sendEmailVerification();
+                this.setState({emailSent: true})
+            }
             return <Redirect to='/'/>;
         }
         return (

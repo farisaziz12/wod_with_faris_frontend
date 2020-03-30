@@ -7,7 +7,6 @@
     margin-right: auto;
     width: 200px;
     height: 25px;
-    border-radius: 15px;
     text-align: center;
     font-family: 'Fredoka One', cursive;
     font-size: 15px;
@@ -54,7 +53,7 @@ input[type="date"]::-webkit-clear-button {
     .date-picker{
         width: 250px;
         height: 30px;
-
+        border-radius: 15px;
     }
 
     .class-btn{
