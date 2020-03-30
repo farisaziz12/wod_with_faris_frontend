@@ -12,6 +12,7 @@ import NavBar from './Components/NavBar';
 import Classes from './Components/Classes';
 import Profile from './Components/Profile';
 import CreateClass from './Components/CreateClass';
+import Clients from './Components/Clients';
 
 
 class App extends React.Component {
@@ -44,6 +45,7 @@ class App extends React.Component {
         <PrivateRoute exact path='/classes' component={Classes}/>
         <PrivateRoute exact path='/profile' component={Profile}/>
         <PrivateRoute exact path='/createclass' component={CreateClass}/>
+        <PrivateRoute exact path='/clients' component={Clients}/>
         <Route exact path='/'>
           <Home setUser={this.handleSetUser}/>
         </Route>
