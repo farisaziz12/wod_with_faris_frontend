@@ -35,11 +35,13 @@ export default class Profile extends Component {
      handleCancel = deletedBooking => {
         this.setState({upcomingClasses: this.state.upcomingClasses.filter(booking => booking.id !== deletedBooking.session.id)})
      }
+     handleDelete = deletedClass => {
+        this.setState({upcomingClasses: this.state.upcomingClasses.filter(booking => booking.id !== deletedClass.id)})
+     }
 
     render() {
         const { user, upcomingClasses } = this.state
-        const orderedByDateUpcomingClasses = upcomingClasses.sort((a, b) => new Date(a.date) - new Date(b.date))
-        console.log(orderedByDateUpcomingClasses)
+        const orderedByDateUpcomingClasses = upcomingClasses.sort((a, b) => new Date(a.date) - new Date(b.date)).slice(0, 4)
         return (
             <div>
                 <div className='profile-container'>
@@ -56,7 +58,7 @@ export default class Profile extends Component {
                             }
                             {user.coach&& upcomingClasses[0]&&
                                 orderedByDateUpcomingClasses.map(upcomingClass => (
-                                    <CoachClassCard handleCancel={this.handleCancel} user={this.state.user} upcomingClass={upcomingClass}/>
+                                    <CoachClassCard handleCancel={this.handleDelete} user={this.state.user} upcomingClass={upcomingClass}/>
                                 ))
                             }
 

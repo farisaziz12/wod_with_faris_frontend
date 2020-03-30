@@ -26,6 +26,6 @@
 }
 
 .upcoming-classes-container{
-    overflow: scroll;
+    overflow: cover;
     margin-bottom: 5%;
 }

@@ -41,7 +41,7 @@ export default class CreateClass extends Component {
                     time: time,
                     user_id: coach.id
                 })
-            }).then(resp => resp.json()).then(this.setState({success: true, errorMessage: null}))
+            }).then(resp => resp.json()).then(this.setState({success: true, errorMessage: null, name: null, description: null, date: null, time: null}))
             .catch(errorMessage => this.setState({errorMessage}))
         } else {
             this.setState({errorMessage: "Please fill all fields"})

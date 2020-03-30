@@ -6,7 +6,7 @@ export default class ClassModal extends Component {
     state = {
         show: false, 
         clients: [], 
-        tokenError: null
+        error: null,
       }
 
 
@@ -17,12 +17,12 @@ export default class ClassModal extends Component {
   
   
     toggleShow = show => {
-      this.setState({show: show, tokenError: null});
+      this.setState({show: show, error: null});
     }
 
     handleBookandUnBookClass =  id => {
         const isBooked = this.state.clients.find(client => client.user.id === this.props.user.id)
-        if (isBooked === undefined && this.props.user.tokens > 0) {
+        if (isBooked === undefined && this.props.user.tokens > 0 && this.state.clients.length < 8) {
             console.log("booking")
             fetch("http://localhost:3000/usersession/book", {
                 method: "POST", 
@@ -34,7 +34,7 @@ export default class ClassModal extends Component {
                     user_id: this.props.user.id,
                     session_id: id
                 })
-            }).then(resp => resp.json()).then(ClientsWithNewBooking => this.setState({clients: ClientsWithNewBooking, tokenError: null})).then(this.props.deductToken)
+            }).then(resp => resp.json()).then(ClientsWithNewBooking => this.setState({clients: ClientsWithNewBooking, error: null})).then(this.props.deductToken)
             
         } else if(isBooked && this.props.user.tokens >= 0) {
             fetch(`http://localhost:3000/usersession/unbook`, {
@@ -47,17 +47,19 @@ export default class ClassModal extends Component {
                     user_id: this.props.user.id,
                     session_id: id
                 })
-            }).then(resp => resp.json()).then(deletedBooking => this.setState({clients: this.state.clients.filter(client => client.user.id !== deletedBooking.user.id), tokenError: null})).then(this.props.addToken)
+            }).then(resp => resp.json()).then(deletedBooking => this.setState({clients: this.state.clients.filter(client => client.user.id !== deletedBooking.user.id), error: null})).then(this.props.addToken)
             
         } else if (this.props.user.tokens <= 0){
-            this.setState({tokenError: "Sorry, you have run out of tokens"})
+            this.setState({error: "Sorry, you have run out of tokens"})
+        } else if (this.state.client.length === 8) {
+            this.setState({error: "Sorry, this class is fully booked"})
         }
         
 
     }
 
     render() {
-        const {show, clients, tokenError} = this.state;
+        const {show, clients, error} = this.state;
         const {oneClass} = this.props;
         const isBooked = this.state.clients.find(client => client.user.id === this.props.user.id)
         const now = new Date()
@@ -76,8 +78,8 @@ export default class ClassModal extends Component {
                 <h3 className='desc-txt'><strong>Coach: </strong>{oneClass.coach.first_name + " " + oneClass.coach.last_name}</h3>
                 <p className='desc-txt'>{oneClass.description}</p> 
                 {!isInPast? <button onClick={() => this.handleBookandUnBookClass(this.props.oneClass.id)} class="book-btn">{isBooked? "Cancel" : "Book Class"}</button> : <button class="past-btn">Already Passed</button>}
-                {tokenError&&
-                    <p className='error'>{this.state.tokenError}</p>
+                {error&&
+                    <p className='error'>{this.state.error}</p>
                 }
                 </PopPop>
             </div>

@@ -9,10 +9,21 @@ export default class CoachClassCard extends Component {
         clients: []
     }
 
-    handleCancelBooking = id => {
+    handleDeleteClass = id => {
         fetch(`http://localhost:3000/sessions/deleted/${id}`, {
                 method: "DELETE"
             }).then(resp => resp.json()).then(deletedBooking => this.props.handleCancel(deletedBooking))
+        const ids = this.state.clients.map(client => {return client.user.id})
+        fetch("http://localhost:3000/sessions/returntokens", {
+            method: "POST", 
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                client_ids: ids
+            })
+        })
     }
 
     toggleShow = show => {
@@ -31,7 +42,7 @@ export default class CoachClassCard extends Component {
             <div className='coach-class-card'>
                 <h2 className='card-title'>{upcomingClass.time + " " + upcomingClass.name}</h2>
                 <p className='card-date'>{upcomingClass.date}</p>
-                <button onClick={() => this.handleCancelBooking(upcomingClass.id)} className='book-btn'>Delete Class</button>
+                <button onClick={() => this.handleDeleteClass(upcomingClass.id)} className='book-btn'>Delete Class</button>
                 <button onClick={() => this.toggleShow(true)} className='book-btn'>More Info</button>
                 <PopPop position="centerCenter"
                         open={show}
