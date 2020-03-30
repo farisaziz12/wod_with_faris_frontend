@@ -20,15 +20,15 @@ input[type="date"]::-webkit-clear-button {
 
 .class-btn{
     text-align: center;
-    margin-top: 4%;
+    margin-top: 6%;
     margin-left: auto;
     margin-right: auto;
     display: block;
     color: white;
     border-color: white;
     background-color: rgb(3, 151, 250);
-    width: 210px;
-    height: 40px;
+    width: 220px;
+    height: 50px;
     border-radius: 15px;
     font-family: 'Permanent Marker', cursive;
     font-size: 15px;
@@ -134,6 +134,7 @@ input[type="date"]::-webkit-clear-button {
 }
 
 .loading {
+    margin-top: 10%;
     display: block;
     margin-left: auto;
     margin-right: auto;
