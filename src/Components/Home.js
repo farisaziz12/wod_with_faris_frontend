@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import app from '../base'
 import './Home.css'
-
+const IG = require('instagrammer');
+const instagramUsername = 'faziz_training';
 
 export default class Home extends Component {
 
@@ -21,17 +22,17 @@ export default class Home extends Component {
             this.setState({currentUser: user})
             this.props.setUser(user)
         }
-        const IG = require('instagrammer');
-        const instagramUsername = 'faziz_training';
         
         IG.profile(instagramUsername).then((instaPosts) => {
+            console.log(instaPosts)
             this.setState({instaPosts})
         });
+      
     }
 
     render() {
         const { instaPosts } = this.state
-        const SlicedPosts = instaPosts.slice(0, 8)
+        const SlicedPosts = instaPosts[0]? instaPosts.slice(0, 8) : []
         return (
             <div className='posts-container'>
                 <h2 className='title'>Recent Posts</h2>

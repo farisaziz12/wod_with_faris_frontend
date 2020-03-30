@@ -40,3 +40,34 @@
     min-width: 250px;
     min-height: 150px;
 }
+
+
+.edit-btn{
+    text-align: center;
+    margin-top: 4%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    color: white;
+    border-color: white;
+    background-color: rgb(3, 151, 250);
+    width: 180px;
+    height: 35px;
+    border-radius: 15px;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 15px;
+    transition: all 0.2s ease-in-out;
+}
+
+
+.edit-btn:hover{
+    background-color: lightslategray;
+    border-radius: 10px;
+}
+
+.edit-input{
+    height: 30px;
+    width: 190px;
+    border-radius: 15px;
+    text-align: center;
+}
