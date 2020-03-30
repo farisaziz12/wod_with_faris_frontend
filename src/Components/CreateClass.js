@@ -27,7 +27,7 @@ export default class CreateClass extends Component {
 
     handleCreateClass = () => {
         const { name, description, date, time, coach } = this.state
-        if ( name && description && date && time ){
+        if ( name && description && date && time  ){
         fetch("http://localhost:3000/sessions/create", {
                 method: "POST", 
                 headers: {
@@ -42,6 +42,7 @@ export default class CreateClass extends Component {
                     user_id: coach.id
                 })
             }).then(resp => resp.json()).then(this.setState({success: true, errorMessage: null}))
+            .catch(errorMessage => this.setState({errorMessage}))
         } else {
             this.setState({errorMessage: "Please fill all fields"})
         }

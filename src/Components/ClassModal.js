@@ -60,6 +60,9 @@ export default class ClassModal extends Component {
         const {show, clients, tokenError} = this.state;
         const {oneClass} = this.props;
         const isBooked = this.state.clients.find(client => client.user.id === this.props.user.id)
+        const now = new Date()
+        const classDateAndTime = new Date(oneClass.date + "T" + oneClass.time)
+        const isInPast = classDateAndTime < now? true : false
         return (
             <div>
                 <button class="class-btn" onClick={() => this.toggleShow(true)}>{oneClass.time + " " + oneClass.name}</button>
@@ -72,7 +75,7 @@ export default class ClassModal extends Component {
                 <h1 className='workout-title'>{oneClass.time + " " + oneClass.name}</h1> <div className='attending-progress-bar'><div style={{width:`${((clients.length/8) * 100).toFixed(2)}px`}}className='inner-progress-bar'><span className='attending-txt'>{clients.length === 8? "Fully Booked" : clients.length + " / 8"}</span></div></div>
                 <h3 className='desc-txt'><strong>Coach: </strong>{oneClass.coach.first_name + " " + oneClass.coach.last_name}</h3>
                 <p className='desc-txt'>{oneClass.description}</p> 
-                <button onClick={() => this.handleBookandUnBookClass(this.props.oneClass.id)} class="book-btn">{isBooked? "Cancel" : "Book Class"}</button>
+                {!isInPast? <button onClick={() => this.handleBookandUnBookClass(this.props.oneClass.id)} class="book-btn">{isBooked? "Cancel" : "Book Class"}</button> : <button class="past-btn">Already Passed</button>}
                 {tokenError&&
                     <p className='error'>{this.state.tokenError}</p>
                 }
