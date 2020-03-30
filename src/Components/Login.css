@@ -250,3 +250,51 @@ h1 {
     margin-bottom: 5%;
   }
 }
+
+.forgot-password{
+  text-align: center;
+}
+.forgot-password-txt:hover{
+  color: lightgray;
+}
+
+.forgot-password-txt{
+  color: black;
+}
+
+.forgot-password-input{
+  border: solid black 1px;
+  width: 245px;
+  height: 30px;
+  font-size: 15px;
+  border-radius: 7px;
+}
+
+.forgot-password-btn{
+  text-align: center;
+  margin-top: 4%;
+  display: block;
+  color: white;
+  border-color: white;
+  background-color: rgb(3, 151, 250);
+  width: 250px;
+  height: 40px;
+  border-radius: 15px;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 15px;
+  transition: all 0.2s ease-in-out;
+}
+
+
+.forgot-password-btn:hover{
+  background-color: lightslategray;
+  border-radius: 10px;
+}
+
+.forgot-password-modal-container{
+  min-height: 200px;
+}
+
+.email-send-success{
+  color: green;
+}

@@ -3,13 +3,17 @@ import { withRouter, Redirect } from 'react-router';
 import app from '../base';
 import './Login.css'
 import { NavLink } from 'react-router-dom'
+import PopPop from 'react-poppop';
 
 class Login extends React.Component {
 
     state = {
         currentUser: null, 
         email: null, 
-        password: null
+        password: null,
+        show: false,
+        passwordResetEmail: null, 
+        emailSent: false
     }
 
     componentDidMount(){
@@ -36,13 +40,23 @@ class Login extends React.Component {
             }
     }
 
+    toggleShow = show => {
+        this.setState({show: show});
+    }
+
     handleChange = event => {
         this.setState({[event.target.name]: event.target.value })
     }
+    handlePasswordResetEmailChange = event => {
+        this.setState({[event.target.name]: event.target.value })
+    }
 
-    
+    sendPasswordResetEmail = email => {
+        app.auth().sendPasswordResetEmail(email).then(this.setState({emailSent: true}))
+    }
+
     render(){
-        const { currentUser } = this.state
+        const { currentUser, show, passwordResetEmail, emailSent } = this.state
         if (currentUser) {
             return <Redirect to='/'/>;
         }
@@ -56,6 +70,22 @@ class Login extends React.Component {
                         <input onChange={this.handleChange} name='password' type="password" className="input" placeholder="Password" />
                         </div>
                         <button onClick={this.handlelogin} className="submit-btn">Log In</button>
+                        <h3 onClick={this.toggleShow} className='forgot-password'><u>Forgot Password</u></h3>
+                        <PopPop position="centerCenter"
+                        open={show}
+                        closeBtn={true}
+                        closeOnEsc={true}
+                        onClose={() => this.toggleShow(false)}
+                        closeOnOverlay={true}>
+                            <div className='forgot-password-modal-container'>
+                                <h2 className='forgot-password-txt'>Password Reset</h2>
+                                {emailSent&& <p className='email-send-success'>Email Sent!</p>}
+                                <p className='forgot-password-txt'>Please enter the email associated with your account:</p>
+                                <input value={passwordResetEmail} onChange={this.handlePasswordResetEmailChange} name='passwordResetEmail' className='forgot-password-input' type='email'/>
+                                <button onClick={() => this.sendPasswordResetEmail(passwordResetEmail)} className='forgot-password-btn'>Send Password Reset Email</button>
+                                
+                            </div>
+                        </PopPop>
                     </div>
                     <div className="login slide-up">
                         <div className="center">
