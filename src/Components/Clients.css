@@ -1,0 +1,42 @@
+.search-bar{
+    display: block;
+    margin-right: auto;
+    margin-left:auto ;
+    height: 30px;
+    width: 200px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 17px;
+}
+
+.clients-container{
+    text-align: center;
+    margin-top: 10%;
+}
+.client{
+    border: solid lightblue;
+    background-color: lightblue;
+    color: black;
+    width: 200px;
+    height: 25px;
+    border-radius: 15px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 768px) {
+    .clients-container{
+        margin-top: 5%;
+    }
+}
+
+
+.client-txt{
+    color: black;
+}
+
+.client-modal-container{
+    min-width: 250px;
+    min-height: 150px;
+}
