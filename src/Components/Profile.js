@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './Profile.css'
 import ClassCard from './ClassCard'
+import CoachClassCard from './CoachClassCard'
 
 export default class Profile extends Component {
 
@@ -32,7 +33,6 @@ export default class Profile extends Component {
      }
 
      handleCancel = deletedBooking => {
-         console.log(deletedBooking)
         this.setState({upcomingClasses: this.state.upcomingClasses.filter(booking => booking.id !== deletedBooking.session.id)})
      }
 
@@ -44,18 +44,24 @@ export default class Profile extends Component {
                     {user?
                     <>
                         <h1>{user.first_name + " " + user.last_name}</h1>
-                        <h2 className='tokens'>Tokens: {user.tokens}</h2>
+                        {!user.coach&& <h2 className='tokens'>Tokens: {user.tokens}</h2>}
                         <div className='upcoming-classes-container'>
                             <h2 className='upcoming-classes-title'>Upcoming Classes: </h2>
-                            {upcomingClasses[0]?
+                            {!user.coach&& upcomingClasses[0]&&
                                 upcomingClasses.map(upcomingClass => (
                                     <ClassCard handleCancel={this.handleCancel} addToken={this.addToken} user={this.state.user} upcomingClass={upcomingClass}/>
                                 ))
-                            :
-
-                            <h3 className='none'>None</h3>
-
                             }
+                            {user.coach&& upcomingClasses[0]&&
+                                upcomingClasses.map(upcomingClass => (
+                                    <CoachClassCard handleCancel={this.handleCancel} user={this.state.user} upcomingClass={upcomingClass}/>
+                                ))
+                            }
+
+                            {!upcomingClasses[0]&&<h3 className='none'>None</h3>}
+
+                            
+                            
                         </div>
                     </>
                     :
