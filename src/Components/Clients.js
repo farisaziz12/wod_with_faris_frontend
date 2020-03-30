@@ -11,7 +11,7 @@ export default class Clients extends Component {
 
 
     componentDidMount(){
-        fetch(`http://localhost:3000/users/index`)
+        fetch(`https://wod-with-faris.herokuapp.com/users/index`)
         .then(resp => resp.json())
         .then(allClients => this.setState({allClients}))
     }

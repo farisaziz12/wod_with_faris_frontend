@@ -11,11 +11,11 @@ export default class Profile extends Component {
     }
 
     componentDidMount(){
-        fetch(`http://localhost:3000/user/getuser?email=${this.props.currentUser.email}`)
+        fetch(`https://wod-with-faris.herokuapp.com/user/getuser?email=${this.props.currentUser.email}`)
         .then(resp => resp.json())
         .then(user => this.setState({user}))
 
-        fetch(`http://localhost:3000/usersession/upcomingclasses?email=${this.props.currentUser.email}`)
+        fetch(`https://wod-with-faris.herokuapp.com/usersession/upcomingclasses?email=${this.props.currentUser.email}`)
         .then(resp => resp.json())
         .then(upcomingClasses => this.setState({upcomingClasses}))
     }
@@ -41,7 +41,7 @@ export default class Profile extends Component {
 
     render() {
         const { user, upcomingClasses } = this.state
-        const orderedByDateUpcomingClasses = upcomingClasses.sort((a, b) => new Date(a.date) - new Date(b.date)).slice(0, 4)
+        const orderedByDateUpcomingClasses = upcomingClasses[0]&& upcomingClasses.sort((a, b) => new Date(a.date) - new Date(b.date)).slice(0, 4)
         return (
             <div>
                 <div className='profile-container'>

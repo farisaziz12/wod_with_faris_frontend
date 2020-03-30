@@ -26,7 +26,7 @@ class App extends React.Component {
 
   handleSetUser = user => {
     this.setState({currentUser: user})
-    fetch(`http://localhost:3000/user/getuser?email=${user.email}`)
+    fetch(`https://wod-with-faris.herokuapp.com/user/getuser?email=${user.email}`)
         .then(resp => resp.json())
         .then(userData => this.setState({userData}))
   }

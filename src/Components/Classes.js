@@ -27,11 +27,11 @@ export default class Classes extends Component {
     }
 
     componentDidMount(){
-        fetch(`http://localhost:3000/sessions?date=${this.state.date}`)
+        fetch(`https://wod-with-faris.herokuapp.com/sessions?date=${this.state.date}`)
         .then(resp => resp.json())
         .then(classes => this.setState({classes: classes, isLoading: false}))
 
-        fetch(`http://localhost:3000/user/getuser?email=${this.props.currentUser.email}`)
+        fetch(`https://wod-with-faris.herokuapp.com/user/getuser?email=${this.props.currentUser.email}`)
         .then(resp => resp.json())
         .then(user => this.setState({user}))
     }
@@ -41,7 +41,7 @@ export default class Classes extends Component {
            [e.target.name]: e.target.value,
            isLoading: true
         })
-        fetch(`http://localhost:3000/sessions?date=${e.target.value}`)
+        fetch(`https://wod-with-faris.herokuapp.com/sessions?date=${e.target.value}`)
         .then(resp => resp.json())
         .then(classes => this.setState({classes: classes, isLoading: false}))
      }

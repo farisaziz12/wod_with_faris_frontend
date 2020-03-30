@@ -10,11 +10,11 @@ export default class CoachClassCard extends Component {
     }
 
     handleDeleteClass = id => {
-        fetch(`http://localhost:3000/sessions/deleted/${id}`, {
+        fetch(`https://wod-with-faris.herokuapp.com/sessions/deleted/${id}`, {
                 method: "DELETE"
             }).then(resp => resp.json()).then(deletedBooking => this.props.handleCancel(deletedBooking))
         const ids = this.state.clients.map(client => {return client.user.id})
-        fetch("http://localhost:3000/sessions/returntokens", {
+        fetch("https://wod-with-faris.herokuapp.com/sessions/returntokens", {
             method: "POST", 
             headers: {
                 'Accept': 'application/json',
@@ -31,7 +31,7 @@ export default class CoachClassCard extends Component {
     }
 
     componentDidMount(){
-        fetch(`http://localhost:3000/usersessions?class_id=${this.props.upcomingClass.id}`, {
+        fetch(`https://wod-with-faris.herokuapp.com/usersessions?class_id=${this.props.upcomingClass.id}`, {
         }).then(resp => resp.json()).then(clients => this.setState({clients}))
     }
 

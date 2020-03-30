@@ -25,7 +25,7 @@ export default class Client extends Component {
 
 
     submitEdit = id => {
-        fetch(`http://localhost:3000/user/update/${id}`, {
+        fetch(`https://wod-with-faris.herokuapp.com/user/update/${id}`, {
                 method: "PATCH", 
                 headers: {
                     'Accept': 'application/json',

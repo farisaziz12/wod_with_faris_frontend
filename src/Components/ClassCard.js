@@ -5,7 +5,7 @@ export default class ClassCard extends Component {
 
 
     handleCancelBooking = id => {
-        fetch(`http://localhost:3000/usersession/unbook`, {
+        fetch(`https://wod-with-faris.herokuapp.com/usersession/unbook`, {
                 method: "POST", 
                 headers: {
                     'Accept': 'application/json',

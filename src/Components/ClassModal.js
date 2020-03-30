@@ -11,7 +11,7 @@ export default class ClassModal extends Component {
 
 
     componentDidMount(){
-        fetch(`http://localhost:3000/usersessions?class_id=${this.props.oneClass.id}`, {
+        fetch(`https://wod-with-faris.herokuapp.com/usersessions?class_id=${this.props.oneClass.id}`, {
         }).then(resp => resp.json()).then(clients => this.setState({clients}))
     }
   
@@ -24,7 +24,7 @@ export default class ClassModal extends Component {
         const isBooked = this.state.clients.find(client => client.user.id === this.props.user.id)
         if (isBooked === undefined && this.props.user.tokens > 0 && this.state.clients.length < 8) {
             console.log("booking")
-            fetch("http://localhost:3000/usersession/book", {
+            fetch("https://wod-with-faris.herokuapp.com/usersession/book", {
                 method: "POST", 
                 headers: {
                     'Accept': 'application/json',
@@ -37,7 +37,7 @@ export default class ClassModal extends Component {
             }).then(resp => resp.json()).then(ClientsWithNewBooking => this.setState({clients: ClientsWithNewBooking, error: null})).then(this.props.deductToken)
             
         } else if(isBooked && this.props.user.tokens >= 0) {
-            fetch(`http://localhost:3000/usersession/unbook`, {
+            fetch(`https://wod-with-faris.herokuapp.com/usersession/unbook`, {
                 method: "POST", 
                 headers: {
                     'Accept': 'application/json',
@@ -61,7 +61,7 @@ export default class ClassModal extends Component {
     render() {
         const {show, clients, error} = this.state;
         const {oneClass} = this.props;
-        const isBooked = this.state.clients.find(client => client.user.id === this.props.user.id)
+        const isBooked = clients[0]&& clients.find(client => client.user.id === this.props.user.id)
         const now = new Date()
         const classDateAndTime = new Date(oneClass.date + "T" + oneClass.time)
         const isInPast = classDateAndTime < now? true : false

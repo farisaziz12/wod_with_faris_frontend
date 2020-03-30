@@ -14,7 +14,7 @@ export default class CreateClass extends Component {
     }
 
     componentDidMount(){
-        fetch(`http://localhost:3000/user/getuser?email=${this.props.currentUser.email}`)
+        fetch(`https://wod-with-faris.herokuapp.com/user/getuser?email=${this.props.currentUser.email}`)
         .then(resp => resp.json())
         .then(coach => this.setState({coach}))
     }
@@ -28,7 +28,7 @@ export default class CreateClass extends Component {
     handleCreateClass = () => {
         const { name, description, date, time, coach } = this.state
         if ( name && description && date && time  ){
-        fetch("http://localhost:3000/sessions/create", {
+        fetch("https://wod-with-faris.herokuapp.com/sessions/create", {
                 method: "POST", 
                 headers: {
                     'Accept': 'application/json',

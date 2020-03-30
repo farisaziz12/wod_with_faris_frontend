@@ -37,9 +37,10 @@ class SignUp extends React.Component {
             await app
             .auth()
             .createUserWithEmailAndPassword(email, password);
+
             this.setState({passwordMatchError: ""})
 
-            fetch("http://localhost:3000/user/create", {
+            fetch("https://wod-with-faris.herokuapp.com/user/create", {
             method: "POST", 
             headers: {
                 'Accept': 'application/json',
@@ -48,7 +49,9 @@ class SignUp extends React.Component {
             body: JSON.stringify({
                 email: this.state.email,
                 first_name: this.state.firstName,
-                last_name: this.state.lastName
+                last_name: this.state.lastName,
+                tokens: 0,
+                coach: false
             })
             }).then(resp => resp.json()).then(resp => console.log(resp))
 
@@ -77,7 +80,7 @@ class SignUp extends React.Component {
         console.log(currentUser)
     
         if (this.state.currentUser) {
-            return <Redirect to='/classes'/>;
+            return <Redirect to='/'/>;
         }
         return (
             <div>
