@@ -34,15 +34,20 @@ export default class NavBar extends Component {
                         <button onClick={this.handleActiveBtnChange} name='/createclass' className={page === '/createclass'? 'nav-btn active' : 'nav-btn'}>Create Class</button>
                     </NavLink>
                 }
-                {currentUser&&
-                <>
+                {currentUser&& userData&& userData.coach&&
+                    <NavLink to='/clients'>
+                        <button onClick={this.handleActiveBtnChange} name='/clients' className={page === '/clients'? 'nav-btn active' : 'nav-btn'}>Clients</button>
+                    </NavLink>
+                }
+                {currentUser&& userData&& !userData.coach&&
                 <NavLink to='/classes'>
                     <button onClick={this.handleActiveBtnChange} name='/classes' className={page === '/classes'? 'nav-btn active' : 'nav-btn'}>Book Class</button>
                 </NavLink>
+                }
+                {currentUser&&
                 <NavLink to='/profile'>
                     <button onClick={this.handleActiveBtnChange} name='/profile' className={page === '/profile'? 'nav-btn active' : 'nav-btn'}>Profile</button>
                 </NavLink >
-                </>
                 }
                 {currentUser?
                 <button className='nav-btn' onClick={this.props.logout}>Log Out</button> 
