@@ -47,6 +47,9 @@ export default class CoachClassCard extends Component {
                     {clients.map(client => (
                         <p className='desc-txt'>- {client.user.first_name + " " + client.user.last_name}</p>
                     ))}
+                    {!clients[0]&&
+                        <p className='desc-txt'>None</p>
+                    }
 
                 </div>
                 </PopPop>

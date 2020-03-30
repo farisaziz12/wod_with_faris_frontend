@@ -38,6 +38,8 @@ export default class Profile extends Component {
 
     render() {
         const { user, upcomingClasses } = this.state
+        const orderedByDateUpcomingClasses = upcomingClasses.sort((a, b) => new Date(a.date) - new Date(b.date))
+        console.log(orderedByDateUpcomingClasses)
         return (
             <div>
                 <div className='profile-container'>
@@ -48,12 +50,12 @@ export default class Profile extends Component {
                         <div className='upcoming-classes-container'>
                             <h2 className='upcoming-classes-title'>Upcoming Classes: </h2>
                             {!user.coach&& upcomingClasses[0]&&
-                                upcomingClasses.map(upcomingClass => (
+                                orderedByDateUpcomingClasses.map(upcomingClass => (
                                     <ClassCard handleCancel={this.handleCancel} addToken={this.addToken} user={this.state.user} upcomingClass={upcomingClass}/>
                                 ))
                             }
                             {user.coach&& upcomingClasses[0]&&
-                                upcomingClasses.map(upcomingClass => (
+                                orderedByDateUpcomingClasses.map(upcomingClass => (
                                     <CoachClassCard handleCancel={this.handleCancel} user={this.state.user} upcomingClass={upcomingClass}/>
                                 ))
                             }
