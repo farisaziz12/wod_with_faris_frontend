@@ -298,3 +298,7 @@ h1 {
 .email-send-success{
   color: green;
 }
+
+.sign-up-error{
+  text-align: center;
+}

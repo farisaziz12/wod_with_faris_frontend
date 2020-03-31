@@ -15,7 +15,8 @@ class SignUp extends React.Component {
         passwordConfirm: null,
         currentUser: null,
         passwordMatchError: "",
-        emailSent: false
+        emailSent: false,
+        emptyFieldsError: null
     }
 
 
@@ -32,13 +33,13 @@ class SignUp extends React.Component {
     }
 
     handleSignUp = async () => {
-        const { email, password, passwordConfirm } = this.state;
+        const { email, password, passwordConfirm , firstName, lastName} = this.state;
         try {
-           if (password === passwordConfirm) { 
+           if (password === passwordConfirm && email !== null) { 
             await app
             .auth()
             .createUserWithEmailAndPassword(email, password);
-            this.setState({passwordMatchError: ""})
+            this.setState({passwordMatchError: null, emptyFieldsError: null})
 
             fetch("https://wod-with-faris.herokuapp.com/user/create", {
             method: "POST", 
@@ -50,13 +51,15 @@ class SignUp extends React.Component {
                 email: this.state.email,
                 first_name: this.state.firstName,
                 last_name: this.state.lastName,
-                tokens: 0,
+                tokens: 1,
                 coach: false
             })
             }).then(resp => resp.json()).then(resp => console.log(resp))
 
+           } else if (!password || !passwordConfirm || !email || !firstName || !lastName){
+               this.setState({emptyFieldsError: "Please fill all the fields", passwordMatchError: null})
            } else {
-               this.setState({passwordMatchError: "Passwords do not match"})
+            this.setState({passwordMatchError: "Passwords do not match", emptyFieldsError: null})
            }
 
         } catch (error) {
@@ -76,7 +79,7 @@ class SignUp extends React.Component {
 
     
     render (){
-        const {currentUser, emailSent} = this.state
+        const {currentUser, emailSent, passwordMatchError, emptyFieldsError} = this.state
         if (currentUser) {
             if(!currentUser.emailVerified && !emailSent){
                 currentUser.sendEmailVerification();
@@ -88,6 +91,7 @@ class SignUp extends React.Component {
             <div>
                 <div className="form-structor">
                     <div className="signup">
+                        {passwordMatchError&& <p className='sign-up-error'>{passwordMatchError}</p>}{emptyFieldsError&& <p className='sign-up-error'>{emptyFieldsError}</p>}
                         <h2 className="form-title" id="signup"><span>or</span>Sign up</h2>
                         <div className="form-holder">
                             <form>

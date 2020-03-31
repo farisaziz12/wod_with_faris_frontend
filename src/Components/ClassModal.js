@@ -76,7 +76,10 @@ export default class ClassModal extends Component {
                         closeOnOverlay={true}>
                 <h1 className='workout-title'>{oneClass.time + " " + oneClass.name}</h1> <div className='attending-progress-bar'><div style={{width:`${((clients.length/8) * 100).toFixed(2)}px`}}className='inner-progress-bar'><span className='attending-txt'>{clients.length === 8? "Fully Booked" : clients.length + " / 8"}</span></div></div>
                 <h3 className='desc-txt'><strong>Coach: </strong>{oneClass.coach.first_name + " " + oneClass.coach.last_name}</h3>
-                <p className='desc-txt'>{oneClass.description}</p> 
+                {oneClass.description.split('\n').map(sentence => (
+                    <p className='desc-txt'>{sentence}</p> 
+                ))
+                }
                 {!isInPast? <button onClick={() => this.handleBookandUnBookClass(this.props.oneClass.id)} class="book-btn">{isBooked? "Cancel" : "Book Class"}</button> : <button class="past-btn">Already Passed</button>}
                 {error&&
                     <p className='error'>{this.state.error}</p>

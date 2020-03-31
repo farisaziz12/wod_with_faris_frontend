@@ -1,18 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Route } from 'react-router-dom'
 import Home from './Components/Home';
 import PrivateRoute from './PrivateRoute';
 import Login from './Components/Login';
 import SignUp from './Components/SignUp';
-import { AuthContext } from './Auth';
 import app from './base'
 import NavBar from './Components/NavBar';
 import Classes from './Components/Classes';
 import Profile from './Components/Profile';
 import CreateClass from './Components/CreateClass';
 import Clients from './Components/Clients';
+import * as firebase from 'firebase/app'
 
 
 class App extends React.Component {
@@ -22,8 +21,7 @@ class App extends React.Component {
     userData: null
   }
 
-
-
+  
   handleSetUser = user => {
     this.setState({currentUser: user})
     fetch(`https://wod-with-faris.herokuapp.com/user/getuser?email=${user.email}`)
@@ -34,8 +32,7 @@ class App extends React.Component {
   handleLogout = () => {
     app.auth().signOut()
     this.setState({currentUser: null})
-}
-
+  }
 
   render() { 
     const  { currentUser, userData } = this.state

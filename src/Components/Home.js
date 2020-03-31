@@ -24,7 +24,6 @@ export default class Home extends Component {
         }
         
         IG.profile(instagramUsername).then((instaPosts) => {
-            console.log(instaPosts)
             this.setState({instaPosts})
         });
       
