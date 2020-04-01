@@ -6,7 +6,8 @@ export default class CoachClassCard extends Component {
 
     state = {
         show: false,
-        clients: []
+        clients: [],
+        askDeleteConfirm: false
     }
 
     handleDeleteClass = id => {
@@ -29,6 +30,9 @@ export default class CoachClassCard extends Component {
     toggleShow = show => {
         this.setState({show: show, tokenError: null});
     }
+    toggleDeleteConfirm = () => {
+        this.setState({askDeleteConfirm: !this.state.askDeleteConfirm});
+    }
 
     componentDidMount(){
         fetch(`https://wod-with-faris.herokuapp.com/usersessions?class_id=${this.props.upcomingClass.id}`, {
@@ -37,13 +41,13 @@ export default class CoachClassCard extends Component {
 
     render() {
         const { upcomingClass } = this.props
-        const { show, clients } = this.state
+        const { show, clients, askDeleteConfirm } = this.state
         return (
             <div className='coach-class-card'>
                 <h2 className='card-title'>{upcomingClass.time + " " + upcomingClass.name}</h2>
                 <p className='card-date'>{upcomingClass.date}</p>
-                <button onClick={() => this.handleDeleteClass(upcomingClass.id)} className='book-btn'>Delete Class</button>
-                <button onClick={() => this.toggleShow(true)} className='book-btn'>More Info</button>
+                {askDeleteConfirm? <div> <button onClick={() => this.handleDeleteClass(upcomingClass.id)} className='book-btn'>Confirm Delete</button> <button onClick={this.toggleDeleteConfirm} className='book-btn'>Cancel Delete</button> </div>: <button onClick={this.toggleDeleteConfirm} className='book-btn'>Delete Class</button>}
+                {askDeleteConfirm? undefined : <button onClick={() => this.toggleShow(true)} className='book-btn'>More Info</button>}
                 <PopPop position="centerCenter"
                         open={show}
                         closeBtn={true}
