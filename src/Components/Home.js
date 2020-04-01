@@ -37,7 +37,9 @@ export default class Home extends Component {
                 <h2 className='title'>Recent Posts</h2>
                 <div className='posts-container'>
                     {SlicedPosts.map(post => (
-                            <img id='insta-post' className='insta-post' src={post.node.display_url} />
+                            <a href="https://www.instagram.com/faziz_training/" target="_blank">
+                                <img id='insta-post' className='insta-post' src={post.node.display_url} />
+                            </a>
                     ))}
                 </div>
             </div>
