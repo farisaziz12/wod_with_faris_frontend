@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import app from '../base'
 import './Home.css'
+import Schedule from './Schedule';
 const IG = require('instagrammer');
 const instagramUsername = 'faziz_training';
 
@@ -8,7 +9,8 @@ export default class Home extends Component {
 
     state = {
         currentUser: this.props.currentUser,
-        instaPosts: []
+        instaPosts: [],
+        showSchedule: false
     }
 
     componentDidMount(){
@@ -29,12 +31,17 @@ export default class Home extends Component {
       
     }
 
+    toggleShow = show => {
+        this.setState({showSchedule: show })
+    }
+
     render() {
         const { instaPosts } = this.state
         const SlicedPosts = instaPosts[0]? instaPosts.slice(0, 8) : []
         return (
             <>
-            {/* <button onClick={() => this.toggleShow(true)} className='class-schedule-btn'>View Class Schedule</button> */}
+            <button onClick={() => this.toggleShow(true)} className='class-schedule-btn'>View Class Schedule</button>
+            <Schedule show={this.state.showSchedule} toggleShow={this.toggleShow}/>
                 <div className='posts-container'>
                     <h2 className='title'>Recent Posts <a className='title' href={`https://www.instagram.com/faziz_training/`} target="_blank">@faziz_training</a></h2>
                     <div className='posts-container'>
