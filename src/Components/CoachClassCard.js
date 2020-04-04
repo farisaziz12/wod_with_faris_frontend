@@ -7,7 +7,9 @@ export default class CoachClassCard extends Component {
     state = {
         show: false,
         clients: [],
-        askDeleteConfirm: false
+        askDeleteConfirm: false,
+        editMode: false,
+        classDescription: this.props.upcomingClass.description
     }
 
     handleDeleteClass = id => {
@@ -24,7 +26,7 @@ export default class CoachClassCard extends Component {
             body: JSON.stringify({
                 client_ids: ids
             })
-        })
+        }).then(this.setState({askDeleteConfirm: false}))
     }
 
     toggleShow = show => {
@@ -39,9 +41,30 @@ export default class CoachClassCard extends Component {
         }).then(resp => resp.json()).then(clients => this.setState({clients}))
     }
 
+    toggleEditMode = () => {
+        this.setState({editMode: !this.state.editMode})
+    }
+
+    handleChange = e => {
+        this.setState({[e.target.name]: e.target.value})
+    }
+
+    handleSubmit = id => {
+        fetch(`https://wod-with-faris.herokuapp.com/sessions/update/${id}`, {
+                method: "PATCH", 
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    description: this.state.classDescription
+                })
+        }).then(this.setState({editMode: false}))
+    }
+
     render() {
         const { upcomingClass } = this.props
-        const { show, clients, askDeleteConfirm } = this.state
+        const { show, clients, askDeleteConfirm, editMode, classDescription } = this.state
         return (
             <div className='coach-class-card'>
                 <h2 className='card-title'>{upcomingClass.time + " " + upcomingClass.name}</h2>
@@ -56,11 +79,15 @@ export default class CoachClassCard extends Component {
                         closeOnOverlay={true}>
                 <h1 className='workout-title'>{upcomingClass.time + " " + upcomingClass.name}</h1> <div className='attending-progress-bar'><div style={{width:`${((clients.length/8) * 100).toFixed(2)}px`}}className='inner-progress-bar'><span className='attending-txt'>{clients.length === 8? "Fully Booked" : clients.length + " / 8"}</span></div></div>
                 <h3 className='desc-txt'><strong>Coach: </strong>{upcomingClass.coach.first_name + " " + upcomingClass.coach.last_name}</h3>
-                {upcomingClass.description.split('\n').map(sentence => (
+                {!editMode?
+                classDescription.split('\n').map(sentence => (
                     <p className='desc-txt'>{sentence}</p> 
                 ))
+                :
+                <textarea className='edit-desc' value={classDescription} onChange={this.handleChange} name='classDescription'/>
                 } 
                 <div>
+                {!editMode? <button className='book-btn' onClick={this.toggleEditMode}>Edit Workout</button> : <button className='book-btn' onClick={() => this.handleSubmit(upcomingClass.id)}>Submit</button>}
                     <h3 className='desc-txt'>Signed  Up Clients</h3>
                     {clients.map(client => (
                         <p className='desc-txt'>- {client.user.first_name + " " + client.user.last_name}</p>

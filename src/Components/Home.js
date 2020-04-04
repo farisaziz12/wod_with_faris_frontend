@@ -33,16 +33,19 @@ export default class Home extends Component {
         const { instaPosts } = this.state
         const SlicedPosts = instaPosts[0]? instaPosts.slice(0, 8) : []
         return (
-            <div className='posts-container'>
-                <h2 className='title'>Recent Posts <a className='title' href={`https://www.instagram.com/faziz_training/`} target="_blank">@faziz_training</a></h2>
+            <>
+            {/* <button onClick={() => this.toggleShow(true)} className='class-schedule-btn'>View Class Schedule</button> */}
                 <div className='posts-container'>
-                    {SlicedPosts.map(post => (
-                            <a href={`https://www.instagram.com/p/${post.node.shortcode}/`} target="_blank">
-                                <img id='insta-post' className='insta-post' src={post.node.display_url} />
-                            </a>
-                    ))}
+                    <h2 className='title'>Recent Posts <a className='title' href={`https://www.instagram.com/faziz_training/`} target="_blank">@faziz_training</a></h2>
+                    <div className='posts-container'>
+                        {SlicedPosts.map(post => (
+                                <a href={`https://www.instagram.com/p/${post.node.shortcode}/`} target="_blank">
+                                    <img id='insta-post' className='insta-post' src={post.node.display_url} />
+                                </a>
+                        ))}
+                    </div>
                 </div>
-            </div>
+            </>
         )
     }
 }

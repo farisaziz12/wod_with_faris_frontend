@@ -235,3 +235,9 @@ input[type="date"]::-webkit-clear-button {
         overflow: scroll;
     }
 }
+
+.edit-desc{
+    min-height: 360px;
+    min-width: 300px;
+    border-radius: 10px;
+}
