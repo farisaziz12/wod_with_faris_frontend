@@ -41,9 +41,7 @@ export default class Classes extends Component {
            [e.target.name]: e.target.value,
            isLoading: true
         })
-        fetch(`https://wod-with-faris.herokuapp.com/sessions?date=${e.target.value}`)
-        .then(resp => resp.json())
-        .then(classes => this.setState({classes: classes, isLoading: false}))
+        this.dateFetch(e.target.value)
      }
 
      handlePickClass = id => { 
@@ -73,22 +71,24 @@ export default class Classes extends Component {
             tokens: user.tokens + 1
         }})
      }
+
+    dateFetch = date => {
+        fetch(`https://wod-with-faris.herokuapp.com/sessions?date=${date}`)
+        .then(resp => resp.json())
+        .then(classes => this.setState({classes: classes, isLoading: false}))
+    }
      
     handleChangeNextDay = () => {
         let d = new Date(this.state.date)
         let next = new Date(d.setDate(d.getDate() + 1)).toISOString().slice(0,10)
         this.setState({date: next})
-        fetch(`https://wod-with-faris.herokuapp.com/sessions?date=${next}`)
-        .then(resp => resp.json())
-        .then(classes => this.setState({classes: classes, isLoading: false}))
+        this.dateFetch(next)
     }
     handleChangePrevDay = () => {
         let d = new Date(this.state.date)
         let prev = new Date(d.setDate(d.getDate() - 1)).toISOString().slice(0,10)
         this.setState({date: prev})
-        fetch(`https://wod-with-faris.herokuapp.com/sessions?date=${prev}`)
-        .then(resp => resp.json())
-        .then(classes => this.setState({classes: classes, isLoading: false}))
+        this.dateFetch(prev)
     }
 
 
