@@ -254,9 +254,6 @@ h1 {
 .forgot-password{
   text-align: center;
 }
-.forgot-password-txt:hover{
-  color: lightgray;
-}
 
 .forgot-password-txt{
   color: black;
