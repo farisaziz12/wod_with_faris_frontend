@@ -22,7 +22,7 @@ export default class Schedule extends Component {
                     <p><strong>Wednesday:</strong> Core360 @ 18:30</p>
                     <p><strong>Thursday:</strong> Workout of the Day @ 18:30</p>
                     <p><strong>Friday:</strong> None</p>
-                    <p><strong>Satuday:</strong> Mobility Class @ 11:00</p>
+                    <p><strong>Saturday:</strong> Mobility Class @ 11:00</p>
                     <p><strong>Sunday:</strong> Workout of the Day @ 15:00</p>
                     <Link to='/classes'><button className='class-link'>Book a Class</button></Link>
                 </div>
