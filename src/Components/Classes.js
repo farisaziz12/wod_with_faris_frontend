@@ -73,6 +73,23 @@ export default class Classes extends Component {
             tokens: user.tokens + 1
         }})
      }
+     
+    handleChangeNextDay = () => {
+        let d = new Date(this.state.date)
+        let next = new Date(d.setDate(d.getDate() + 1)).toISOString().slice(0,10)
+        this.setState({date: next})
+        fetch(`https://wod-with-faris.herokuapp.com/sessions?date=${next}`)
+        .then(resp => resp.json())
+        .then(classes => this.setState({classes: classes, isLoading: false}))
+    }
+    handleChangePrevDay = () => {
+        let d = new Date(this.state.date)
+        let prev = new Date(d.setDate(d.getDate() - 1)).toISOString().slice(0,10)
+        this.setState({date: prev})
+        fetch(`https://wod-with-faris.herokuapp.com/sessions?date=${prev}`)
+        .then(resp => resp.json())
+        .then(classes => this.setState({classes: classes, isLoading: false}))
+    }
 
 
     render() {
@@ -81,7 +98,7 @@ export default class Classes extends Component {
         return (
             <div>
                 <h1>Book Class</h1>
-                <DatePick date={date} handleChange={this.handleDateChange}/>
+                <DatePick nextDay={this.handleChangeNextDay} prevDay={this.handleChangePrevDay} date={date} handleChange={this.handleDateChange}/>
                 <div className='container'>
                     {isLoading&& <button className='loading'></button >}
                     {classes[0]?

@@ -2,16 +2,21 @@
 @import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
 .date-picker{
     border-color: white;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 2%;
+    margin-right: 2%;
     width: 200px;
     height: 25px;
     text-align: center;
-    font-family: 'Fredoka One', cursive;
     font-size: 15px;
     margin-bottom: 5%;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
+.date-picker-container{
+    display: block;
+    text-align: center;
+}
+
 input[type="date"]::-webkit-clear-button {
     -webkit-appearance: none;
      display: none;
@@ -241,3 +246,20 @@ input[type="date"]::-webkit-clear-button {
     min-width: 300px;
     border-radius: 10px;
 }
+
+.i {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 5px;
+  }
+  
+.right {
+transform: rotate(-45deg);
+-webkit-transform: rotate(-45deg);
+}
+
+.left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+  }

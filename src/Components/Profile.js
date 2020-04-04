@@ -7,7 +7,8 @@ export default class Profile extends Component {
 
     state = {
         user: null, 
-        upcomingClasses: []
+        upcomingClasses: [],
+        showGetClassPasses: false
     }
 
     componentDidMount(){
@@ -39,8 +40,12 @@ export default class Profile extends Component {
         this.setState({upcomingClasses: this.state.upcomingClasses.filter(booking => booking.id !== deletedClass.id)})
      }
 
+     toggleShow = show => {
+        this.setState({showGetClassPasses: show })
+    }
+
     render() {
-        const { user, upcomingClasses } = this.state
+        const { user, upcomingClasses, showGetClassPasses } = this.state
         const orderedByDateUpcomingClasses = upcomingClasses[0]&& upcomingClasses.sort((a, b) => new Date(a.date) - new Date(b.date)).slice(0, 4)
         return (
             <div>
