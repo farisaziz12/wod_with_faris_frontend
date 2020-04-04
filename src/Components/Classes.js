@@ -77,16 +77,10 @@ export default class Classes extends Component {
         .then(resp => resp.json())
         .then(classes => this.setState({classes: classes, isLoading: false}))
     }
-     
-    handleChangeNextDay = () => {
+
+    handleDayOffset = offset => {
         let d = new Date(this.state.date)
-        let next = new Date(d.setDate(d.getDate() + 1)).toISOString().slice(0,10)
-        this.setState({date: next})
-        this.dateFetch(next)
-    }
-    handleChangePrevDay = () => {
-        let d = new Date(this.state.date)
-        let prev = new Date(d.setDate(d.getDate() - 1)).toISOString().slice(0,10)
+        let prev = new Date(d.setDate(d.getDate() + offset)).toISOString().slice(0,10)
         this.setState({date: prev})
         this.dateFetch(prev)
     }
@@ -98,7 +92,7 @@ export default class Classes extends Component {
         return (
             <div>
                 <h1>Book Class</h1>
-                <DatePick nextDay={this.handleChangeNextDay} prevDay={this.handleChangePrevDay} date={date} handleChange={this.handleDateChange}/>
+                <DatePick  handleOffset={this.handleDayOffset} date={date} handleChange={this.handleDateChange}/>
                 <div className='container'>
                     {isLoading&& <button className='loading'></button >}
                     {classes[0]?
