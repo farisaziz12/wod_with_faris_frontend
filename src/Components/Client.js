@@ -53,7 +53,7 @@ export default class Client extends Component {
                             <div className='client-modal-container'>
                                 <h3 className='client-txt'>{client.first_name + " " + client.last_name}</h3>
                                 <p className='client-txt'>Email: </p> {!editMode? <p className='client-txt'>{email}</p> : <input onChange={this.handleChange} className='edit-input' value={email} name='email'/>}
-                                <p className='client-txt'>Tokens: </p> {!editMode? <p className='client-txt'>{tokens}</p> : <input onChange={this.handleChange} className='edit-input' type='number' value={tokens} name='tokens'/>}
+                                <p className='client-txt'>Class Passes: </p> {!editMode? <p className='client-txt'>{tokens}</p> : <input onChange={this.handleChange} className='edit-input' type='number' value={tokens} name='tokens'/>}
                                 {!editMode? <button onClick={this.toggleEditMode} className='edit-btn'>Edit</button> : <button onClick={() => this.submitEdit(client.id)} className='edit-btn'>Submit</button>}
                             </div>
                 </PopPop>

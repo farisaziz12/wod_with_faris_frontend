@@ -48,7 +48,7 @@ export default class Profile extends Component {
                     {user?
                     <>
                         <h1>{user.first_name + " " + user.last_name}</h1>
-                        {!user.coach&& <h2 className='tokens'>Tokens: {user.tokens}</h2>}
+                        {!user.coach&& <h2 className='tokens'>Class Passes: {user.tokens}</h2>}
                         <div className='upcoming-classes-container'>
                             <h2 className='upcoming-classes-title'>Upcoming Classes: </h2>
                             {!user.coach&& upcomingClasses[0]&&
