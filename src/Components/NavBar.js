@@ -44,11 +44,6 @@ export default class NavBar extends Component {
                     <button onClick={this.handleActiveBtnChange} name='/classes' className={page === '/classes'? 'nav-btn active' : 'nav-btn'}>Book Class</button>
                 </NavLink>
                 }
-                {currentUser&& userData&& !userData.coach&&
-                <NavLink to='/buypasses'>
-                    <button onClick={this.handleActiveBtnChange} name='/buypasses' className={page === '/buypasses'? 'nav-btn active' : 'nav-btn'}>Buy Passes</button>
-                </NavLink>
-                }
                 {currentUser&&
                 <NavLink to='/profile'>
                     <button onClick={this.handleActiveBtnChange} name='/profile' className={page === '/profile'? 'nav-btn active' : 'nav-btn'}>Profile</button>
