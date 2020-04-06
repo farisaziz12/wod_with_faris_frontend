@@ -43,7 +43,6 @@ class App extends React.Component {
         <PrivateRoute exact path='/profile' component={Profile}/>
         <PrivateRoute exact path='/createclass' component={CreateClass}/>
         <PrivateRoute exact path='/clients' component={Clients}/>
-        <PrivateRoute exact path='/buypasses' component={BuyPasses}/>
         <Route exact path='/'>
           <Home setUser={this.handleSetUser}/>
         </Route>
