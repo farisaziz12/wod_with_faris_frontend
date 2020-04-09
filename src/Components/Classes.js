@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
-import ReactGA from 'react-ga';
 import DatePick from './DatePick'
 import './Classes.css'
 import ClassModal from './ClassModal'
+import ReactGA from 'react-ga';
+
+function initializeReactGA() {
+    ReactGA.initialize(process.env.GOOGLE_ANALYTICS_PROJECT_ID);
+    ReactGA.pageview('/classes');
+}
 
 let today = new Date()
 let dd = today.getDate(); 
@@ -28,8 +33,7 @@ export default class Classes extends Component {
     }
 
     componentDidMount(){
-        ReactGA.initialize(process.env.GOOGLE_ANALYTICS_PROJECT_ID);
-        ReactGA.pageview('/bookclass');
+        initializeReactGA()
 
         fetch(`https://wod-with-faris.herokuapp.com/sessions?date=${this.state.date}`)
         .then(resp => resp.json())

@@ -4,6 +4,11 @@ import ClassCard from './ClassCard'
 import CoachClassCard from './CoachClassCard'
 import ReactGA from 'react-ga';
 
+function initializeReactGA() {
+    ReactGA.initialize(process.env.GOOGLE_ANALYTICS_PROJECT_ID);
+    ReactGA.pageview('/profile');
+}
+
 export default class Profile extends Component {
 
     state = {
@@ -13,9 +18,8 @@ export default class Profile extends Component {
     }
 
     componentDidMount(){
-        ReactGA.initialize(process.env.GOOGLE_ANALYTICS_PROJECT_ID);
-        ReactGA.pageview('/profile');
-
+        initializeReactGA()
+        
         fetch(`https://wod-with-faris.herokuapp.com/user/getuser?email=${this.props.currentUser.email}`)
         .then(resp => resp.json())
         .then(user => this.setState({user}))

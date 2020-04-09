@@ -6,6 +6,11 @@ import './Login.css'
 import { NavLink } from 'react-router-dom'
 import ReactGA from 'react-ga';
 
+function initializeReactGA() {
+    ReactGA.initialize(process.env.GOOGLE_ANALYTICS_PROJECT_ID);
+    ReactGA.pageview('/signup');
+}
+
 class SignUp extends React.Component {
 
     state = {
@@ -22,8 +27,7 @@ class SignUp extends React.Component {
 
 
     componentDidMount(){
-        ReactGA.initialize(process.env.GOOGLE_ANALYTICS_PROJECT_ID);
-        ReactGA.pageview('/signup');
+        initializeReactGA()
 
         app.auth().onAuthStateChanged(function(user) {
             if (user) {

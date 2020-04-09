@@ -6,6 +6,11 @@ import ReactGA from 'react-ga';
 const IG = require('instagrammer');
 const instagramUsername = 'faziz_training';
 
+function initializeReactGA() {
+    ReactGA.initialize(process.env.GOOGLE_ANALYTICS_PROJECT_ID);
+    ReactGA.pageview('/home');
+}
+
 
 export default class Home extends Component {
     
@@ -16,9 +21,8 @@ export default class Home extends Component {
     }
     
     componentDidMount(){
-        ReactGA.initialize(process.env.GOOGLE_ANALYTICS_PROJECT_ID);
-        ReactGA.pageview('/home');
-        
+        initializeReactGA()
+
         app.auth().onAuthStateChanged(function(user) {
             if (user) {
                 setUser(user)
