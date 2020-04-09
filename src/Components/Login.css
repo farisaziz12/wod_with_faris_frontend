@@ -16,20 +16,12 @@ h1 {
   display: block;
   margin-left: auto;
   margin-right: auto;
-}
-.form-structor::after {
-  content: '';
-  opacity: .8;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
   background-repeat: no-repeat;
   background-position: 60% bottom;
   background-size: cover;
-  background-image: url("https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fcdn-mf0.heartyhosting.com%2Fsites%2Fmensfitness.com%2Ffiles%2Fstyles%2Fgallery_slideshow_image%2Fpublic%2F6-jamie-greene.jpg%3Fitok%3DHPvjUWzV&f=1&nofb=1");
+  background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fathleticmuscle.net%2Fwp-content%2Fuploads%2F2018%2F12%2FCrossfit-Dumbbell-Workout.jpg&f=1&nofb=1");
 }
+
 .form-structor .signup {
   position: absolute;
   top: 50%;
