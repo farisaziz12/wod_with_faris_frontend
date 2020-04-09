@@ -2,18 +2,23 @@ import React, { Component } from 'react'
 import app from '../base'
 import './Home.css'
 import Schedule from './Schedule';
+import ReactGA from 'react-ga';
 const IG = require('instagrammer');
 const instagramUsername = 'faziz_training';
 
-export default class Home extends Component {
 
+export default class Home extends Component {
+    
     state = {
         currentUser: this.props.currentUser,
         instaPosts: [],
         showSchedule: false
     }
-
+    
     componentDidMount(){
+        ReactGA.initialize(process.env.GOOGLE_ANALYTICS_PROJECT_ID);
+        ReactGA.pageview('/home');
+        
         app.auth().onAuthStateChanged(function(user) {
             if (user) {
                 setUser(user)

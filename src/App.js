@@ -11,7 +11,7 @@ import Classes from './Components/Classes';
 import Profile from './Components/Profile';
 import CreateClass from './Components/CreateClass';
 import Clients from './Components/Clients';
-import BuyPasses from './Components/BuyPasses';
+
 
 
 class App extends React.Component {

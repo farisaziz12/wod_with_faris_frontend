@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom'
 import app from '../base';
 import './Login.css'
 import { NavLink } from 'react-router-dom'
+import ReactGA from 'react-ga';
 
 class SignUp extends React.Component {
 
@@ -21,6 +22,9 @@ class SignUp extends React.Component {
 
 
     componentDidMount(){
+        ReactGA.initialize(process.env.GOOGLE_ANALYTICS_PROJECT_ID);
+        ReactGA.pageview('/signup');
+
         app.auth().onAuthStateChanged(function(user) {
             if (user) {
                 setUser(user)
