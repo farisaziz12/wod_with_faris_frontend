@@ -28,7 +28,6 @@ class App extends React.Component {
 
   componentDidMount(){
     initializeReactGA()
-    console.log(process.env)
   }
   
   handleSetUser = user => {
