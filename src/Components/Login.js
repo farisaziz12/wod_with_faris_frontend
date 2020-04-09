@@ -4,6 +4,13 @@ import app from '../base';
 import './Login.css'
 import { NavLink } from 'react-router-dom'
 import PopPop from 'react-poppop';
+import ReactGA from 'react-ga';
+
+function initializeReactGA() {
+    ReactGA.initialize(process.env.GOOGLE_ANALYTICS_PROJECT_ID);
+    ReactGA.pageview('/login');
+}
+
 
 class Login extends React.Component {
 
@@ -17,6 +24,8 @@ class Login extends React.Component {
     }
 
     componentDidMount(){
+        initializeReactGA()
+
         app.auth().onAuthStateChanged(function(user) {
             if (user) {
                 setUser(user)

@@ -13,11 +13,6 @@ import CreateClass from './Components/CreateClass';
 import Clients from './Components/Clients';
 import ReactGA from 'react-ga';
 
-function initializeReactGA() {
-  ReactGA.initialize(process.env.GOOGLE_ANALYTICS_PROJECT_ID);
-  ReactGA.pageview('/');
-}
-
 class App extends React.Component {
 
   state = {
@@ -25,10 +20,6 @@ class App extends React.Component {
     userData: null
   }
 
-
-  componentDidMount(){
-    initializeReactGA()
-  }
 
   
   handleSetUser = user => {
