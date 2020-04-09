@@ -7,7 +7,7 @@ const IG = require('instagrammer');
 const instagramUsername = 'faziz_training';
 
 function initializeReactGA() {
-    ReactGA.initialize(process.env.GOOGLE_ANALYTICS_PROJECT_ID);
+    ReactGA.initialize(process.env.REACT_APP_GOOGLE_MEASUREMENT_ID);
     ReactGA.pageview('/home');
 }
 

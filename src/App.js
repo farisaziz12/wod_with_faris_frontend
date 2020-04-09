@@ -13,6 +13,12 @@ import CreateClass from './Components/CreateClass';
 import Clients from './Components/Clients';
 import ReactGA from 'react-ga';
 
+function initializeReactGA() {
+  ReactGA.initialize(process.env.REACT_APP_GOOGLE_MEASUREMENT_ID);
+  ReactGA.pageview('/');
+}
+
+
 class App extends React.Component {
 
   state = {
@@ -20,7 +26,10 @@ class App extends React.Component {
     userData: null
   }
 
-
+  componentDidMount(){
+    initializeReactGA()
+    console.log(process.env)
+  }
   
   handleSetUser = user => {
     this.setState({currentUser: user})

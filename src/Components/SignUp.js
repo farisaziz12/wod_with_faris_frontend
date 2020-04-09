@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom'
 import ReactGA from 'react-ga';
 
 function initializeReactGA() {
-    ReactGA.initialize(process.env.GOOGLE_ANALYTICS_PROJECT_ID);
+    ReactGA.initialize(process.env.REACT_APP_GOOGLE_MEASUREMENT_ID);
     ReactGA.pageview('/signup');
 }
 
