@@ -25,6 +25,18 @@
     margin-left: auto;
 }
 
+.low-on-tokens-client{
+    border: solid rgb(187, 86, 86);
+    background-color: rgb(187, 86, 86);
+    color: black;
+    width: 200px;
+    height: 25px;
+    border-radius: 15px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 @media (min-width: 768px) {
     .clients-container{
         margin-top: 5%;

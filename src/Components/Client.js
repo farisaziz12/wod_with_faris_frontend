@@ -43,7 +43,7 @@ export default class Client extends Component {
         const { show, email, tokens, editMode } = this.state
         return (
             <div>
-                <h3 onClick={this.toggleShow} className='client'>{client.first_name + " " + client.last_name}</h3>
+                <h3 onClick={this.toggleShow}  className={tokens <=1? 'low-on-tokens-client' : 'client'}>{client.first_name + " " + client.last_name}</h3>
                 <PopPop position="centerCenter"
                         open={show}
                         closeBtn={true}
