@@ -19,9 +19,6 @@ class App extends React.Component {
     userData: null
   }
 
-  componentDidMount(){
-    initializeReactGA()
-  }
   
   handleSetUser = user => {
     this.setState({currentUser: user})
