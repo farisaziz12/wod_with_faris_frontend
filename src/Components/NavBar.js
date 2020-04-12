@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import app from '../base'
 import { NavLink } from 'react-router-dom'
 import './NavBar.css'
 
