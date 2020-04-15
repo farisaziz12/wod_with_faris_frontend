@@ -20,7 +20,8 @@ class Login extends React.Component {
         password: null,
         show: false,
         passwordResetEmail: null, 
-        emailSent: false
+        emailSent: false,
+        emailError: false
     }
 
     componentDidMount(){
@@ -61,11 +62,22 @@ class Login extends React.Component {
     }
 
     sendPasswordResetEmail = email => {
-        app.auth().sendPasswordResetEmail(email).then(this.setState({emailSent: true}))
+        this.checkAccount(email).then(resp => {
+            if (resp) {
+                app.auth().sendPasswordResetEmail(email).then(this.setState({emailSent: true, emailError: false}))
+            } else {
+                this.setState({emailError: true})
+            }
+        })
+    }
+
+    checkAccount = email => {
+        return fetch(`https://wod-with-faris.herokuapp.com/users/check?email=${email}`)
+        .then(resp => resp.json())
     }
 
     render(){
-        const { currentUser, show, passwordResetEmail, emailSent } = this.state
+        const { currentUser, show, passwordResetEmail, emailSent, emailError } = this.state
         if (currentUser) {
             return <Redirect to='/'/>;
         }
@@ -89,6 +101,7 @@ class Login extends React.Component {
                             <div className='forgot-password-modal-container'>
                                 <h2 className='forgot-password-txt'>Password Reset</h2>
                                 {emailSent&& <p className='email-send-success'>Email Sent!</p>}
+                                {emailError&& <p className='email-send-error'>Sorry, no account matches this email</p>}
                                 <p className='forgot-password-txt'>Please enter the email associated with your account:</p>
                                 <input value={passwordResetEmail} onChange={this.handlePasswordResetEmailChange} name='passwordResetEmail' className='forgot-password-input' type='email'/>
                                 <button onClick={() => this.sendPasswordResetEmail(passwordResetEmail)} className='forgot-password-btn'>Send Password Reset Email</button>

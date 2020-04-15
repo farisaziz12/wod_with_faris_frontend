@@ -288,6 +288,10 @@ h1 {
   color: green;
 }
 
+.email-send-error{
+  color: red;
+}
+
 .sign-up-error{
   text-align: center;
 }
