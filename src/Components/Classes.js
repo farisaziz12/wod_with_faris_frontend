@@ -67,6 +67,10 @@ export default class Classes extends Component {
             email: user.email,
             tokens: user.tokens - 1
         }})
+        ReactGA.event({
+            category: 'User',
+            action: `${this.state.user.first_name + " " + this.state.user.last_name} Booked a Class`
+        });
      }
      addToken = () => {
         const { user } = this.state 
@@ -78,6 +82,10 @@ export default class Classes extends Component {
             email: user.email,
             tokens: user.tokens + 1
         }})
+        ReactGA.event({
+            category: 'User',
+            action: `${this.state.user.first_name + " " + this.state.user.last_name} Cancelled a Class`
+        });
      }
 
     dateFetch = date => {

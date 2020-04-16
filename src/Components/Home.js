@@ -42,6 +42,10 @@ export default class Home extends Component {
 
     toggleShow = show => {
         this.setState({showSchedule: show })
+        ReactGA.event({
+            category: 'User',
+            action: `${this.props.user.first_name + " " + this.props.user.last_name} checked out the Schedule`
+        });
     }
 
     render() {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
+import ReactGA from 'react-ga';
 import './NavBar.css'
 
 export default class NavBar extends Component {
@@ -14,9 +15,17 @@ export default class NavBar extends Component {
 
     handleActiveBtnChange = (e) => {
         if(e.target.name === '/profile' || e.target.name === '/classes'){
-            this.props.currentUser? this.setState({page: e.target.name}) : this.setState({page: '/login'}) 
+            this.props.currentUser? this.setState({page: e.target.name}) : this.setState({page: '/login'})
+            ReactGA.event({
+                category: 'User',
+                action: `${this.props.userData.first_name + " " + this.props.userData.last_name} looked at ${e.target.name}`
+            });
         } else {
             this.setState({page: e.target.name})
+            ReactGA.event({
+                category: 'User',
+                action: `${this.props.userData.first_name + " " + this.props.userData.last_name} looked at ${e.target.name}`
+            });
         }
     }
 

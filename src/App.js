@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Route } from 'react-router-dom'
+import ReactGA from 'react-ga'
 import Home from './Components/Home';
 import PrivateRoute from './PrivateRoute';
 import Login from './Components/Login';
@@ -28,6 +29,10 @@ class App extends React.Component {
   }
 
   handleLogout = () => {
+    ReactGA.event({
+      category: 'User',
+      action: `${this.state.userData.first_name + " " + this.props.state.last_name} logged out`
+  });
     app.auth().signOut()
     this.setState({currentUser: null})
   }
@@ -42,7 +47,7 @@ class App extends React.Component {
         <PrivateRoute exact path='/createclass' component={CreateClass}/>
         <PrivateRoute exact path='/clients' component={Clients}/>
         <Route exact path='/'>
-          <Home setUser={this.handleSetUser}/>
+          <Home user={userData} setUser={this.handleSetUser}/>
         </Route>
         <Route exact path='/login'>
           <Login setUser={this.handleSetUser}/>

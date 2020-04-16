@@ -4,6 +4,7 @@ import './Schedule.css';
 import { Link } from 'react-router-dom';
 
 export default class Schedule extends Component {
+
     render() {
         const { show, toggleShow } = this.props
         return (
