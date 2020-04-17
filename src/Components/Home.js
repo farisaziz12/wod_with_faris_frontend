@@ -43,11 +43,11 @@ export default class Home extends Component {
             <button onClick={() => this.toggleShow(true)} className='class-schedule-btn'>View Class Schedule</button>
             <Schedule show={this.state.showSchedule} toggleShow={this.toggleShow}/>
                 <div className='posts-container'>
-                    <h2 className='title'>Recent Posts <a className='title' href={`https://www.instagram.com/faziz_training/`} target="_blank">@faziz_training</a></h2>
+                    <h2 className='title'>Recent Posts <a className='title' href={`https://www.instagram.com/faziz_training/`}>@faziz_training</a></h2>
                     <div className='posts-container'>
                         {SlicedPosts.map(post => (
-                                <a href={`https://www.instagram.com/p/${post.node.shortcode}/`} target="_blank">
-                                    <img id='insta-post' className='insta-post' src={post.node.display_url} />
+                                <a href={`https://www.instagram.com/p/${post.node.shortcode}/`} >
+                                    <img alt='' id='insta-post' className='insta-post' src={post.node.display_url} />
                                 </a>
                         ))}
                     </div>

@@ -45,6 +45,12 @@
 
     
 }
+@media (max-width: 325px) {
+    .nav-btn{
+        width: 60px;
+    }
+}
+
 
 @media (min-width: 768px) {
     .logo-2{

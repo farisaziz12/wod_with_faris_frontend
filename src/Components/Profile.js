@@ -45,7 +45,7 @@ export default class Profile extends Component {
     }
 
     render() {
-        const { user, upcomingClasses, showGetClassPasses } = this.state
+        const { user, upcomingClasses } = this.state
         const orderedByDateUpcomingClasses = upcomingClasses[0]&& upcomingClasses.sort((a, b) => new Date(a.date) - new Date(b.date)).slice(0, 4)
         return (
             <div>
