@@ -32,7 +32,7 @@ class App extends React.Component {
   handleLogout = () => {
     ReactGA.event({
       category: 'User',
-      action: `${this.state.userData.first_name + " " + this.props.state.last_name} logged out`
+      action: `${this.state.userData.first_name + " " + this.state.userData.last_name} logged out`
   });
     app.auth().signOut()
     this.setState({currentUser: null})
