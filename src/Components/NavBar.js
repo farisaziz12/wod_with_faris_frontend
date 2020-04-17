@@ -16,12 +16,14 @@ export default class NavBar extends Component {
     handleActiveBtnChange = (e) => {
         if(e.target.name === '/profile' || e.target.name === '/classes'){
             this.props.currentUser? this.setState({page: e.target.name}) : this.setState({page: '/login'})
+            this.props.userData&&
             ReactGA.event({
                 category: 'User',
                 action: `${this.props.userData.first_name + " " + this.props.userData.last_name} looked at ${e.target.name}`
             });
         } else {
             this.setState({page: e.target.name})
+            this.props.userData&&
             ReactGA.event({
                 category: 'User',
                 action: `${this.props.userData.first_name + " " + this.props.userData.last_name} looked at ${e.target.name}`
