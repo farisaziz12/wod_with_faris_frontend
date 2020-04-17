@@ -12,6 +12,7 @@ import Classes from './Components/Classes';
 import Profile from './Components/Profile';
 import CreateClass from './Components/CreateClass';
 import Clients from './Components/Clients';
+import BuyPasses from './Components/BuyPasses';
 
 class App extends React.Component {
 
@@ -46,6 +47,7 @@ class App extends React.Component {
         <PrivateRoute exact path='/profile' component={Profile}/>
         <PrivateRoute exact path='/createclass' component={CreateClass}/>
         <PrivateRoute exact path='/clients' component={Clients}/>
+        <PrivateRoute exact path='/buypasses' component={BuyPasses}/>
         <Route exact path='/'>
           <Home user={userData} setUser={this.handleSetUser}/>
         </Route>
