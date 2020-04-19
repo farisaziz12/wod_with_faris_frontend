@@ -1,0 +1,12 @@
+.header{
+    margin-top: 5%;
+    color: black;
+    font-size: 30px;
+    text-decoration: underline;
+}
+
+.all-upcoming-classes-container{
+    max-height: 430px;
+    max-width: 340px;
+    overflow: scroll;
+}

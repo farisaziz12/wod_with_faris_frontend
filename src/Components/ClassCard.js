@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import dateFormat from 'dateformat'
 import './Classes.css'
 
 export default class ClassCard extends Component {
@@ -23,7 +24,7 @@ export default class ClassCard extends Component {
         return (
             <div className='class-card'>
                 <h2 className='card-title'>{upcomingClass.time + " " + upcomingClass.name}</h2>
-                <p className='card-date'>{upcomingClass.date}</p>
+                <p className='card-date'>{dateFormat(upcomingClass.date, "fullDate")}</p>
                 <button onClick={() => this.handleCancelBooking(upcomingClass.id)} className='book-btn'>Cancel</button>
             </div>
         )

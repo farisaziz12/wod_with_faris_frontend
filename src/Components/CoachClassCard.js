@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import './Classes.css'
+import dateFormat from 'dateformat'
 import PopPop from 'react-poppop';
+import './Classes.css'
 
 export default class CoachClassCard extends Component {
 
@@ -68,7 +69,7 @@ export default class CoachClassCard extends Component {
         return (
             <div className='coach-class-card'>
                 <h2 className='card-title'>{upcomingClass.time + " " + upcomingClass.name}</h2>
-                <p className='card-date'>{upcomingClass.date}</p>
+                <p className='card-date'>{dateFormat(upcomingClass.date, "fullDate")}</p>
                 {askDeleteConfirm? <div> <button onClick={() => this.handleDeleteClass(upcomingClass.id)} className='book-btn'>Confirm Delete</button> <button onClick={this.toggleDeleteConfirm} className='book-btn'>Cancel Delete</button> </div>: <button onClick={this.toggleDeleteConfirm} className='book-btn'>Delete Class</button>}
                 {askDeleteConfirm? undefined : <button onClick={() => this.toggleShow(true)} className='book-btn'>More Info</button>}
                 <PopPop position="centerCenter"
