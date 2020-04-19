@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ReactGa from 'react-ga';
 import './BuyPasses.css'
 import { loadStripe } from "@stripe/stripe-js";
 import { ElementsConsumer } from "@stripe/react-stripe-js"
@@ -26,6 +27,10 @@ export default class BuyPasses extends Component {
         } else if (quantity === 5) {
             this.setState({purchaseAmountLimit: true})
         }
+        ReactGA.event({
+            category: 'User',
+            action: `${amount}X classes was added to the cart.`
+        });
     }
 
     resetQuantity = () => {
