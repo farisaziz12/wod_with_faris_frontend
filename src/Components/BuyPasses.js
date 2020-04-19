@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ReactGa from 'react-ga';
+import ReactGA from 'react-ga';
 import './BuyPasses.css'
 import { loadStripe } from "@stripe/stripe-js";
 import { ElementsConsumer } from "@stripe/react-stripe-js"
@@ -43,6 +43,11 @@ export default class BuyPasses extends Component {
         } else if (this.state.quantity === 0) {
             window.alert("Quantity of class passes must be more than 0")
         }
+
+        ReactGA.event({
+            category: 'User',
+            action: `Checkout button was hit`
+        });
     }
 
     render() {
