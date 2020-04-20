@@ -17,7 +17,7 @@ export default class Schedule extends Component {
                         closeOnOverlay={true}>
                 <h1 className='schedule-title'>Schedule</h1>
                 <div className='schedule-container'>
-                    <h3 className='schedule-h3'>Classes with less than 2 people will be cancelled 2 hours before class start time</h3>
+                    <h3 className='schedule-h3'>Classes with less than 2 people will be cancelled 2 hours before class start time and early morning classes will be cancelled the night before at 20:00</h3>
                     <p><strong>Monday:</strong> None</p>
                     <p><strong>Tuesday:</strong> Workout of the Day @ 7:00</p>
                     <p><strong>Wednesday:</strong> None</p>

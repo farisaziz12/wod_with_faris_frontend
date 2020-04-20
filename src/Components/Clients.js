@@ -48,7 +48,6 @@ export default class Clients extends Component {
     render() {
         const { allClients, search } = this.state
         const alphebetizedClients = allClients.sort((a,b) =>  a.last_name.localeCompare(b.last_name))
-        console.log(alphebetizedClients)
         const filteredClients = search? this.sortSearch(allClients) : alphebetizedClients
         return (
             <div>
