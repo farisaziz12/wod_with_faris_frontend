@@ -58,12 +58,7 @@
     }
 }
 
-@media (max-width: 500px) {
- .logo-2{
-     font-size: 15px;
- }
-}
-@media (max-width: 465px) {
+@media (max-width: 575px) {
  .logo-2{
      display: none;
  }

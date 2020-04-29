@@ -18,8 +18,17 @@ class App extends React.Component {
 
   state = {
     currentUser: null, 
-    userData: null
+    userData: null, 
+    screenWidth: window.innerWidth
   }
+
+  componentWillMount() {
+    window.addEventListener('resize', this.handleWindowSizeChange);
+  }
+
+  handleWindowSizeChange = () => {
+    this.setState({ screenWidth: window.innerWidth });
+  };
 
   
   handleSetUser = user => {
@@ -39,7 +48,8 @@ class App extends React.Component {
   }
 
   render() { 
-    const  { currentUser, userData } = this.state
+    const  { currentUser, userData, screenWidth } = this.state
+    const isMobile = screenWidth <= 500;
     return (
       <>
         <NavBar userData={userData} logout={this.handleLogout} currentUser={currentUser}/>
