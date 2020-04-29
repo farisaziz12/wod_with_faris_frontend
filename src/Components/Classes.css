@@ -208,6 +208,9 @@ input[type="date"]::-webkit-clear-button {
     margin-left: 2%;
     margin-bottom: -4%;
     margin-top: 4%;
+    font-size: 20px;
+    font-family: 'Permanent Marker', cursive;
+    font-weight: 400;
 }
 .card-date{
     margin-left: 2%;

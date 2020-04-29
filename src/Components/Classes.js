@@ -105,6 +105,7 @@ export default class Classes extends Component {
     render() {
         const  { date, classes, isLoading } = this.state
         const filteredClasses = classes.filter(oneClass => oneClass.date === date)
+        const timeOrderedClasses = filteredClasses.sort((a, b) => new Date(a.date + " " + a.time) - new Date(b.date + " " + b.time))
         return (
             <div>
                 <h1>Book Class</h1>
@@ -112,7 +113,7 @@ export default class Classes extends Component {
                 <div className='container'>
                     {isLoading&& <button className='loading'></button >}
                     {classes[0]?
-                    filteredClasses.map(oneClass => (
+                    timeOrderedClasses.map(oneClass => (
                         <ClassModal addToken={this.addToken} deductToken={this.deductToken} user={this.state.user} oneClass={oneClass} handlePickClass={this.handlePickClass}/>
                     ))
                     :
