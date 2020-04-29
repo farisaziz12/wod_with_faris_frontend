@@ -52,9 +52,15 @@
     transition: all 0.2s ease-in-out;
 }
 
-/* rgb(3, 151, 250); */
+
 
 .class-schedule-btn:hover{
     background-color: lightslategray;
     border-radius: 10px;
+}
+
+@media (max-width: 500px) {
+    .class-schedule-btn{
+        
+    }
 }

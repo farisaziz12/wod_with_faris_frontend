@@ -295,3 +295,9 @@ h1 {
 .sign-up-error{
   text-align: center;
 }
+
+@media (max-width: 500px) {
+  .form-structor{
+    top: 75px;
+  }
+}

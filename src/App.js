@@ -13,6 +13,7 @@ import Profile from './Components/Profile';
 import CreateClass from './Components/CreateClass';
 import Clients from './Components/Clients';
 import BuyPasses from './Components/BuyPasses';
+import MobileMenu from './Components/MobileMenu'
 
 class App extends React.Component {
 
@@ -52,7 +53,7 @@ class App extends React.Component {
     const isMobile = screenWidth <= 500;
     return (
       <>
-        <NavBar userData={userData} logout={this.handleLogout} currentUser={currentUser}/>
+        {isMobile? <div className='mobile-menu'><MobileMenu userData={userData} currentUser={currentUser} logout={this.handleLogout}/></div> : <NavBar userData={userData} logout={this.handleLogout} currentUser={currentUser}/>}
         <PrivateRoute exact path='/classes' component={Classes}/>
         <PrivateRoute exact path='/profile' component={Profile}/>
         <PrivateRoute exact path='/createclass' component={CreateClass}/>

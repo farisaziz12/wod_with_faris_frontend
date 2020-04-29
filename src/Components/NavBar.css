@@ -74,3 +74,18 @@
     padding: 2px 6px 1px;
     border-radius: 12px;
 }
+
+.menu{
+    background-color: black;
+    position: fixed;
+    border: solid white 1px;
+    border-radius: 15px;
+}
+
+.menu-h3{
+    color: white;
+    height: 10px;
+    margin-top: 0%;
+    font-family: 'Permanent Marker', cursive;
+    font-weight: 400;
+}
