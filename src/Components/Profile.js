@@ -55,7 +55,8 @@ export default class Profile extends Component {
 
     render() {
         const { user, upcomingClasses, showUpcomingClasses } = this.state
-        const orderedByDateUpcomingClasses = upcomingClasses[0]&& upcomingClasses.sort((a, b) => new Date(a.date) - new Date(b.date))
+        const timeOrderedClasses = upcomingClasses[0]&& upcomingClasses.sort((a, b) => new Date(a.date + " " + a.time) - new Date(b.date + " " + b.time))
+        const orderedByDateUpcomingClasses = timeOrderedClasses&& timeOrderedClasses.sort((a, b) => new Date(a.date) - new Date(b.date))
         const SlicedUpcomingClasses = orderedByDateUpcomingClasses&& orderedByDateUpcomingClasses.slice(0, 4)
         return (
             <div>
