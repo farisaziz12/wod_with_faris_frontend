@@ -7,7 +7,8 @@ export default class CreateClass extends Component {
         name: null,
         description: null,
         date: null,
-        time: null, 
+        time: null,
+        classCapacity: 8, 
         coach: null, 
         success: false,
         errorMessage: null
@@ -26,8 +27,8 @@ export default class CreateClass extends Component {
     }
 
     handleCreateClass = () => {
-        const { name, description, date, time, coach } = this.state
-        if ( name && description && date && time  ){
+        const { name, description, date, time, coach, classCapacity } = this.state
+        if ( name && description && date && time && classCapacity  ){
         fetch("https://wod-with-faris.herokuapp.com/sessions/create", {
                 method: "POST", 
                 headers: {
@@ -39,6 +40,7 @@ export default class CreateClass extends Component {
                     description: description,
                     date: date,
                     time: time,
+                    class_capacity: parseInt(classCapacity),
                     user_id: coach.id
                 })
             }).then(resp => resp.json()).then(this.setState({success: true, errorMessage: null, name: "", description: "", date: "", time: ""}))
@@ -49,7 +51,7 @@ export default class CreateClass extends Component {
     } 
 
     render() {
-        const { success, errorMessage } = this.state
+        const { success, errorMessage, name, date, description, time, classCapacity } = this.state
         return (
             <div>
                 <h1 className='create-class-title'>Create Class</h1>
@@ -61,13 +63,15 @@ export default class CreateClass extends Component {
                 }
                 <div className='create-class-div'>
                     <h3 className='create-class-h3'>Name</h3>
-                    <input name='name' onChange={this.handleChange} className='create-class-input' type='text'/>
+                    <input name='name' value={name} onChange={this.handleChange} className='create-class-input' type='text'/>
                     <h3 className='create-class-h3' >Description</h3>
-                    <textarea name='description' onChange={this.handleChange} className='create-class-textarea'/>
+                    <textarea name='description' value={description} onChange={this.handleChange} className='create-class-textarea'/>
                     <h3 className='create-class-h3'>Date</h3>
-                    <input name='date' onChange={this.handleChange} className='create-class-input' type='date'/>
+                    <input name='date' value={date} onChange={this.handleChange} className='create-class-input' type='date'/>
                     <h3 className='create-class-h3'>Time</h3>
-                    <input name='time' onChange={this.handleChange} className='create-class-input' type='time'/>
+                    <input name='time' value={time} onChange={this.handleChange} className='create-class-input' type='time'/>
+                    <h3 className='create-class-h3'>Class Capacity</h3>
+                    <input name='classCapacity' value={classCapacity} onChange={this.handleChange} className='create-class-input' type='number'/>
                     <button className='create-class-btn' onClick={this.handleCreateClass}>Create Class</button>
                 </div>
             </div>
