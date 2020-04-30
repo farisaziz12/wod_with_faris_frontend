@@ -43,6 +43,9 @@ export default function MobileMenu(props) {
         {currentUser&& userData&& !userData.coach&&
             <StyledLink  to='/buypasses'><MenuItem onClick={handleClose}>Buy Passes</MenuItem></StyledLink>
         }
+        {currentUser&& userData&& !userData.coach&&
+            <StyledLink  to='/leaderboard'><MenuItem onClick={handleClose}>Leaderboard</MenuItem></StyledLink>
+        }
         {currentUser&&
             <StyledLink  to='/profile'><MenuItem onClick={handleClose}>Profile</MenuItem></StyledLink>
         }

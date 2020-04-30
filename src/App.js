@@ -14,6 +14,7 @@ import CreateClass from './Components/CreateClass';
 import Clients from './Components/Clients';
 import BuyPasses from './Components/BuyPasses';
 import MobileMenu from './Components/MobileMenu'
+import Leaderboard from './Components/Leaderboard';
 
 class App extends React.Component {
 
@@ -59,6 +60,7 @@ class App extends React.Component {
         <PrivateRoute exact path='/createclass' component={CreateClass}/>
         <PrivateRoute exact path='/clients' component={Clients}/>
         <PrivateRoute exact path='/buypasses' component={BuyPasses}/>
+        <PrivateRoute exact path='/leaderboard' component={Leaderboard}/>
         <Route exact path='/'>
           <Home user={userData} setUser={this.handleSetUser}/>
         </Route>
