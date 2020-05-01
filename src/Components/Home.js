@@ -22,7 +22,6 @@ export default class Home extends Component {
     
     componentDidMount(){
         initializeReactGA()
-
         app.auth().onAuthStateChanged(function(user) {
             if (user) {
                 setUser(user)

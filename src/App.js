@@ -15,6 +15,9 @@ import Clients from './Components/Clients';
 import BuyPasses from './Components/BuyPasses';
 import MobileMenu from './Components/MobileMenu'
 import Leaderboard from './Components/Leaderboard';
+import { Redirect } from 'react-router'
+
+const lastPage = localStorage.getItem('prevUrl')
 
 class App extends React.Component {
 
@@ -47,6 +50,8 @@ class App extends React.Component {
   });
     app.auth().signOut()
     this.setState({currentUser: null})
+
+    localStorage.removeItem("prevUrl");
   }
 
   render() { 
@@ -62,7 +67,13 @@ class App extends React.Component {
         <PrivateRoute exact path='/buypasses' component={BuyPasses}/>
         <PrivateRoute exact path='/leaderboard' component={Leaderboard}/>
         <Route exact path='/'>
+        {console.log(lastPage)}
+        {lastPage === '/'?
           <Home user={userData} setUser={this.handleSetUser}/>
+          :
+          lastPage? <Redirect to={lastPage}/> : 
+          <Home user={userData} setUser={this.handleSetUser}/>
+        }
         </Route>
         <Route exact path='/login'>
           <Login setUser={this.handleSetUser}/>
