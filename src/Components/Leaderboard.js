@@ -9,15 +9,27 @@ export default function Leaderboard() {
     }, [])
 
     const [leaderboardStats, setLeaderboardStats] = useState([])
+ 
+    const sortedLeaderboardStats = leaderboardStats[0]&& leaderboardStats.sort((a, b) => b.attendances - a.attendances)
 
+    const attendance = leaderboardStats[0]&& leaderboardStats.map(stat => (stat.attendances))
+
+    const highestNoOfAttendances = Math.max.apply(Math, attendance);
 
     return (
         <div>
             <h1>Leaderboard</h1>
             <div className='stats-container'>
-                {leaderboardStats.map(stat => (
-                    <LeaderboardStat stat={stat} />
-                ))}
+                <table className='leaderboard-table' >
+                    <tr>
+                        <th>Name</th>
+                        <th>Total Class Attendances</th> 
+                        <th>Total Calories Burned</th>
+                    </tr>
+                    {sortedLeaderboardStats&& sortedLeaderboardStats.map(stat => (
+                        <LeaderboardStat stat={stat} highestNoOfAttendances={highestNoOfAttendances}/> 
+                    ))}
+                </table>
             </div>
         </div>
     )
