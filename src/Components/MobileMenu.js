@@ -12,8 +12,24 @@ export default function MobileMenu(props) {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (e) => {
     setAnchorEl(null);
+    
+    if (e.target.textContent === 'Create Class'){
+      localStorage.setItem('prevUrl', '/createclass')
+    } else if(e.target.textContent === 'Clients') {
+      localStorage.setItem('prevUrl', '/clients')
+    } else if(e.target.textContent === 'Book Class') {
+      localStorage.setItem('prevUrl', '/classes')
+    } else if(e.target.textContent === 'Buy Passes') {
+      localStorage.setItem('prevUrl', '/buypasses')
+    } else if(e.target.textContent === 'Leaderboard') {
+      localStorage.setItem('prevUrl', '/leaderboard')
+    } else if(e.target.textContent === 'Profile') {
+      localStorage.setItem('prevUrl', '/profile')
+    } else if(e.target.textContent === 'Home') {
+      localStorage.setItem('prevUrl', null)
+    }
   };
 
   const { currentUser, userData, logout } = props
@@ -32,7 +48,7 @@ export default function MobileMenu(props) {
       >
         <StyledLink  to='/'><MenuItem onClick={handleClose}>Home</MenuItem></StyledLink>
         {currentUser&& userData&& userData.coach&&
-            <StyledLink  to='/createclass'><MenuItem onClick={handleClose}>Create Class</MenuItem></StyledLink>
+            <StyledLink  to='/createclass'><MenuItem onClick={handleClose}><p>Create Class</p></MenuItem></StyledLink>
         }
         {currentUser&& userData&& userData.coach&&
             <StyledLink  to='/clients'><MenuItem onClick={handleClose}>Clients</MenuItem></StyledLink>
