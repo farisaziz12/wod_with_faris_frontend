@@ -28,7 +28,7 @@ export default function MobileMenu(props) {
     } else if(e.target.textContent === 'Profile') {
       localStorage.setItem('prevUrl', '/profile')
     } else if(e.target.textContent === 'Home') {
-      localStorage.setItem('prevUrl', null)
+      localStorage.setItem('prevUrl', '/')
     }
   };
 

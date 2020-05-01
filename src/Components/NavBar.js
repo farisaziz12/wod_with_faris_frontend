@@ -24,7 +24,7 @@ export default function NavBar(props) {
             });
         } else {
             setPage(e.target.name)
-            e.target.name === '/'? localStorage.setItem('prevUrl', null) : localStorage.setItem('prevUrl', e.target.name)
+            e.target.name === '/'? localStorage.setItem('prevUrl', '/') : localStorage.setItem('prevUrl', e.target.name)
             props.userData&&
             ReactGA.event({
                 category: 'User',
