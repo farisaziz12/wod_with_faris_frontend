@@ -17,18 +17,25 @@ export default function MobileMenu(props) {
     
     if (e.target.textContent === 'Create Class'){
       localStorage.setItem('prevUrl', '/createclass')
+      props.setHome(false)
     } else if(e.target.textContent === 'Clients') {
       localStorage.setItem('prevUrl', '/clients')
+      props.setHome(false)
     } else if(e.target.textContent === 'Book Class') {
       localStorage.setItem('prevUrl', '/classes')
+      props.setHome(false)
     } else if(e.target.textContent === 'Buy Passes') {
       localStorage.setItem('prevUrl', '/buypasses')
+      props.setHome(false)
     } else if(e.target.textContent === 'Leaderboard') {
       localStorage.setItem('prevUrl', '/leaderboard')
+      props.setHome(false)
     } else if(e.target.textContent === 'Profile') {
       localStorage.setItem('prevUrl', '/profile')
+      props.setHome(false)
     } else if(e.target.textContent === 'Home') {
       localStorage.setItem('prevUrl', '/')
+      props.setHome(true)
     }
   };
 
