@@ -82,7 +82,9 @@ class App extends React.Component {
         <Route exact path='/login'>
           <Login setHome={this.setHome} setUser={this.handleSetUser}/>
         </Route>
-        <Route exact path='/signup' component={SignUp}/>
+        <Route exact path='/signup'>
+          <SignUp setHome={this.setHome} />
+        </Route>
       </>
     );
   }

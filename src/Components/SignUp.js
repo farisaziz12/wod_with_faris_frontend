@@ -92,8 +92,10 @@ class SignUp extends React.Component {
             if(!currentUser.emailVerified && !emailSent){
                 currentUser.sendEmailVerification();
                 this.setState({emailSent: true})
+            } else {
+                this.props.setHome(true)
+                return <Redirect to='/'/>;
             }
-            return <Redirect to='/'/>;
         }
         return (
             <div>
