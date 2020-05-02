@@ -45,6 +45,7 @@ class Login extends React.Component {
                 await app
                   .auth()
                   .signInWithEmailAndPassword(email, password);
+                  this.props.setHome(true)
             } catch (error) {
                 alert(error);
             }

@@ -80,7 +80,7 @@ class App extends React.Component {
         }
         </Route>
         <Route exact path='/login'>
-          <Login setUser={this.handleSetUser}/>
+          <Login setHome={this.setHome} setUser={this.handleSetUser}/>
         </Route>
         <Route exact path='/signup' component={SignUp}/>
       </>
