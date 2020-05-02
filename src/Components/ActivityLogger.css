@@ -1,0 +1,66 @@
+.activity-input{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 6%;
+    width: 200px;
+    min-height: 30px;
+    color: black;
+    border: solid black 0.5px;
+    border-radius: 10px;
+}
+
+.activity-input:nth-child(6){
+    border: none;
+}
+.activity-input:nth-child(8){
+    min-height: 100px;
+}
+
+.activity-input-label{
+    font-family: 'Permanent Marker', cursive;
+    font-weight: 400;
+    color: black;
+
+}
+
+.activity-log-form{
+    text-align: center;
+    background-color: white;
+    max-width: 400px;
+    min-height: 640px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+}
+
+.submit-btn{
+    text-align: center;
+    margin-top: 6%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    color: white;
+    border-color: white;
+    background-color: rgb(3, 151, 250);
+    width: 180px;
+    height: 45px;
+    border-radius: 15px;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 15px;
+    transition: all 0.2s ease-in-out;
+}
+
+.submit-btn:hover{
+    background-color: lightslategray;
+    border-radius: 10px;
+}
+
+.error{
+    color: red;
+}
+
+.success{
+    color: green;
+}

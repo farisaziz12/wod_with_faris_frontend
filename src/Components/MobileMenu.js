@@ -27,6 +27,9 @@ export default function MobileMenu(props) {
     } else if(e.target.textContent === 'Buy Passes') {
       localStorage.setItem('prevUrl', '/buypasses')
       props.setHome(false)
+    } else if(e.target.textContent === 'Log Activity') {
+      localStorage.setItem('prevUrl', '/logactivity')
+      props.setHome(false)
     } else if(e.target.textContent === 'Leaderboard') {
       localStorage.setItem('prevUrl', '/leaderboard')
       props.setHome(false)
@@ -62,6 +65,9 @@ export default function MobileMenu(props) {
         }
         {currentUser&& userData&& !userData.coach&&
             <StyledLink  to='/classes'><MenuItem onClick={handleClose}>Book Class</MenuItem></StyledLink>
+        }
+        {currentUser&& userData&& !userData.coach&&
+            <StyledLink  to='/logactivity'><MenuItem onClick={handleClose}>Log Activity</MenuItem></StyledLink>
         }
         {currentUser&& userData&& !userData.coach&&
             <StyledLink  to='/buypasses'><MenuItem onClick={handleClose}>Buy Passes</MenuItem></StyledLink>

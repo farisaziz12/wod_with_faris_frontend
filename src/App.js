@@ -16,6 +16,7 @@ import BuyPasses from './Components/BuyPasses';
 import MobileMenu from './Components/MobileMenu'
 import Leaderboard from './Components/Leaderboard';
 import { Redirect } from 'react-router'
+import ActivityLogger from './Components/ActivityLogger';
 
 class App extends React.Component {
 
@@ -76,6 +77,7 @@ class App extends React.Component {
         <PrivateRoute exact path='/clients' component={Clients}/>
         <PrivateRoute exact path='/buypasses' component={BuyPasses}/>
         <PrivateRoute exact path='/leaderboard' component={Leaderboard}/>
+        <PrivateRoute exact path='/logactivity' component={ActivityLogger}/>
         <Route exact path='/'>
         {isHome?
           <Home user={userData} setUser={this.handleSetUser}/>

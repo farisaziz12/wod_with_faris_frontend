@@ -2,19 +2,22 @@ import React, { useState, useEffect } from 'react'
 import LeaderboardStat from './LeaderboardStat'
 import './LeaderboardStat.css'
 
+const realLink = 'https://wod-with-faris.herokuapp.com/usersession/getallattendances'
+const testLink = 'http://localhost:3001/users/getallattendances'
+
 export default function Leaderboard() {
 
     useEffect(() => {
-        fetch('https://wod-with-faris.herokuapp.com/usersession/getallattendances').then(resp => resp.json()).then(stats => setLeaderboardStats(stats))
+        fetch(testLink).then(resp => resp.json()).then(stats => setLeaderboardStats(stats))
     }, [])
 
     const [leaderboardStats, setLeaderboardStats] = useState([])
  
-    const sortedLeaderboardStats = leaderboardStats[0]&& leaderboardStats.sort((a, b) => b.attendances - a.attendances)
+    const sortedLeaderboardStats = leaderboardStats[0]&& leaderboardStats.sort((a, b) => b.attendances_and_activities - a.attendances_and_activities)
 
-    const attendance = leaderboardStats[0]&& leaderboardStats.map(stat => (stat.attendances))
+    const attendances_and_activities = leaderboardStats[0]&& leaderboardStats.map(stat => (stat.attendances_and_activities))
 
-    const highestNoOfAttendances = Math.max.apply(Math, attendance);
+    const highestNoOfAttendances = Math.max.apply(Math, attendances_and_activities);
 
     return (
         <div>
@@ -23,8 +26,8 @@ export default function Leaderboard() {
                 <table className='leaderboard-table' >
                     <tr>
                         <th>Name</th>
-                        <th>Total Class Attendances</th> 
-                        <th>Total Calories Burned</th>
+                        <th>Classes/Activities</th> 
+                        <th>Calories Burned</th>
                     </tr>
                     {sortedLeaderboardStats&& sortedLeaderboardStats.map(stat => (
                         <LeaderboardStat stat={stat} highestNoOfAttendances={highestNoOfAttendances}/> 
