@@ -77,7 +77,6 @@ class App extends React.Component {
         <PrivateRoute exact path='/buypasses' component={BuyPasses}/>
         <PrivateRoute exact path='/leaderboard' component={Leaderboard}/>
         <Route exact path='/'>
-          {console.log(lastPage)}
         {isHome?
           <Home user={userData} setUser={this.handleSetUser}/>
           :
