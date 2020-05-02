@@ -23,7 +23,7 @@ class App extends React.Component {
     currentUser: null, 
     userData: null, 
     screenWidth: window.innerWidth,
-    isHome: false
+    isHome: true
   }
 
   componentWillMount() {
