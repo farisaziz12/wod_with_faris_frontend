@@ -16,8 +16,13 @@ export default function NavBar(props) {
     const handleActiveBtnChange = (e) => {
         if(e.target.name === '/profile' || e.target.name === '/classes' || e.target.name === '/leaderboard') {
             props.currentUser? setPage(e.target.name) : setPage('/login')
-            e.target.name === '/'? props.setHome(true) : localStorage.setItem('prevUrl', e.target.name)
-            e.target.name !== '/'&& props.setHome(false)
+            if(e.target.name === '/'){
+                props.setHome(true)
+                localStorage.setItem('prevUrl', '/')
+            } else {
+                localStorage.setItem('prevUrl', e.target.name)
+                props.setHome(false)
+            }
             props.userData&&
             ReactGA.event({
                 category: 'User',
@@ -25,10 +30,16 @@ export default function NavBar(props) {
             });
         } else if (e.target.name === '/login'){
             localStorage.setItem('prevUrl', '/')
+            props.setHome(true)
         } else {
             setPage(e.target.name)
-            e.target.name === '/'? props.setHome(true) : localStorage.setItem('prevUrl', e.target.name)
-            e.target.name !== '/'&& props.setHome(false)
+            if(e.target.name === '/'){
+                props.setHome(true)
+                localStorage.setItem('prevUrl', '/')
+            } else {
+                localStorage.setItem('prevUrl', e.target.name)
+                props.setHome(false)
+            }
             props.userData&&
             ReactGA.event({
                 category: 'User',

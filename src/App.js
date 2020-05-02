@@ -27,7 +27,13 @@ class App extends React.Component {
   }
 
   componentWillMount() {
+    const lastPage = localStorage.getItem('prevUrl')
     window.addEventListener('resize', this.handleWindowSizeChange);
+    if (lastPage === '/'){
+      this.setState({isHome: true})
+    } else {
+      this.setState({isHome: false})
+    }
   }
 
   handleWindowSizeChange = () => {
