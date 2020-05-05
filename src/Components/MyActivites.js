@@ -9,9 +9,9 @@ export default function MyActivites(props) {
     const { show, toggleShow, user } = props
     
     useEffect(() => {
-        fetch(`http://localhost:3001/activities/getuseractivities?user_email=${user.email}`)
+        fetch(`https://wod-with-faris.herokuapp.com/activities/getuseractivities?user_email=${user.email}`)
         .then(resp => resp.json()).then(activities => handleActivities(activities))
-    }, [])
+    }, [user.email])
 
     const handleActivities = activities => {
         setActivities(activities)
