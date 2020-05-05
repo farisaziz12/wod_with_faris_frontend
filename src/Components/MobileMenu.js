@@ -36,6 +36,9 @@ export default function MobileMenu(props) {
     } else if(e.target.textContent === 'Profile') {
       localStorage.setItem('prevUrl', '/profile')
       props.setHome(false)
+    } else if(e.target.textContent === 'Create PT Session') {
+      localStorage.setItem('prevUrl', '/createptsession')
+      props.setHome(false)
     } else if(e.target.textContent === 'Home') {
       localStorage.setItem('prevUrl', '/')
       props.setHome(true)
@@ -59,6 +62,9 @@ export default function MobileMenu(props) {
         <StyledLink  to='/'><MenuItem onClick={handleClose}>Home</MenuItem></StyledLink>
         {currentUser&& userData&& userData.coach&&
             <StyledLink  to='/createclass'><MenuItem onClick={handleClose}><p>Create Class</p></MenuItem></StyledLink>
+        }
+        {currentUser&& userData&& userData.coach&&
+            <StyledLink  to='/createptsession'><MenuItem onClick={handleClose}><p>Create PT Session</p></MenuItem></StyledLink>
         }
         {currentUser&& userData&& userData.coach&&
             <StyledLink  to='/clients'><MenuItem onClick={handleClose}>Clients</MenuItem></StyledLink>

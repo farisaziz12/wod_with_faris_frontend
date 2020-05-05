@@ -61,6 +61,11 @@ export default function NavBar(props) {
                     </NavLink>
                 }
                 {currentUser&& userData&& userData.coach&&
+                    <NavLink to='/createptsession'>
+                        <button onClick={handleActiveBtnChange} name='/createptsession' className={page === '/createptsession'? 'nav-btn active' : 'nav-btn'}>Create PT Session</button>
+                    </NavLink>
+                }
+                {currentUser&& userData&& userData.coach&&
                     <NavLink to='/clients'>
                         <button onClick={handleActiveBtnChange} name='/clients' className={page === '/clients'? 'nav-btn active' : 'nav-btn'}>Clients</button>
                     </NavLink>

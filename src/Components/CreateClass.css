@@ -65,3 +65,17 @@
     border-radius: 10px;
     text-align: center;
 }
+
+
+.create-pt-session-btn{
+    background-color: white;
+    width: 150px;
+    height: 40px;
+    border-radius: 13px;
+    font-size: 15px;
+    margin-bottom: 5%;
+}
+
+.create-pt-session-btn:hover{
+    background-color: rgb(209, 208, 208);
+}
