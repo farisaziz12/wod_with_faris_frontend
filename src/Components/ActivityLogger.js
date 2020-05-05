@@ -69,9 +69,7 @@ export default function ActivityLogger(props) {
         setCaloriesBurned("")
     }
 
-    const handleSubmit = e => {
-        e.preventDefault()
-
+    const handleSubmit = () => {
         if ( name && workout && date && activityType && caloriesBurned && duration  ){
             fetch("https://wod-with-faris.herokuapp.com/activities/create", {
                     method: "POST", 
@@ -98,7 +96,7 @@ export default function ActivityLogger(props) {
     return (
         <div>
             <h1>Log Activity</h1>
-            <form onSubmit={handleSubmit} className='activity-log-form'>
+            <div className='activity-log-form'>
                 {errorMessage&& <p className='error'>{errorMessage}</p>}
                 <label className='activity-input-label'>Name</label>
                 <input value={name} className='activity-input' type='text' onChange={(e) => setName(e.target.value)}/>
@@ -112,9 +110,9 @@ export default function ActivityLogger(props) {
                 <input value={duration} className='activity-input' type='number' onChange={handleDurationChange}/>
                 <label className='activity-input-label'>Calories Burned</label>
                 <input value={caloriesBurned} className='activity-input' type='number' onChange={(e) => setCaloriesBurned(e.target.value)}/>
-                <input className='submit-btn' type='submit'/>
+                <button onClick={handleSubmit} className='submit-btn' type='submit'>Submit</button>
                 {success&& <p className='success'>{success}</p>}
-            </form>
+            </div>
         </div>
     )
 }
