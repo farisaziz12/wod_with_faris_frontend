@@ -73,7 +73,7 @@ export default function ActivityLogger(props) {
         e.preventDefault()
 
         if ( name && workout && date && activityType && caloriesBurned && duration  ){
-            fetch("http://localhost:3001/activities/create", {
+            fetch("https://wod-with-faris.herokuapp.com/activities/create", {
                     method: "POST", 
                     headers: {
                         'Accept': 'application/json',
