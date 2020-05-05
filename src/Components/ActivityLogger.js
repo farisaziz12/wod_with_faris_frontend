@@ -97,7 +97,7 @@ export default function ActivityLogger(props) {
 
     return (
         <div>
-            <h1>Activity Logger</h1>
+            <h1>Log Activity</h1>
             <form onSubmit={handleSubmit} className='activity-log-form'>
                 {errorMessage&& <p className='error'>{errorMessage}</p>}
                 <label className='activity-input-label'>Name</label>

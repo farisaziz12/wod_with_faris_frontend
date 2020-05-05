@@ -26,3 +26,9 @@ tr:nth-child(1) {
     font-family: 'Permanent Marker', cursive;
     font-weight: 400;
 }
+
+.loading-btn-div{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

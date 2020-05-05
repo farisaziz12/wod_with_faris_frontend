@@ -4,6 +4,7 @@ import ClassCard from './ClassCard'
 import CoachClassCard from './CoachClassCard'
 import ReactGA from 'react-ga';
 import AllUpcomingClasses from './AllUpcomingClasses';
+import MyActivites from './MyActivites';
 
 function initializeReactGA() {
     ReactGA.initialize(process.env.REACT_APP_GOOGLE_MEASUREMENT_ID);
@@ -15,7 +16,8 @@ export default class Profile extends Component {
     state = {
         user: null, 
         upcomingClasses: [],
-        showUpcomingClasses: false 
+        showUpcomingClasses: false, 
+        showMyActivites: false
     }
 
     componentDidMount(){
@@ -49,12 +51,15 @@ export default class Profile extends Component {
         this.setState({upcomingClasses: this.state.upcomingClasses.filter(booking => booking.id !== deletedClass.id)})
      }
 
-    toggleShow = show => {
+    toggleShowUpcomingClasses = show => {
         this.setState({showUpcomingClasses: show })
+    }
+    toggleShowMyActivities = show => {
+        this.setState({showMyActivites: show })
     }
 
     render() {
-        const { user, upcomingClasses, showUpcomingClasses } = this.state
+        const { user, upcomingClasses, showUpcomingClasses, showMyActivites } = this.state
         const timeOrderedClasses = upcomingClasses[0]&& upcomingClasses.sort((a, b) => new Date(a.date + " " + a.time) - new Date(b.date + " " + b.time))
         const orderedByDateUpcomingClasses = timeOrderedClasses&& timeOrderedClasses.sort((a, b) => new Date(a.date) - new Date(b.date))
         const SlicedUpcomingClasses = orderedByDateUpcomingClasses&& orderedByDateUpcomingClasses.slice(0, 4)
@@ -64,6 +69,8 @@ export default class Profile extends Component {
                     {user?
                     <>
                         <h1>{user.first_name + " " + user.last_name}</h1>
+                        {!user.coach&& <button onClick={() => this.toggleShowMyActivities(true)} className='my-activities-btn'>My Activities</button>}
+                        {showMyActivites&& <MyActivites toggleShow={this.toggleShowMyActivities} user={this.state.user} show={showMyActivites}/>}
                         {!user.coach&& <h2 className='tokens'>Class Passes: {user.tokens}</h2>}
                         <div className='upcoming-classes-container'>
                             <h2 className='upcoming-classes-title'>Upcoming Classes: </h2>
@@ -74,9 +81,9 @@ export default class Profile extends Component {
                                 ))
                             }
                             {user.coach&& upcomingClasses[0]&&
-                                <button onClick={() => this.toggleShow(true)} className='all-upcoming-classes-btn'>All upcoming classes</button>
+                                <button onClick={() => this.toggleShowUpcomingClasses(true)} className='all-upcoming-classes-btn'>All upcoming classes</button>
                             }
-                            {showUpcomingClasses&& <AllUpcomingClasses toggleShow={this.toggleShow} handleCancel={this.handleDelete} user={this.state.user} show={showUpcomingClasses} upcomingClasses={orderedByDateUpcomingClasses}/>}
+                            {showUpcomingClasses&& <AllUpcomingClasses toggleShow={this.toggleShowUpcomingClasses} handleCancel={this.handleDelete} user={this.state.user} show={showUpcomingClasses} upcomingClasses={orderedByDateUpcomingClasses}/>}
                             {user.coach&& upcomingClasses[0]&&
                                 SlicedUpcomingClasses.map(upcomingClass => (
                                     <CoachClassCard handleCancel={this.handleDelete} user={this.state.user} upcomingClass={upcomingClass}/>
