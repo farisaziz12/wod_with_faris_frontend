@@ -5,6 +5,7 @@ import CoachClassCard from './CoachClassCard'
 import ReactGA from 'react-ga';
 import AllUpcomingClasses from './AllUpcomingClasses';
 import MyActivites from './MyActivites';
+import PTSessionCard from './PTSessionCard';
 
 function initializeReactGA() {
     ReactGA.initialize(process.env.REACT_APP_GOOGLE_MEASUREMENT_ID);
@@ -16,6 +17,7 @@ export default class Profile extends Component {
     state = {
         user: null, 
         upcomingClasses: [],
+        upcomingPTSessions: [],
         showUpcomingClasses: false, 
         showMyActivites: false
     }
@@ -26,6 +28,10 @@ export default class Profile extends Component {
         fetch(`https://wod-with-faris.herokuapp.com/user/getuser?email=${this.props.currentUser.email}`)
         .then(resp => resp.json())
         .then(user => this.setState({user}))
+
+        fetch(`https://wod-with-faris.herokuapp.com/userptsession/upcomingptsessions?email=${this.props.currentUser.email}`)
+        .then(resp => resp.json())
+        .then(upcomingPTSessions => this.setState({upcomingPTSessions}))
 
         fetch(`https://wod-with-faris.herokuapp.com/usersession/upcomingclasses?email=${this.props.currentUser.email}`)
         .then(resp => resp.json())
@@ -59,10 +65,13 @@ export default class Profile extends Component {
     }
 
     render() {
-        const { user, upcomingClasses, showUpcomingClasses, showMyActivites } = this.state
+        const { user, upcomingClasses, showUpcomingClasses, showMyActivites, upcomingPTSessions } = this.state
         const timeOrderedClasses = upcomingClasses[0]&& upcomingClasses.sort((a, b) => new Date(a.date + " " + a.time) - new Date(b.date + " " + b.time))
+        const timeOrderedPTSessions = upcomingPTSessions[0]&& upcomingPTSessions.sort((a, b) => new Date(a.ptsession.date + " " + a.ptsession.time) - new Date(b.ptsession.date + " " + b.ptsession.time))
         const orderedByDateUpcomingClasses = timeOrderedClasses&& timeOrderedClasses.sort((a, b) => new Date(a.date) - new Date(b.date))
-        const SlicedUpcomingClasses = orderedByDateUpcomingClasses&& orderedByDateUpcomingClasses.slice(0, 4)
+        const orderedByDateUpcomingPTsessions = timeOrderedPTSessions&& timeOrderedPTSessions.sort((a, b) => new Date(a.ptsession.date) - new Date(b.ptsession.date))
+        const SlicedUpcomingClasses = orderedByDateUpcomingClasses&& orderedByDateUpcomingClasses.slice(0, 2)
+        const SlicedUpcomingPTSessions = orderedByDateUpcomingPTsessions&& orderedByDateUpcomingPTsessions.slice(0, 2)
         return (
             <div>
                 <div className='profile-container'>
@@ -73,13 +82,23 @@ export default class Profile extends Component {
                         {showMyActivites&& <MyActivites toggleShow={this.toggleShowMyActivities} user={this.state.user} show={showMyActivites}/>}
                         {!user.coach&& <h2 className='tokens'>Class Passes: {user.tokens}</h2>}
                         <div className='upcoming-classes-container'>
+                            <div>
                             <h2 className='upcoming-classes-title'>Upcoming Classes: </h2>
-
-                            {!user.coach&& upcomingClasses[0]&&
-                                SlicedUpcomingClasses.map(upcomingClass => (
-                                    <ClassCard handleCancel={this.handleCancel} addToken={this.addToken} user={this.state.user} upcomingClass={upcomingClass}/>
-                                ))
-                            }
+                                {!user.coach&& upcomingClasses[0]&&
+                                    SlicedUpcomingClasses.map(upcomingClass => (
+                                        <ClassCard handleCancel={this.handleCancel} addToken={this.addToken} user={this.state.user} upcomingClass={upcomingClass}/>
+                                    ))
+                                }
+                                {!upcomingClasses[0]&&<h3 className='none'>None</h3>}
+                            </div>
+                            <div className='upcoming-pt-sessions'>
+                            <h2 className='upcoming-classes-title'>Upcoming PT Session: </h2>
+                                {!user.coach&& upcomingPTSessions[0]&&
+                                    SlicedUpcomingPTSessions.map(upcomingPTSession => (
+                                        <PTSessionCard user={this.state.user} upcomingPTSession={upcomingPTSession}/>
+                                    ))
+                                }
+                            </div>
                             {user.coach&& upcomingClasses[0]&&
                                 <button onClick={() => this.toggleShowUpcomingClasses(true)} className='all-upcoming-classes-btn'>All upcoming classes</button>
                             }
@@ -90,7 +109,7 @@ export default class Profile extends Component {
                                 ))
                             }
 
-                            {!upcomingClasses[0]&&<h3 className='none'>None</h3>}
+                            {!upcomingPTSessions[0]&&<h3 className='none'>None</h3>}
 
                         </div>
                     </>

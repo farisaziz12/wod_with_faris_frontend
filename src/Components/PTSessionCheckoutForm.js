@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import PopPop from 'react-poppop';
 import { CardElement } from "@stripe/react-stripe-js"
 import CardSection from './CardSection'
 import './CheckoutForm.css'
 
-export default class CheckoutForm extends Component {
+export default class PTSessionCheckoutForm extends Component {
 
     state = {
         name: "",
@@ -32,16 +31,16 @@ export default class CheckoutForm extends Component {
         if (result.error) {
             window.alert(result.error.message);
         } else {
-            const { quantity } = this.props
-            fetch("https://wod-with-faris.herokuapp.com/users/buyclasspasses", {
+            const { pt_session } = this.props.upcomingPTSession
+            fetch("https://wod-with-faris.herokuapp.com/users/payforptsession", {
                 method: "POST", 
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    quantity: quantity,
-                    description: `${quantity}X Class Passes`, 
+                    price: pt_session.price,
+                    description: `Personal Training Session`, 
                     token: result.token.id
                 })
             }).then(resp => resp.json()).then(resp => this.cardPayment(resp.client_secret))
@@ -67,23 +66,21 @@ export default class CheckoutForm extends Component {
           } else {
             if (result.paymentIntent.status === 'succeeded') {
                 this.setState({paymentPending: false, paymentSuccess: true, paymentError: null})
+                this.props.handlePaid()
                 
-                const { quantity, userEmail } = this.props
-                fetch("https://wod-with-faris.herokuapp.com/users/addclasspasses", {
+                const { upcomingPTSession } = this.props
+                fetch("https://wod-with-faris.herokuapp.com/ptsessions/confirmptsession", {
                 method: "POST", 
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    quantity: quantity,
-                    user_email: userEmail
+                    pt_session: upcomingPTSession.pt_session.id
                 })
             }).then(
                 setTimeout(() => {
                     this.setState({paymentSuccess: false})
-                    this.props.toggleShow(false)
-                    this.props.resetQuantity()
                 }, 6000)
                 )
             }
@@ -91,39 +88,29 @@ export default class CheckoutForm extends Component {
     }
 
     render() {
-        const { show, toggleShow, quantity } = this.props
+        const { pt_session } = this.props.upcomingPTSession
         const { name, paymentSuccess, paymentError, paymentPending } = this.state
         return (
             <div>
-                <PopPop position="centerCenter"
-                        open={show}
-                        closeBtn={true}
-                        closeOnEsc={false}
-                        onClose={() => toggleShow(false)}
-                        closeOnOverlay={false}>
                 <div className='checkout-form'>
                     {paymentSuccess&&<p className='payment-success'>Payment Successful</p>}
                     {paymentError&&<p className='payment-error'>Error: {paymentError}</p>}
                 {paymentSuccess?
-                    <h1 className='payment-success'>Thank you! {this.props.quantity}X Class Passes have been added to your account!</h1>
+                    <h1 className='payment-success'>Thank you! Your PT Session has been confirmed!</h1>
                 :
                 <>
                     <div class="product-info">
-                        <h3 className="product-title">{quantity === 1? "1X Class Pass": quantity + "X Class Passes"}</h3>
-                        <h4 className="product-price">Total: CHF {quantity * 10}</h4>
+                        <h4 className="product-price">Total: CHF {pt_session.price}</h4>
                     </div>
                     <form className='form' onSubmit={this.handleSubmit}>
                         <input className='name-card-input' required value={name} onChange={this.handleNameChange} type='text' placeholder='Full Name as displayed on card'/>
                         <CardSection/>
-                        {paymentPending? <button className='loading-spinner'> </button> : <button className="btn-pay">Buy Now</button>}
+                        {paymentPending? <button className='loading-spinner'> </button> : <button className="btn-pay">Pay</button>}
                     </form>
                 </>
                 }
                 </div>
-                </PopPop>
             </div>
         )
     }
 }
-
-

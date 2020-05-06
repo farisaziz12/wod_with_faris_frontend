@@ -12,14 +12,15 @@ export default function CreatePTSession(props) {
     const [errorMessage, setErrorMessage] = useState(false)
     const [success, setSuccess] = useState(false)
     const [clients, setClients] = useState([])
+    const [price, setPrice] = useState(50)
 
     useEffect(() => {
-        fetch('http://localhost:3001/users/index').then(resp => resp.json()).then(allClients => handleClients(allClients))
+        fetch('https://wod-with-faris.herokuapp.com/users/index').then(resp => resp.json()).then(allClients => handleClients(allClients))
     }, [])
 
     const handleCreatePtSession = () => {
-        if ( name && description && date && time && client && location  ){
-            fetch("http://localhost:3001/ptsessions/create", {
+        if ( name && description && date && time && client && location && price  ){
+            fetch("https://wod-with-faris.herokuapp.com/ptsessions/create", {
                     method: "POST", 
                     headers: {
                         'Accept': 'application/json',
@@ -32,6 +33,7 @@ export default function CreatePTSession(props) {
                         time: time,
                         location: location,
                         paid: false,
+                        price: parseInt(price),
                         coach_email: props.currentUser.email,
                         client_email: client
                     })
@@ -51,6 +53,7 @@ export default function CreatePTSession(props) {
         setTime("")
         setClient("")
         setLocation("")
+        setPrice("")
     }
 
     const handleClients = allClients => {
@@ -84,6 +87,8 @@ export default function CreatePTSession(props) {
                     <input name='time' onChange={(e) => setTime(e.target.value)} className='create-class-input' type='time'/>
                     <h3 className='create-class-h3'>Location</h3>
                     <input name='location' value={location} onChange={(e) => setLocation(e.target.value)} className='create-class-input' type='text'/>
+                    <h3 className='create-class-h3'>Price (CHF)</h3>
+                    <input name='price' value={price} onChange={(e) => setPrice(e.target.value)} className='create-class-input' type='number'/>
                     <h3 className='create-class-h3'>Client</h3>
                     <Select className='activity-input' options={clients} onChange={handleSetClient}/>
                     <button className='create-pt-session-btn' onClick={handleCreatePtSession}>Create PT Session</button>

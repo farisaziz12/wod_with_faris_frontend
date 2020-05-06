@@ -1,5 +1,5 @@
 .checkout-form{
-    width: 500px;
+    width: 450px;
     height: 350px;
     color: black;
 }
@@ -39,7 +39,7 @@
     margin-bottom: 5%;
     border-color: rgb(172, 171, 171);
     height: 30px;
-    width: 250px;
+    width: 220px;
     border-radius: 5px;
     font-size: 15px;
 }

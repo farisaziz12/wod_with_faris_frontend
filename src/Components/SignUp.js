@@ -59,7 +59,7 @@ class SignUp extends React.Component {
                 email: this.state.email,
                 first_name: this.state.firstName,
                 last_name: this.state.lastName,
-                tokens: 1,
+                tokens: 0,
                 coach: false
             })
             }).then(resp => resp.json()).then(resp => console.log(resp))
