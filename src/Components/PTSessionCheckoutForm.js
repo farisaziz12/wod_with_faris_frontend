@@ -31,7 +31,7 @@ export default class PTSessionCheckoutForm extends Component {
         if (result.error) {
             window.alert(result.error.message);
         } else {
-            const { pt_session } = this.props.upcomingPTSession
+            const { upcomingPTSession } = this.props
             fetch("https://wod-with-faris-backend.herokuapp.com/users/payforptsession", {
                 method: "POST", 
                 headers: {
@@ -39,7 +39,7 @@ export default class PTSessionCheckoutForm extends Component {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    price: pt_session.price,
+                    price: upcomingPTSession.price,
                     description: `Personal Training Session`, 
                     token: result.token.id
                 })
@@ -76,7 +76,7 @@ export default class PTSessionCheckoutForm extends Component {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    pt_session: upcomingPTSession.pt_session.id
+                    pt_session: upcomingPTSession.id
                 })
             }).then(
                 setTimeout(() => {
@@ -88,7 +88,7 @@ export default class PTSessionCheckoutForm extends Component {
     }
 
     render() {
-        const { pt_session } = this.props.upcomingPTSession
+        const { upcomingPTSession } = this.props
         const { name, paymentSuccess, paymentError, paymentPending } = this.state
         return (
             <div>
@@ -100,7 +100,7 @@ export default class PTSessionCheckoutForm extends Component {
                 :
                 <>
                     <div class="product-info">
-                        <h4 className="product-price">Total: CHF {pt_session.price}</h4>
+                        <h4 className="product-price">Total: CHF {upcomingPTSession.price}</h4>
                     </div>
                     <form className='form' onSubmit={this.handleSubmit}>
                         <input className='name-card-input' required value={name} onChange={this.handleNameChange} type='text' placeholder='Full Name as displayed on card'/>
