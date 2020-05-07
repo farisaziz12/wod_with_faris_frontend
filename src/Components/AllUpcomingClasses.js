@@ -19,7 +19,7 @@ export default class AllUpcomingClasses extends Component {
                     <h1 className='header'>All Upcoming Classes</h1>
                     {timeOrderedClasses.map(upcomingClass => (
                         <>
-                            <CoachClassCard handleCancel={handleCancel} user={user} upcomingClass={upcomingClass}/>
+                            <CoachClassCard handleCancel={handleCancel} user={user} coach={upcomingClass.coach} upcomingClass={upcomingClass.class}/>
                         </>
                     ))}
                 </div>
