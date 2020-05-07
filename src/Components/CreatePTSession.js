@@ -15,12 +15,12 @@ export default function CreatePTSession(props) {
     const [price, setPrice] = useState(50)
 
     useEffect(() => {
-        fetch('https://wod-with-faris.herokuapp.com/users/index').then(resp => resp.json()).then(allClients => handleClients(allClients))
+        fetch('https://wod-with-faris-backend.herokuapp.com/users/index').then(resp => resp.json()).then(allClients => handleClients(allClients))
     }, [])
 
     const handleCreatePtSession = () => {
         if ( name && description && date && time && client && location && price  ){
-            fetch("https://wod-with-faris.herokuapp.com/ptsessions/create", {
+            fetch("https://wod-with-faris-backend.herokuapp.com/ptsessions/create", {
                     method: "POST", 
                     headers: {
                         'Accept': 'application/json',

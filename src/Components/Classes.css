@@ -239,13 +239,13 @@ input[type="date"]::-webkit-clear-button {
         margin-left: 8%;
         border-radius: 15px;
         text-align: center;
-        margin-top: 2%;
+        margin-top: 1%;
         overflow: scroll;
     }
 }
 
 .edit-desc{
-    min-height: 360px;
+    min-height: 200px;
     min-width: 300px;
     border-radius: 10px;
 }

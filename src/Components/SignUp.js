@@ -49,7 +49,7 @@ class SignUp extends React.Component {
             .createUserWithEmailAndPassword(email, password);
             this.setState({passwordMatchError: null, emptyFieldsError: null})
 
-            fetch("https://wod-with-faris.herokuapp.com/user/create", {
+            fetch("https://wod-with-faris-backend.herokuapp.com/user/create", {
             method: "POST", 
             headers: {
                 'Accept': 'application/json',

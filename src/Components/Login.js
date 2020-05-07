@@ -73,7 +73,7 @@ class Login extends React.Component {
     }
 
     checkAccount = email => {
-        return fetch(`https://wod-with-faris.herokuapp.com/users/check?email=${email}`)
+        return fetch(`https://wod-with-faris-backend.herokuapp.com/users/check?email=${email}`)
         .then(resp => resp.json())
     }
 

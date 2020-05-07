@@ -6,6 +6,7 @@ import ReactGA from 'react-ga';
 import AllUpcomingClasses from './AllUpcomingClasses';
 import MyActivites from './MyActivites';
 import PTSessionCard from './PTSessionCard';
+import CoachPTSessionCard from './CoachPTSessionCard';
 
 function initializeReactGA() {
     ReactGA.initialize(process.env.REACT_APP_GOOGLE_MEASUREMENT_ID);
@@ -25,17 +26,18 @@ export default class Profile extends Component {
     componentDidMount(){
         initializeReactGA()
         
-        fetch(`https://wod-with-faris.herokuapp.com/user/getuser?email=${this.props.currentUser.email}`)
+        fetch(`https://wod-with-faris-backend.herokuapp.com/user/getuser?email=${this.props.currentUser.email}`)
         .then(resp => resp.json())
-        .then(user => this.setState({user}))
+        .then(user => this.handleUser(user))
 
-        fetch(`https://wod-with-faris.herokuapp.com/userptsession/upcomingptsessions?email=${this.props.currentUser.email}`)
-        .then(resp => resp.json())
-        .then(upcomingPTSessions => this.setState({upcomingPTSessions}))
 
-        fetch(`https://wod-with-faris.herokuapp.com/usersession/upcomingclasses?email=${this.props.currentUser.email}`)
+        fetch(`https://wod-with-faris-backend.herokuapp.com/usersession/upcomingclasses?email=${this.props.currentUser.email}`)
         .then(resp => resp.json())
-        .then(upcomingClasses => this.setState({upcomingClasses}))
+        .then(upcomingClasses => this.setState({upcomingClasses: upcomingClasses.classes, upcomingPTSessions: upcomingClasses.ptsessions}))
+    }
+
+    handleUser = user => {
+        this.setState({user})
     }
 
     addToken = () => {
@@ -51,10 +53,14 @@ export default class Profile extends Component {
      }
 
      handleCancel = deletedBooking => {
-        this.setState({upcomingClasses: this.state.upcomingClasses.filter(booking => booking.id !== deletedBooking.session.id)})
+        console.log(deletedBooking)
+        this.setState({upcomingClasses: this.state.upcomingClasses.filter(booking => booking.class.id !== deletedBooking.session.id)})
      }
-     handleDelete = deletedClass => {
-        this.setState({upcomingClasses: this.state.upcomingClasses.filter(booking => booking.id !== deletedClass.id)})
+     handleDeleteClass = deletedClass => {
+        this.setState({upcomingClasses: this.state.upcomingClasses.filter(booking => booking.class.id !== deletedClass.id)})
+     }
+     handleDeletePTSession = deletedClass => {
+        this.setState({upcomingPTSessions: this.state.upcomingPTSessions.filter(ptSession => ptSession.ptsession.id !== deletedClass.id)})
      }
 
     toggleShowUpcomingClasses = show => {
@@ -86,28 +92,33 @@ export default class Profile extends Component {
                             <h2 className='upcoming-classes-title'>Upcoming Classes: </h2>
                                 {!user.coach&& upcomingClasses[0]&&
                                     SlicedUpcomingClasses.map(upcomingClass => (
-                                        <ClassCard handleCancel={this.handleCancel} addToken={this.addToken} user={this.state.user} upcomingClass={upcomingClass}/>
+                                        <ClassCard handleCancel={this.handleCancel} addToken={this.addToken} user={this.state.user} upcomingClass={upcomingClass.class}/>
+                                    ))
+                                }
+                                {user.coach&& upcomingClasses[0]&&
+                                <button onClick={() => this.toggleShowUpcomingClasses(true)} className='all-upcoming-classes-btn'>All upcoming classes</button>
+                                }
+                                {showUpcomingClasses&& <AllUpcomingClasses toggleShow={this.toggleShowUpcomingClasses} handleCancel={this.handleDeleteClass} user={this.state.user} show={showUpcomingClasses} upcomingClasses={orderedByDateUpcomingClasses}/>}
+                                {user.coach&& upcomingClasses[0]&&
+                                    SlicedUpcomingClasses.map(upcomingClass => (
+                                        <CoachClassCard handleCancel={this.handleDeleteClass} user={this.state.user} coach={upcomingClass.coach} upcomingClass={upcomingClass.class}/>
                                     ))
                                 }
                                 {!upcomingClasses[0]&&<h3 className='none'>None</h3>}
                             </div>
                             <div className='upcoming-pt-sessions'>
-                            <h2 className='upcoming-classes-title'>Upcoming PT Session: </h2>
+                                <h2 className='upcoming-classes-title'>Upcoming PT Sessions: </h2>
                                 {!user.coach&& upcomingPTSessions[0]&&
                                     SlicedUpcomingPTSessions.map(upcomingPTSession => (
                                         <PTSessionCard user={this.state.user} upcomingPTSession={upcomingPTSession}/>
                                     ))
                                 }
+                                {user.coach&& upcomingPTSessions[0]&&
+                                    SlicedUpcomingPTSessions.map(upcomingPTSession => (
+                                        <CoachPTSessionCard handleCancel={this.handleDeletePTSession} user={this.state.user} upcomingPTSession={upcomingPTSession.ptsession} client={upcomingPTSession.user}/>
+                                    ))
+                                }
                             </div>
-                            {user.coach&& upcomingClasses[0]&&
-                                <button onClick={() => this.toggleShowUpcomingClasses(true)} className='all-upcoming-classes-btn'>All upcoming classes</button>
-                            }
-                            {showUpcomingClasses&& <AllUpcomingClasses toggleShow={this.toggleShowUpcomingClasses} handleCancel={this.handleDelete} user={this.state.user} show={showUpcomingClasses} upcomingClasses={orderedByDateUpcomingClasses}/>}
-                            {user.coach&& upcomingClasses[0]&&
-                                SlicedUpcomingClasses.map(upcomingClass => (
-                                    <CoachClassCard handleCancel={this.handleDelete} user={this.state.user} upcomingClass={upcomingClass}/>
-                                ))
-                            }
 
                             {!upcomingPTSessions[0]&&<h3 className='none'>None</h3>}
 

@@ -33,7 +33,7 @@ export default class CheckoutForm extends Component {
             window.alert(result.error.message);
         } else {
             const { quantity } = this.props
-            fetch("https://wod-with-faris.herokuapp.com/users/buyclasspasses", {
+            fetch("https://wod-with-faris-backend.herokuapp.com/users/buyclasspasses", {
                 method: "POST", 
                 headers: {
                     'Accept': 'application/json',
@@ -69,7 +69,7 @@ export default class CheckoutForm extends Component {
                 this.setState({paymentPending: false, paymentSuccess: true, paymentError: null})
                 
                 const { quantity, userEmail } = this.props
-                fetch("https://wod-with-faris.herokuapp.com/users/addclasspasses", {
+                fetch("https://wod-with-faris-backend.herokuapp.com/users/addclasspasses", {
                 method: "POST", 
                 headers: {
                     'Accept': 'application/json',

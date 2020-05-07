@@ -11,7 +11,7 @@ export default class ClassModal extends Component {
 
 
     componentDidMount(){
-        fetch(`https://wod-with-faris.herokuapp.com/usersessions?class_id=${this.props.oneClass.id}`, {
+        fetch(`https://wod-with-faris-backend.herokuapp.com/usersessions?class_id=${this.props.oneClass.id}`, {
         }).then(resp => resp.json()).then(clients => this.setState({clients}))
     }
   
@@ -24,7 +24,7 @@ export default class ClassModal extends Component {
         const isBooked = this.state.clients.find(client => client.user.id === this.props.user.id)
         if (isBooked === undefined && this.props.user.tokens > 0 && this.state.clients.length < 8) {
             console.log("booking")
-            fetch("https://wod-with-faris.herokuapp.com/usersession/book", {
+            fetch("https://wod-with-faris-backend.herokuapp.com/usersession/book", {
                 method: "POST", 
                 headers: {
                     'Accept': 'application/json',
@@ -37,7 +37,7 @@ export default class ClassModal extends Component {
             }).then(resp => resp.json()).then(ClientsWithNewBooking => this.setState({clients: ClientsWithNewBooking, error: null})).then(this.props.deductToken)
             
         } else if(isBooked && this.props.user.tokens >= 0) {
-            fetch(`https://wod-with-faris.herokuapp.com/usersession/unbook`, {
+            fetch(`https://wod-with-faris-backend.herokuapp.com/usersession/unbook`, {
                 method: "POST", 
                 headers: {
                     'Accept': 'application/json',
@@ -50,7 +50,7 @@ export default class ClassModal extends Component {
             }).then(resp => resp.json()).then(deletedBooking => this.setState({clients: this.state.clients.filter(client => client.user.id !== deletedBooking.user.id), error: null})).then(this.props.addToken)
             
         } else if (this.props.user.tokens <= 0){
-            this.setState({error: "Sorry, you have run out of tokens"})
+            this.setState({error: "Sorry, you have run out of passes"})
         } else if (this.state.client.length === 8) {
             this.setState({error: "Sorry, this class is fully booked"})
         }

@@ -5,7 +5,7 @@ import './LeaderboardStat.css'
 export default function Leaderboard() {
 
     useEffect(() => {
-        fetch('https://wod-with-faris.herokuapp.com/users/getallattendances').then(resp => resp.json()).then(stats => handleLeaderboardStats(stats))
+        fetch('https://wod-with-faris-backend.herokuapp.com/users/getallattendances').then(resp => resp.json()).then(stats => handleLeaderboardStats(stats))
     }, [])
 
     const [leaderboardStats, setLeaderboardStats] = useState([])

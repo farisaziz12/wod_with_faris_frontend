@@ -32,7 +32,7 @@ export default class PTSessionCheckoutForm extends Component {
             window.alert(result.error.message);
         } else {
             const { pt_session } = this.props.upcomingPTSession
-            fetch("https://wod-with-faris.herokuapp.com/users/payforptsession", {
+            fetch("https://wod-with-faris-backend.herokuapp.com/users/payforptsession", {
                 method: "POST", 
                 headers: {
                     'Accept': 'application/json',
@@ -69,7 +69,7 @@ export default class PTSessionCheckoutForm extends Component {
                 this.props.handlePaid()
                 
                 const { upcomingPTSession } = this.props
-                fetch("https://wod-with-faris.herokuapp.com/ptsessions/confirmptsession", {
+                fetch("https://wod-with-faris-backend.herokuapp.com/ptsessions/confirmptsession", {
                 method: "POST", 
                 headers: {
                     'Accept': 'application/json',

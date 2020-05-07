@@ -35,11 +35,11 @@ export default class Classes extends Component {
     componentDidMount(){
         initializeReactGA()
 
-        fetch(`https://wod-with-faris.herokuapp.com/sessions?date=${this.state.date}`)
+        fetch(`https://wod-with-faris-backend.herokuapp.com/sessions?date=${this.state.date}`)
         .then(resp => resp.json())
         .then(classes => this.setState({classes: classes, isLoading: false}))
 
-        fetch(`https://wod-with-faris.herokuapp.com/user/getuser?email=${this.props.currentUser.email}`)
+        fetch(`https://wod-with-faris-backend.herokuapp.com/user/getuser?email=${this.props.currentUser.email}`)
         .then(resp => resp.json())
         .then(user => this.setState({user}))
     }
@@ -89,7 +89,7 @@ export default class Classes extends Component {
      }
 
     dateFetch = date => {
-        fetch(`https://wod-with-faris.herokuapp.com/sessions?date=${date}`)
+        fetch(`https://wod-with-faris-backend.herokuapp.com/sessions?date=${date}`)
         .then(resp => resp.json())
         .then(classes => this.setState({classes: classes, isLoading: false}))
     }
