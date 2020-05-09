@@ -46,7 +46,6 @@ export default function NavBar(props) {
                 action: `${props.userData.first_name + " " + props.userData.last_name} looked at ${e.target.name}`
             });
         }
-        console.log(lastPage)
     }
 
         const { currentUser, userData } = props

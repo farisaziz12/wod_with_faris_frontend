@@ -36,6 +36,22 @@ export default class ClassModal extends Component {
                 })
             }).then(resp => resp.json()).then(ClientsWithNewBooking => this.setState({clients: ClientsWithNewBooking, error: null})).then(this.props.deductToken)
             
+            fetch("https://api.pushover.net/1/messages.json", {
+                method: "POST", 
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    token: 'adohia1ym9d8bopuvjys6zrgdu4psa',
+                    user: 'ubujnjnpw22cv58byd8w6kot7yx648',
+                    sound: 'cashregister',
+                    message: `${this.props.user.first_name + " " + this.props.user.last_name} booked the ${this.props.oneClass.time} class that's on ${this.props.oneClass.date}`
+                })
+            })
+            
+
+
         } else if(isBooked && this.props.user.tokens >= 0) {
             fetch(`https://wod-with-faris-backend.herokuapp.com/usersession/unbook`, {
                 method: "POST", 
@@ -48,7 +64,20 @@ export default class ClassModal extends Component {
                     session_id: id
                 })
             }).then(resp => resp.json()).then(deletedBooking => this.setState({clients: this.state.clients.filter(client => client.user.id !== deletedBooking.user.id), error: null})).then(this.props.addToken)
-            
+
+            fetch("https://api.pushover.net/1/messages.json", {
+                method: "POST", 
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    token: 'adohia1ym9d8bopuvjys6zrgdu4psa',
+                    user: 'ubujnjnpw22cv58byd8w6kot7yx648',
+                    message: `${this.props.user.first_name + " " + this.props.user.last_name} unbooked the ${this.props.oneClass.time + " " + this.props.oneClass.name} class that's on ${this.props.oneClass.date}`
+                })
+        })
+        
         } else if (this.props.user.tokens <= 0){
             this.setState({error: "Sorry, you have run out of passes"})
         } else if (this.state.client.length === 8) {

@@ -84,7 +84,7 @@ export default class CoachPTSessionCard extends Component {
                     <h1 className='workout-title'>{upcomingPTSession.time + " " + upcomingPTSession.name}</h1>
                     <div><p style={{textAlign: 'center', color: 'black'}}>Status: <p style={upcomingPTSession.paid? {color: 'green'} : {color: 'red'}}>{upcomingPTSession.paid? 'Paid' : 'Not Paid'}</p></p></div>
                     <h3 className='desc-txt'>Client: {client.first_name + " " + client.last_name}</h3>
-                    <h3 className='desc-txt'>Price: {!editMode? ptPrice : <input type='number' name='ptPrice' value={ptPrice} onChange={this.handleChange}/>}</h3>
+                    <h3 className='desc-txt'>Price: CHF {!editMode? ptPrice : <input type='number' name='ptPrice' value={ptPrice} onChange={this.handleChange}/>}</h3>
                     <h3 className='desc-txt'>Location: {!editMode? ptLocation : <input type='text' name='ptLocation' value={ptLocation} onChange={this.handleChange}/>}</h3>
                     <h3 className='desc-txt'>Date: {!editMode? dateFormat(ptDate, "fullDate") : <input type='date' name='ptDate' value={ptDate} onChange={this.handleChange}/>}</h3>
                     <h3 className='desc-txt'>Time: {!editMode? ptTime : <input type='time' name='ptTime' value={ptTime} onChange={this.handleChange}/>}</h3>
