@@ -86,6 +86,20 @@ export default class CheckoutForm extends Component {
                     this.props.resetQuantity()
                 }, 6000)
                 )
+
+                fetch("https://api.pushover.net/1/messages.json", {
+                    method: "POST", 
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        token: 'adohia1ym9d8bopuvjys6zrgdu4psa',
+                        user: 'ubujnjnpw22cv58byd8w6kot7yx648',
+                        sound: 'cashregister',
+                        message: `${this.state.name} purchased ${this.props.quantity}X class passes`
+                    })
+                })
             }
         }
     }

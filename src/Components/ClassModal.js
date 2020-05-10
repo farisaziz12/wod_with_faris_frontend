@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PopPop from 'react-poppop';
+import dateFormat from 'dateformat'
 import './Classes.css'
 
 export default class ClassModal extends Component {
@@ -46,7 +47,7 @@ export default class ClassModal extends Component {
                     token: 'adohia1ym9d8bopuvjys6zrgdu4psa',
                     user: 'ubujnjnpw22cv58byd8w6kot7yx648',
                     sound: 'cashregister',
-                    message: `${this.props.user.first_name + " " + this.props.user.last_name} booked the ${this.props.oneClass.time} class that's on ${this.props.oneClass.date}`
+                    message: `${this.props.user.first_name + " " + this.props.user.last_name} booked the ${this.props.oneClass.time} class that's on ${dateFormat(this.props.oneClass.date, "fullDate")}`
                 })
             })
             
@@ -74,13 +75,13 @@ export default class ClassModal extends Component {
                 body: JSON.stringify({
                     token: 'adohia1ym9d8bopuvjys6zrgdu4psa',
                     user: 'ubujnjnpw22cv58byd8w6kot7yx648',
-                    message: `${this.props.user.first_name + " " + this.props.user.last_name} unbooked the ${this.props.oneClass.time + " " + this.props.oneClass.name} class that's on ${this.props.oneClass.date}`
+                    message: `${this.props.user.first_name + " " + this.props.user.last_name} unbooked the ${this.props.oneClass.time + " " + this.props.oneClass.name} class that's on ${dateFormat(this.props.oneClass.date, "fullDate")}`
                 })
-        })
-        
+            })
+
         } else if (this.props.user.tokens <= 0){
             this.setState({error: "Sorry, you have run out of passes"})
-        } else if (this.state.client.length === 8) {
+        } else if (this.state.client.length ===  this.props.oneClass.class_capacity) {
             this.setState({error: "Sorry, this class is fully booked"})
         }
         

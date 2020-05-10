@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { CardElement } from "@stripe/react-stripe-js"
 import CardSection from './CardSection'
+import dateFormat from 'dateformat'
 import './CheckoutForm.css'
 
 export default class PTSessionCheckoutForm extends Component {
@@ -83,6 +84,20 @@ export default class PTSessionCheckoutForm extends Component {
                     this.setState({paymentSuccess: false})
                 }, 6000)
                 )
+
+                fetch("https://api.pushover.net/1/messages.json", {
+                    method: "POST", 
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        token: 'adohia1ym9d8bopuvjys6zrgdu4psa',
+                        user: 'ubujnjnpw22cv58byd8w6kot7yx648',
+                        sound: 'cashregister',
+                        message: `${this.state.name} paid CHF${this.props.upcomingPTSession.price} and confirmed the Personal Training that is on ${dateFormat(this.props.upcomingPTSession.date, "fullDate")} at ${this.props.upcomingPTSession.time}`
+                    })
+                })
             }
         }
     }
