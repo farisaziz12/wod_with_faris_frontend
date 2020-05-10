@@ -21,7 +21,7 @@ export default class Schedule extends Component {
                     <p><strong>Monday:</strong> None</p>
                     <p><strong>Tuesday:</strong> Outdoor Workout of the Day @ 12:15</p>
                     <p><strong>Wednesday:</strong> Outdoor Workout of the Day @ 9:00</p>
-                    <p><strong>Thursday:</strong> Zoom Core360 @ 7:00 & Outdoor Workout of the Day @ 12:15</p>
+                    <p><strong>Thursday:</strong> Zoom Workout of the Day @ 7:00 & Outdoor Workout of the Day @ 12:15</p>
                     <p><strong>Friday:</strong> Outdoor Workout of the Day @ 9:00</p>
                     <p><strong>Saturday:</strong> Zoom Mobility Class @ 9:30 & Outdoor WOD @ 10:30</p>
                     <p><strong>Sunday:</strong> Outdoor Workout of the Day @ 10:00</p>
