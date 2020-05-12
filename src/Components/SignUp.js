@@ -64,6 +64,19 @@ class SignUp extends React.Component {
             })
             }).then(resp => resp.json()).then(resp => console.log(resp))
 
+            fetch("https://api.pushover.net/1/messages.json", {
+                    method: "POST", 
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        token: 'adohia1ym9d8bopuvjys6zrgdu4psa',
+                        user: 'ubujnjnpw22cv58byd8w6kot7yx648',
+                        message: `${this.state.firstName + " " + this.state.lastName} signed up!`
+                    })
+            })
+
            } else if (!password || !passwordConfirm || !email || !firstName || !lastName){
                this.setState({emptyFieldsError: "Please fill all the fields", passwordMatchError: null})
            } else {

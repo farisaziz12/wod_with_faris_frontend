@@ -31,6 +31,7 @@ export default class CheckoutForm extends Component {
         const result = await stripe.createToken(card);
         if (result.error) {
             window.alert(result.error.message);
+            this.setState({paymentPending: false})
         } else {
             const { quantity } = this.props
             fetch("https://wod-with-faris-backend.herokuapp.com/users/buyclasspasses", {

@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^7.1.2",
     "dateformat": "^3.0.3",
     "firebase": "^7.13.1",
+    "google-maps-react": "^2.0.6",
     "instagrammer": "^1.0.2",
     "react": "^16.13.1",
     "react-calendar": "^3.0.0",
