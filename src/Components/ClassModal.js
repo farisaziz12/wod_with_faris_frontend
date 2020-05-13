@@ -23,7 +23,7 @@ export default class ClassModal extends Component {
 
     handleBookandUnBookClass =  id => {
         const isBooked = this.state.clients.find(client => client.user.id === this.props.user.id)
-        if (isBooked === undefined && this.props.user.tokens > 0 && this.state.clients.length < 8) {
+        if (isBooked === undefined && this.props.user.tokens > 0 && this.state.clients.length < this.props.oneClass.class_capacity) {
             console.log("booking")
             fetch("https://wod-with-faris-backend.herokuapp.com/usersession/book", {
                 method: "POST", 
@@ -80,8 +80,8 @@ export default class ClassModal extends Component {
             })
 
         } else if (this.props.user.tokens <= 0){
-            this.setState({error: "Sorry, you have run out of passes"})
-        } else if (this.state.client.length ===  this.props.oneClass.class_capacity) {
+            this.setState({error: 'Sorry, you have run out of passes. Please by some more on the "Buy Passes" page.' })
+        } else if (this.state.clients.length ===  this.props.oneClass.class_capacity) {
             this.setState({error: "Sorry, this class is fully booked"})
         }
         
