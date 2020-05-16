@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PopPop from 'react-poppop';
 import './Schedule.css';
-import { Link } from 'react-router-dom';
 
 export default class Schedule extends Component {
 
