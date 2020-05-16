@@ -78,7 +78,6 @@ export default class Profile extends Component {
         const orderedByDateUpcomingPTsessions = timeOrderedPTSessions&& timeOrderedPTSessions.sort((a, b) => new Date(a.ptsession.date) - new Date(b.ptsession.date))
         const SlicedUpcomingClasses = orderedByDateUpcomingClasses&& orderedByDateUpcomingClasses.slice(0, 2)
         const SlicedUpcomingPTSessions = orderedByDateUpcomingPTsessions&& orderedByDateUpcomingPTsessions.slice(0, 2)
-        console.log(orderedByDateUpcomingClasses)
         return (
             <div>
                 <div className='profile-container'>
