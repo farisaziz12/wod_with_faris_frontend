@@ -72,12 +72,13 @@ export default class Profile extends Component {
 
     render() {
         const { user, upcomingClasses, showUpcomingClasses, showMyActivites, upcomingPTSessions } = this.state
-        const timeOrderedClasses = upcomingClasses[0]&& upcomingClasses.sort((a, b) => new Date(a.date + " " + a.time) - new Date(b.date + " " + b.time))
+        const timeOrderedClasses = upcomingClasses[0]&& upcomingClasses.sort((a, b) => new Date(a.class.date + "T" + a.class.time) - new Date(b.class.date + "T" + b.class.time))
         const timeOrderedPTSessions = upcomingPTSessions[0]&& upcomingPTSessions.sort((a, b) => new Date(a.ptsession.date + " " + a.ptsession.time) - new Date(b.ptsession.date + " " + b.ptsession.time))
-        const orderedByDateUpcomingClasses = timeOrderedClasses&& timeOrderedClasses.sort((a, b) => new Date(a.date) - new Date(b.date))
+        const orderedByDateUpcomingClasses = timeOrderedClasses&& timeOrderedClasses.sort((a, b) => new Date(a.class.date) - new Date(b.class.date))
         const orderedByDateUpcomingPTsessions = timeOrderedPTSessions&& timeOrderedPTSessions.sort((a, b) => new Date(a.ptsession.date) - new Date(b.ptsession.date))
         const SlicedUpcomingClasses = orderedByDateUpcomingClasses&& orderedByDateUpcomingClasses.slice(0, 2)
         const SlicedUpcomingPTSessions = orderedByDateUpcomingPTsessions&& orderedByDateUpcomingPTsessions.slice(0, 2)
+        console.log(orderedByDateUpcomingClasses)
         return (
             <div>
                 <div className='profile-container'>
