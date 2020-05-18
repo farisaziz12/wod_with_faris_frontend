@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import dateFormat from 'dateformat'
 import PopPop from 'react-poppop';
+import Select from 'react-select'
 import './Classes.css'
 
 export default class CoachClassCard extends Component {
@@ -10,7 +11,23 @@ export default class CoachClassCard extends Component {
         clients: [],
         askDeleteConfirm: false,
         editMode: false,
-        classDescription: this.props.upcomingClass.description
+        classDescription: this.props.upcomingClass.description,
+        addClient: false,
+        allClients: [],
+        clientToAdd: null
+    }
+    
+    componentDidMount(){
+        fetch(`https://wod-with-faris-backend.herokuapp.com/usersessions?class_id=${this.props.upcomingClass.id}`, {
+        }).then(resp => resp.json()).then(clients => this.setState({clients}))
+    }
+
+
+    handleClients = allClients => {
+        const formatedClients = allClients[0]&& allClients.map(client => {
+            return { label: client.first_name + " " + client.last_name, client: {first_name: client.first_name, last_name: client.last_name, id: client.id} }
+        })
+        this.setState({allClients: formatedClients})
     }
 
     handleDeleteClass = id => {
@@ -37,10 +54,6 @@ export default class CoachClassCard extends Component {
         this.setState({askDeleteConfirm: !this.state.askDeleteConfirm});
     }
 
-    componentDidMount(){
-        fetch(`https://wod-with-faris-backend.herokuapp.com/usersessions?class_id=${this.props.upcomingClass.id}`, {
-        }).then(resp => resp.json()).then(clients => this.setState({clients}))
-    }
 
     toggleEditMode = () => {
         this.setState({editMode: !this.state.editMode})
@@ -63,9 +76,36 @@ export default class CoachClassCard extends Component {
         }).then(this.setState({editMode: false}))
     }
 
+    toggleAddClient = () => {
+        this.setState({addClient: !this.state.addClient})
+        fetch('https://wod-with-faris-backend.herokuapp.com/users/index').then(resp => resp.json()).then(allClients => this.handleClients(allClients))
+    }
+
+    handleAddClientOrCancel = () => {
+        if (!this.state.clientToAdd){
+            this.setState({addClient: false})
+        } else if (this.state.clientToAdd){
+            fetch("https://wod-with-faris-backend.herokuapp.com/usersession/book", {
+                method: "POST", 
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user_id: this.state.clientToAdd.id,
+                    session_id: this.props.upcomingClass.id
+                })
+            }).then(resp => resp.json()).then(this.setState({clients: [...this.state.clients, {user: this.state.clientToAdd}], clientToAdd: null, addClient: null}))
+        }
+    }
+
+    handleSetClient = e => {
+        this.setState({clientToAdd: e.client})
+    }
+
     render() {
         const { upcomingClass, coach } = this.props
-        const { show, clients, askDeleteConfirm, editMode, classDescription } = this.state
+        const { show, clients, askDeleteConfirm, editMode, classDescription, addClient, clientToAdd, allClients } = this.state
         return (
             <div className='coach-class-card'>
                 <h2 className='card-title'>{upcomingClass.time + " " + upcomingClass.name}</h2>
@@ -78,26 +118,26 @@ export default class CoachClassCard extends Component {
                         closeOnEsc={true}
                         onClose={() => this.toggleShow(false)}
                         closeOnOverlay={true}>
-                <h1 className='workout-title'>{upcomingClass.time + " " + upcomingClass.name}</h1> <div className='attending-progress-bar'><div style={{width:`${((clients.length/upcomingClass.class_capacity) * 100).toFixed(2)}px`}}className='inner-progress-bar'><span className='attending-txt'>{clients.length === 8? "Fully Booked" : clients.length + ` / ${upcomingClass.class_capacity}`}</span></div></div>
-                <h3 className='desc-txt'><strong>Coach: </strong>{coach.first_name + " " + coach.last_name}</h3>
-                {!editMode?
-                classDescription.split('\n').map(sentence => (
-                    <p className='desc-txt'>{sentence}</p> 
-                ))
-                :
-                <textarea className='edit-desc' value={classDescription} onChange={this.handleChange} name='classDescription'/>
-                } 
-                <div>
-                {!editMode? <button className='book-btn' onClick={this.toggleEditMode}>Edit Workout</button> : <button className='book-btn' onClick={() => this.handleSubmit(upcomingClass.id)}>Submit</button>}
-                    <h3 className='desc-txt'>Signed  Up Clients</h3>
-                    {clients.map(client => (
-                        <p className='desc-txt'>- {client.user.first_name + " " + client.user.last_name}</p>
-                    ))}
-                    {!clients[0]&&
-                        <p className='desc-txt'>None</p>
-                    }
-
-                </div>
+                    <h1 className='workout-title'>{upcomingClass.time + " " + upcomingClass.name}</h1> <div className='attending-progress-bar'><div style={{width:`${((clients.length/upcomingClass.class_capacity) * 100).toFixed(2)}px`}}className='inner-progress-bar'><span className='attending-txt'>{clients.length === 8? "Fully Booked" : clients.length + ` / ${upcomingClass.class_capacity}`}</span></div></div>
+                    <h3 className='desc-txt'><strong>Coach: </strong>{coach.first_name + " " + coach.last_name}</h3>
+                    {!editMode?
+                    classDescription.split('\n').map(sentence => (
+                        <p className='desc-txt'>{sentence}</p> 
+                    ))
+                    :
+                    <textarea className='edit-desc' value={classDescription} onChange={this.handleChange} name='classDescription'/>
+                    } 
+                    <div>
+                    {!editMode? <button className='book-btn' onClick={this.toggleEditMode}>Edit Workout</button> : <button className='book-btn' onClick={() => this.handleSubmit(upcomingClass.id)}>Submit</button>}
+                        <h3 className='desc-txt'>Signed  Up Clients</h3>
+                        {clients.map(client => (
+                            <p className='desc-txt'>- {client.user.first_name + " " + client.user.last_name}</p>
+                        ))}
+                        {!clients[0]&&
+                            <p className='desc-txt'>None</p>
+                        }
+                    {!addClient? <button className='book-btn' onClick={this.toggleAddClient}>Add Client</button> :<><Select className='activity-input' options={allClients} onChange={this.handleSetClient}/> <button className='book-btn' onClick={this.handleAddClientOrCancel}>{clientToAdd? 'Submit' : 'Cancel'}</button></>}
+                    </div>
                 </PopPop>
             </div>
         )

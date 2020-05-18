@@ -17,6 +17,19 @@ export default class ClassCard extends Component {
                     session_id: id
                 })
             }).then(resp => resp.json()).then(deletedBooking => this.props.handleCancel(deletedBooking)).then(this.props.addToken)
+
+            fetch("https://api.pushover.net/1/messages.json", {
+                method: "POST", 
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    token: 'adohia1ym9d8bopuvjys6zrgdu4psa',
+                    user: 'ubujnjnpw22cv58byd8w6kot7yx648',
+                    message: `${this.props.user.first_name + " " + this.props.user.last_name} unbooked the ${this.props.upcomingClass.time + " " + this.props.upcomingClass.name} class that's on ${dateFormat(this.props.upcomingClass.date, "fullDate")}`
+                })
+            })
     }
 
     render() {
