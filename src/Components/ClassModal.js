@@ -24,7 +24,6 @@ export default class ClassModal extends Component {
     handleBookandUnBookClass =  id => {
         const isBooked = this.state.clients.find(client => client.user.id === this.props.user.id)
         if (isBooked === undefined && this.props.user.tokens > 0 && this.state.clients.length < this.props.oneClass.class_capacity) {
-            console.log("booking")
             fetch("https://wod-with-faris-backend.herokuapp.com/usersession/book", {
                 method: "POST", 
                 headers: {
@@ -92,7 +91,6 @@ export default class ClassModal extends Component {
         const { show, clients, error } = this.state;
         const { oneClass } = this.props;
         const isBooked = clients[0]&& clients.find(client => client.user.id === this.props.user.id)? true : false
-        console.log(isBooked)
         const now = new Date()
         const classDateAndTime = new Date(oneClass.date + "T" + oneClass.time)
         const isInPast = classDateAndTime < now? true : false
