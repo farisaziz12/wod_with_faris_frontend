@@ -91,7 +91,8 @@ export default class ClassModal extends Component {
     render() {
         const { show, clients, error } = this.state;
         const { oneClass } = this.props;
-        const isBooked = clients[0]&& clients.find(client => client.user.id === this.props.user.id)
+        const isBooked = clients[0]&& clients.find(client => client.user.id === this.props.user.id)? true : false
+        console.log(isBooked)
         const now = new Date()
         const classDateAndTime = new Date(oneClass.date + "T" + oneClass.time)
         const isInPast = classDateAndTime < now? true : false
