@@ -50,8 +50,9 @@ input[type="date"]::-webkit-clear-button {
         margin-left: auto;
         margin-right: auto;
         display: block;
-        width: 800px;
-        height: 600px;
+        border: solid white 2px;
+        width: 650px;
+        height: 550px;
     }
 
     .date-picker{
