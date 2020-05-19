@@ -30,7 +30,7 @@ export default function Profile(props) {
         fetch(`https://wod-with-faris-backend.herokuapp.com/usersession/upcomingclasses?email=${props.currentUser.email}`)
         .then(resp => resp.json())
         .then(upcoming => handleUpcomingClasses(upcoming))
-    }, [])
+    }, [props.currentUser.email])
     
 
     const handleUpcomingClasses = upcoming => {
