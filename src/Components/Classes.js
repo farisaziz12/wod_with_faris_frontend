@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import DatePick from './DatePick'
-import './Classes.css'
 import ClassModal from './ClassModal'
 import ReactGA from 'react-ga';
+import './Classes.css'
 
 function initializeReactGA() {
     ReactGA.initialize(process.env.REACT_APP_GOOGLE_MEASUREMENT_ID);
@@ -56,6 +56,10 @@ export default class Classes extends Component {
         const pickedClass = this.state.classes.find( oneClass => oneClass.id === id)
         this.setState({chosenClass: pickedClass})
      }
+
+     handleDateClick = (arg) => {
+        alert(arg.dateStr)
+    }
 
      deductToken = () => {
         const { user } = this.state 
