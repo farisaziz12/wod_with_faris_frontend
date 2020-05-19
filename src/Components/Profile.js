@@ -4,7 +4,6 @@ import ClassCard from './ClassCard'
 import CoachClassCard from './CoachClassCard'
 import ReactGA from 'react-ga';
 import AllUpcomingClasses from './AllUpcomingClasses';
-import MyActivites from './MyActivites';
 import PTSessionCard from './PTSessionCard';
 import CoachPTSessionCard from './CoachPTSessionCard';
 
@@ -19,8 +18,7 @@ export default class Profile extends Component {
         user: null, 
         upcomingClasses: [],
         upcomingPTSessions: [],
-        showUpcomingClasses: false, 
-        showMyActivites: false
+        showUpcomingClasses: false
     }
 
     componentDidMount(){
@@ -66,12 +64,9 @@ export default class Profile extends Component {
     toggleShowUpcomingClasses = show => {
         this.setState({showUpcomingClasses: show })
     }
-    toggleShowMyActivities = show => {
-        this.setState({showMyActivites: show })
-    }
 
     render() {
-        const { user, upcomingClasses, showUpcomingClasses, showMyActivites, upcomingPTSessions } = this.state
+        const { user, upcomingClasses, showUpcomingClasses, upcomingPTSessions } = this.state
         const timeOrderedClasses = upcomingClasses[0]&& upcomingClasses.sort((a, b) => new Date(a.class.date + "T" + a.class.time) - new Date(b.class.date + "T" + b.class.time))
         const timeOrderedPTSessions = upcomingPTSessions[0]&& upcomingPTSessions.sort((a, b) => new Date(a.ptsession.date + " " + a.ptsession.time) - new Date(b.ptsession.date + " " + b.ptsession.time))
         const orderedByDateUpcomingClasses = timeOrderedClasses&& timeOrderedClasses.sort((a, b) => new Date(a.class.date) - new Date(b.class.date))
@@ -84,8 +79,6 @@ export default class Profile extends Component {
                     {user?
                     <>
                         <h1>{user.first_name + " " + user.last_name}</h1>
-                        {!user.coach&& <button onClick={() => this.toggleShowMyActivities(true)} className='my-activities-btn'>My Activities</button>}
-                        {showMyActivites&& <MyActivites toggleShow={this.toggleShowMyActivities} user={this.state.user} show={showMyActivites}/>}
                         {!user.coach&& <h2 className='tokens'>Class Passes: {user.tokens}</h2>}
                         <div className='upcoming-classes-container'>
                             <div>

@@ -58,27 +58,6 @@
     border-radius: 10px;
 }
 
-.my-activities-btn{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    color: white;
-    border-color: white;
-    background-color: rgb(3, 151, 250);
-    width: 160px;
-    height: 45px;
-    border-radius: 15px;
-    font-family: 'Permanent Marker', cursive;
-    font-size: 15px;
-    transition: all 0.2s ease-in-out;
-}
-
-.my-activities-btn:hover{
-    background-color: lightslategray;
-    border-radius: 10px;
-}
-
 
 .upcoming-pt-sessions{
     margin-top: 22%;

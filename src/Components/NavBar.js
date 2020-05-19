@@ -75,11 +75,6 @@ export default function NavBar(props) {
                 </NavLink>
                 }
                 {currentUser&& userData&& !userData.coach&&
-                <NavLink to='/logactivity'>
-                    <button onClick={handleActiveBtnChange} name='/logactivity' className={page === '/logactivity'? 'nav-btn active' : 'nav-btn'}>Log Activity</button>
-                </NavLink>
-                }
-                {currentUser&& userData&& !userData.coach&&
                 <NavLink to='/buypasses'>
                     <button onClick={handleActiveBtnChange} name='/buypasses' className={page === '/buypasses'? 'nav-btn active' : 'nav-btn'}>Buy Passes</button>
                 </NavLink>

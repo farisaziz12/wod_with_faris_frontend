@@ -90,7 +90,7 @@ export default function CreatePTSession(props) {
                     <h3 className='create-class-h3'>Price (CHF)</h3>
                     <input name='price' value={price} onChange={(e) => setPrice(e.target.value)} className='create-class-input' type='number'/>
                     <h3 className='create-class-h3'>Client</h3>
-                    <Select className='activity-input' options={clients} onChange={handleSetClient}/>
+                    <Select className='client-select-input' options={clients} onChange={handleSetClient}/>
                     <button className='create-pt-session-btn' onClick={handleCreatePtSession}>Create PT Session</button>
                 </div>
         </div>

@@ -29,7 +29,7 @@ export default function Leaderboard() {
                 <table className='leaderboard-table' >
                     <tr>
                         <th>Name</th>
-                        <th>Classes/Activities</th> 
+                        <th>Classes</th> 
                         <th>Calories Burned</th>
                     </tr>
                     {sortedLeaderboardStats&&
