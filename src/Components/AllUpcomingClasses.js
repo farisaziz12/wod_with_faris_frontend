@@ -6,7 +6,7 @@ import CoachClassCard from './CoachClassCard';
 export default class AllUpcomingClasses extends Component {
     render() {
         const { show, upcomingClasses, handleCancel, user, toggleShow } = this.props
-        const timeOrderedClasses = upcomingClasses.sort((a, b) => new Date(a.date + " " + a.time) - new Date(b.date + " " + b.time))
+        const timeOrderedClasses = upcomingClasses[0]? upcomingClasses.sort((a, b) => new Date(a.date + " " + a.time) - new Date(b.date + " " + b.time)) : upcomingClasses
         return (
             <div>
                 <PopPop position="centerCenter"
