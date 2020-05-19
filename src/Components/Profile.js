@@ -68,13 +68,12 @@ export default function Profile(props) {
         setShowUpcomingClasses(show)
     }
 
-        const timeOrderedClasses = upcomingClasses[0]? upcomingClasses.sort((a, b) => new Date(a.date + "T" + a.time) - new Date(b.date + "T" + b.time)) : upcomingClasses
-        const timeOrderedPTSessions = upcomingPTSessions[0]? upcomingPTSessions.sort((a, b) => new Date(a.date + " " + a.time) - new Date(b.date + " " + b.time)) : upcomingPTSessions
+        const timeOrderedClasses = upcomingClasses[0]? upcomingClasses[0].class? upcomingClasses.sort((a, b) => new Date(a.class.date + "T" + a.class.time) - new Date(b.class.date + "T" + b.class.time)) : upcomingClasses.sort((a, b) => new Date(a.date + "T" + a.time) - new Date(b.date + "T" + b.time)) : upcomingClasses
+        const timeOrderedPTSessions = upcomingPTSessions[0]? upcomingPTSessions[0].ptsession? upcomingPTSessions.sort((a, b) => new Date(a.ptsession.date + " " + a.ptsession.time) - new Date(b.ptsession.date + " " + b.ptsession.time)) : upcomingPTSessions.sort((a, b) => new Date(a.date + " " + a.time) - new Date(b.date + " " + b.time)) : upcomingPTSessions
         const orderedByDateUpcomingClasses = timeOrderedClasses&& timeOrderedClasses.sort((a, b) => new Date(a.date) - new Date(b.date))
         const orderedByDateUpcomingPTsessions = timeOrderedPTSessions&& timeOrderedPTSessions.sort((a, b) => new Date(a.date) - new Date(b.date))
         const SlicedUpcomingClasses = orderedByDateUpcomingClasses&& orderedByDateUpcomingClasses.slice(0, 2)
         const SlicedUpcomingPTSessions = orderedByDateUpcomingPTsessions&& orderedByDateUpcomingPTsessions.slice(0, 2)
-        console.log(showUpcomingClasses)
         return (
             <div>
                 <div className='profile-container'>
