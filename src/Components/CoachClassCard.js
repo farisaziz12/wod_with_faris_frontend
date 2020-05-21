@@ -118,7 +118,7 @@ export default class CoachClassCard extends Component {
                         closeOnEsc={true}
                         onClose={() => this.toggleShow(false)}
                         closeOnOverlay={true}>
-                    <h1 className='workout-title'>{upcomingClass.time + " " + upcomingClass.name}</h1> <div className='attending-progress-bar'><div style={{width:`${((clients.length/upcomingClass.class_capacity) * 100).toFixed(2)}px`}}className='inner-progress-bar'><span className='attending-txt'>{clients.length === 8? "Fully Booked" : clients.length + ` / ${upcomingClass.class_capacity}`}</span></div></div>
+                    <h1 className='workout-title'>{upcomingClass.time + " " + upcomingClass.name}</h1> <div className='attending-progress-bar'><div style={{width:`${((clients.length/upcomingClass.class_capacity) * 100 > 100? 100 : (clients.length/upcomingClass.class_capacity) * 100).toFixed(2)}px`}}className='inner-progress-bar'><span className='attending-txt'>{clients.length === 8? "Fully Booked" : clients.length + ` / ${upcomingClass.class_capacity}`}</span></div></div>
                     <h3 className='desc-txt'><strong>Coach: </strong>{coach.first_name + " " + coach.last_name}</h3>
                     {!editMode?
                     classDescription.split('\n').map(sentence => (

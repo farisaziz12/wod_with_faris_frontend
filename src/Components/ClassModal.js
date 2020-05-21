@@ -103,7 +103,7 @@ export default class ClassModal extends Component {
                         closeOnEsc={true}
                         onClose={() => this.toggleShow(false)}
                         closeOnOverlay={true}>
-                <h1 className='workout-title'>{oneClass.time + " " + oneClass.name}</h1> <div className='attending-progress-bar'><div style={{width:`${((clients.length / oneClass.class_capacity) * 100).toFixed(2)}px`}}className='inner-progress-bar'><span className='attending-txt'>{clients.length === oneClass.class_capacity? "Fully Booked" : clients.length + ` / ${oneClass.class_capacity}`}</span></div></div>
+                <h1 className='workout-title'>{oneClass.time + " " + oneClass.name}</h1> <div className='attending-progress-bar'><div style={{width:`${((clients.length/oneClass.class_capacity) * 100 > 100? 100 : (clients.length / oneClass.class_capacity) * 100).toFixed(2)}px`}}className='inner-progress-bar'><span className='attending-txt'>{clients.length === oneClass.class_capacity? "Fully Booked" : clients.length + ` / ${oneClass.class_capacity}`}</span></div></div>
                 <h3 className='desc-txt'><strong>Coach: </strong>{oneClass.coach.first_name + " " + oneClass.coach.last_name}</h3>
                 {oneClass.description.split('\n').map(sentence => (
                     <p className='desc-txt'>{sentence}</p> 
