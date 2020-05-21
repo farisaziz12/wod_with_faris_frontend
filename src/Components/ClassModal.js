@@ -80,7 +80,7 @@ export default class ClassModal extends Component {
 
         } else if (this.props.user.tokens <= 0){
             this.setState({error: 'Sorry, you have run out of passes. Please buy some more on the "Buy Passes" page.' })
-        } else if (this.state.clients.length ===  this.props.oneClass.class_capacity) {
+        } else if (this.state.clients.length === this.props.oneClass.class_capacity || this.state.clients.length > this.props.oneClass.class_capacity) {
             this.setState({error: "Sorry, this class is fully booked"})
         }
         
