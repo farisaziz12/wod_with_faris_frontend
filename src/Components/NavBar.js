@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -7,7 +6,6 @@ import ReactGA from "react-ga";
 import StyledLink from "./StyledLink";
 import StyledDropdownLink from "./StyledDropdownLink";
 import Button from "react-bootstrap/Button";
-import "./NavBar.css";
 
 const lastPage = localStorage.getItem("prevUrl");
 
@@ -153,111 +151,6 @@ export default function NavBar(props) {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-
-      {/* <NavLink to="/">
-        <button
-          onClick={handleActiveBtnChange}
-          name="/"
-          className={page === "/" ? "nav-btn active" : "nav-btn"}
-        >
-          Home
-        </button>
-      </NavLink>
-      {currentUser && userData && userData.coach && (
-        <NavLink to="/createclass">
-          <button
-            onClick={handleActiveBtnChange}
-            name="/createclass"
-            className={page === "/createclass" ? "nav-btn active" : "nav-btn"}
-          >
-            Create Class
-          </button>
-        </NavLink>
-      )}
-      {currentUser && userData && userData.coach && (
-        <NavLink to="/createptsession">
-          <button
-            onClick={handleActiveBtnChange}
-            name="/createptsession"
-            className={
-              page === "/createptsession" ? "nav-btn active" : "nav-btn"
-            }
-          >
-            Create PT Session
-          </button>
-        </NavLink>
-      )}
-      {currentUser && userData && userData.coach && (
-        <NavLink to="/clients">
-          <button
-            onClick={handleActiveBtnChange}
-            name="/clients"
-            className={page === "/clients" ? "nav-btn active" : "nav-btn"}
-          >
-            Clients
-          </button>
-        </NavLink>
-      )}
-      {currentUser && userData && !userData.coach && (
-        <NavLink to="/classes">
-          <button
-            onClick={handleActiveBtnChange}
-            name="/classes"
-            className={page === "/classes" ? "nav-btn active" : "nav-btn"}
-          >
-            Book Class
-          </button>
-        </NavLink>
-      )}
-      {currentUser && userData && !userData.coach && (
-        <NavLink to="/buypasses">
-          <button
-            onClick={handleActiveBtnChange}
-            name="/buypasses"
-            className={page === "/buypasses" ? "nav-btn active" : "nav-btn"}
-          >
-            Buy Passes
-          </button>
-        </NavLink>
-      )}
-      {currentUser && userData && !userData.coach && (
-        <NavLink to="/leaderboard">
-          <button
-            onClick={handleActiveBtnChange}
-            name="/leaderboard"
-            className={page === "/leaderboard" ? "nav-btn active" : "nav-btn"}
-          >
-            Leaderboard
-          </button>
-        </NavLink>
-      )}
-      {currentUser && (
-        <NavLink to="/profile">
-          <button
-            onClick={handleActiveBtnChange}
-            name="/profile"
-            className={page === "/profile" ? "nav-btn active" : "nav-btn"}
-          >
-            Profile
-          </button>
-        </NavLink>
-      )}
-      {currentUser ? (
-        <button className="nav-btn" onClick={props.logout}>
-          Log Out
-        </button>
-      ) : (
-        <NavLink to="/login">
-          <button
-            onClick={handleActiveBtnChange}
-            name="/login"
-            className={page === "/login" ? "nav-btn active" : "nav-btn"}
-          >
-            Log In
-          </button>
-        </NavLink>
-      )}
-      <h3 className="logo-2">WOD WITH FARIS</h3> */}
     </div>
   );
 }

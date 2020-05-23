@@ -14,7 +14,6 @@ import Profile from "./Components/Profile";
 import CreateClass from "./Components/CreateClass";
 import Clients from "./Components/Clients";
 import BuyPasses from "./Components/BuyPasses";
-import MobileMenu from "./Components/MobileMenu";
 import Leaderboard from "./Components/Leaderboard";
 import { Redirect } from "react-router";
 import CreatePTSession from "./Components/CreatePTSession";
