@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const StyledLink = styled(Link)`
+const StyledDropdownLink = styled(Link)`
   text-decoration: none;
-  color: hsla(0, 0%, 100%, 0.5);
+  color: black;
   &:focus,
   &:hover {
-    color: white;
+    color: grey;
   }
   ,
   &:visited,
@@ -17,4 +17,4 @@ const StyledLink = styled(Link)`
   }
 `;
 
-export default (props) => <StyledLink {...props} />;
+export default (props) => <StyledDropdownLink {...props} />;
