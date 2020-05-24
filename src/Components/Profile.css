@@ -1,64 +1,63 @@
-
-
 @media (min-width: 768px) {
-    
-    .profile-container{
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-        border: solid white 1px;
-        padding: 20px;
-        width: 800px;
-        height: 600px;
-        border-radius: 10px;
-    }
-
-}
-
-.tokens{
-    text-align: center;
-}
-
-.upcoming-classes-title{
-    text-align: center;
-}
-
-.none{
-    text-align: center;
-    margin-bottom: -6%;
-}
-
-.upcoming-classes-container{
-    overflow: cover;
-    margin-bottom: 5%;
-}
-
-.all-upcoming-classes-btn{
-    text-align: center;
+  .profile-container {
     margin-left: auto;
     margin-right: auto;
     display: block;
-    color: white;
-    border-color: white;
-    background-color: rgb(3, 151, 250);
-    width: 180px;
-    height: 45px;
-    border-radius: 15px;
-    font-family: 'Permanent Marker', cursive;
-    font-size: 15px;
-    transition: all 0.2s ease-in-out;
-}
-
-
-
-
-
-.all-upcoming-classes-btn:hover{
-    background-color: lightslategray;
+    border: solid white 1px;
+    padding: 20px;
+    width: 800px;
+    height: 600px;
     border-radius: 10px;
+    color: white;
+  }
 }
 
+.tokens {
+  text-align: center;
+}
 
-.upcoming-pt-sessions{
-    margin-top: 22%;
+.name-h1 {
+  color: white;
+}
+
+.upcoming-classes-title {
+  margin-top: 1%;
+  text-align: center;
+  font-size: 30px;
+}
+
+.none {
+  text-align: center;
+  margin-bottom: -6%;
+}
+
+.upcoming-classes-container {
+  color: white;
+  overflow: cover;
+  margin-bottom: 5%;
+}
+
+.all-upcoming-classes-btn {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  color: white;
+  border-color: white;
+  background-color: rgb(3, 151, 250);
+  width: 180px;
+  height: 45px;
+  border-radius: 15px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 15px;
+  transition: all 0.2s ease-in-out;
+}
+
+.all-upcoming-classes-btn:hover {
+  background-color: lightslategray;
+  border-radius: 10px;
+}
+
+.upcoming-pt-sessions {
+  margin-top: 22%;
 }

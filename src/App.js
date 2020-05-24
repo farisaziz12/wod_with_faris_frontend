@@ -22,23 +22,17 @@ class App extends React.Component {
   state = {
     currentUser: null,
     userData: null,
-    screenWidth: window.innerWidth,
     isHome: true,
   };
 
   componentWillMount() {
     const lastPage = localStorage.getItem("prevUrl");
-    window.addEventListener("resize", this.handleWindowSizeChange);
     if (lastPage === "/") {
       this.setState({ isHome: true });
     } else {
       this.setState({ isHome: false });
     }
   }
-
-  handleWindowSizeChange = () => {
-    this.setState({ screenWidth: window.innerWidth });
-  };
 
   handleSetUser = (user) => {
     this.setState({ currentUser: user });
@@ -68,7 +62,7 @@ class App extends React.Component {
 
   render() {
     const lastPage = localStorage.getItem("prevUrl");
-    const { currentUser, userData, screenWidth, isHome } = this.state;
+    const { currentUser, userData, isHome } = this.state;
     return (
       <>
         <NavBar

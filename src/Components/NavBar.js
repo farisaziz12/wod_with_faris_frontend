@@ -11,9 +11,6 @@ const lastPage = localStorage.getItem("prevUrl");
 
 export default function NavBar(props) {
   const [page, setPage] = useState(null);
-  const [activeItem, setActiveItem] = useState(null);
-
-  const handleItemClick = (e, { name }) => setActiveItem(name);
 
   useEffect(() => {
     setPage(lastPage ? lastPage : "/");
@@ -35,10 +32,6 @@ export default function NavBar(props) {
           props.userData.first_name + " " + props.userData.last_name
         } looked at ${e.target.name}`,
       });
-  };
-
-  const printTing = (e) => {
-    console.log(e.target.name);
   };
 
   const { currentUser, userData } = props;
