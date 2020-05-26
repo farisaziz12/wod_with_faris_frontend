@@ -45,15 +45,6 @@ input[type="date"]::-webkit-clear-button {
 }
 
 @media (min-width: 768px) {
-  .container {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    border: solid white 2px;
-    width: 650px;
-    height: 550px;
-  }
-
   .date-picker {
     width: 250px;
     height: 30px;

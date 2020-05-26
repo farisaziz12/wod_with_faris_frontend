@@ -1,13 +1,17 @@
 import React, { Component } from "react";
-import DatePick from "./DatePick";
 import ClassModal from "./ClassModal";
 import ReactGA from "react-ga";
+import { Calendar, momentLocalizer } from "react-big-calendar";
+import moment from "moment";
 import "./Classes.css";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 
 function initializeReactGA() {
   ReactGA.initialize(process.env.REACT_APP_GOOGLE_MEASUREMENT_ID);
   ReactGA.pageview("/classes");
 }
+
+const localizer = momentLocalizer(moment);
 
 let today = new Date();
 let dd = today.getDate();
@@ -25,7 +29,6 @@ let todaydate = yyyy + "-" + mm + "-" + dd;
 export default class Classes extends Component {
   state = {
     classes: [],
-    date: todaydate,
     chosenClass: null,
     user: null,
     isLoading: true,
@@ -34,11 +37,14 @@ export default class Classes extends Component {
   componentDidMount() {
     initializeReactGA();
 
-    fetch(
-      `https://wod-with-faris-backend.herokuapp.com/sessions?date=${this.state.date}`
-    )
+    fetch(`https://wod-with-faris-backend.herokuapp.com/sessions`)
       .then((resp) => resp.json())
-      .then((classes) => this.setState({ classes: classes, isLoading: false }));
+      .then((classes) =>
+        this.setState({
+          classes: classes,
+          isLoading: false,
+        })
+      );
 
     fetch(
       `https://wod-with-faris-backend.herokuapp.com/user/getuser?email=${this.props.currentUser.email}`
@@ -55,15 +61,11 @@ export default class Classes extends Component {
     this.dateFetch(e.target.value);
   };
 
-  handlePickClass = (id) => {
+  handlePickClass = (e) => {
     const pickedClass = this.state.classes.find(
-      (oneClass) => oneClass.id === id
+      (oneClass) => oneClass.id === e.id
     );
     this.setState({ chosenClass: pickedClass });
-  };
-
-  handleDateClick = (arg) => {
-    alert(arg.dateStr);
   };
 
   deductToken = () => {
@@ -108,47 +110,60 @@ export default class Classes extends Component {
   dateFetch = (date) => {
     fetch(`https://wod-with-faris-backend.herokuapp.com/sessions?date=${date}`)
       .then((resp) => resp.json())
-      .then((classes) => this.setState({ classes: classes, isLoading: false }));
+      .then((classes) =>
+        this.setState({
+          classes: classes,
+          isLoading: false,
+        })
+      );
   };
 
-  handleDayOffset = (offset) => {
-    let d = new Date(this.state.date);
-    let prev = new Date(d.setDate(d.getDate() + offset))
-      .toISOString()
-      .slice(0, 10);
-    this.setState({ date: prev });
-    this.dateFetch(prev);
+  formatedClasses = (classes) => {
+    Date.prototype.addHours = function (h) {
+      this.setHours(this.getHours() + h);
+      return this;
+    };
+    return classes.map((oneClass) => ({
+      title: oneClass.name,
+      start: new Date(oneClass.date + "T" + oneClass.time),
+      end: new Date(oneClass.date + "T" + oneClass.time).addHours(1),
+      allDay: false,
+      id: oneClass.id,
+    }));
+  };
+
+  removeSelectedClass = () => {
+    this.setState({ chosenClass: null });
   };
 
   render() {
-    const { date, classes, isLoading } = this.state;
-    const filteredClasses = classes.filter(
-      (oneClass) => oneClass.date === date
-    );
-    const timeOrderedClasses = filteredClasses.sort(
-      (a, b) =>
-        new Date(a.date + " " + a.time) - new Date(b.date + " " + b.time)
-    );
+    const { classes, isLoading, chosenClass } = this.state;
     return (
       <div>
         <h1 style={{ color: "white" }}>Book Class</h1>
-        <DatePick
-          handleOffset={this.handleDayOffset}
-          date={date}
-          handleChange={this.handleDateChange}
-        />
+
         <div className="container">
+          <Calendar
+            onSelectEvent={this.handlePickClass}
+            defaultView={"week"}
+            localizer={localizer}
+            events={this.formatedClasses(classes)}
+            startAccessor="start"
+            endAccessor="end"
+            style={{ height: 600, color: "black", backgroundColor: "white" }}
+          />
           {isLoading && <button className="loading"></button>}
           {classes[0]
-            ? timeOrderedClasses.map((oneClass) => (
+            ? chosenClass && (
                 <ClassModal
                   addToken={this.addToken}
                   deductToken={this.deductToken}
                   user={this.state.user}
-                  oneClass={oneClass}
+                  oneClass={chosenClass}
                   handlePickClass={this.handlePickClass}
+                  removeSelectedClass={this.removeSelectedClass}
                 />
-              ))
+              )
             : !isLoading && <h1 style={{ color: "white" }}>No Classes</h1>}
         </div>
       </div>

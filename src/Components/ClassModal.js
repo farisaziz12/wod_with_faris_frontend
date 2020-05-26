@@ -5,7 +5,7 @@ import "./Classes.css";
 
 export default class ClassModal extends Component {
   state = {
-    show: false,
+    show: this.props.oneClass ? true : false,
     clients: [],
     error: null,
   };
@@ -21,6 +21,7 @@ export default class ClassModal extends Component {
 
   toggleShow = (show) => {
     this.setState({ show: show, error: null });
+    this.props.removeSelectedClass();
   };
 
   handleBookandUnBookClass = (id) => {
@@ -136,9 +137,6 @@ export default class ClassModal extends Component {
     const isInPast = classDateAndTime < now ? true : false;
     return (
       <div>
-        <button class="class-btn" onClick={() => this.toggleShow(true)}>
-          {oneClass.time + " " + oneClass.name}
-        </button>
         <PopPop
           position="centerCenter"
           open={show}
