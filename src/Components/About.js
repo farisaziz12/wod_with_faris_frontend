@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
@@ -9,8 +9,6 @@ import Badge from "react-bootstrap/Badge";
 import "./About.css";
 
 export default function About() {
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
   return (
     <div>
       <h1>About</h1>
