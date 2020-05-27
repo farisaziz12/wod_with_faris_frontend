@@ -17,6 +17,7 @@ import BuyPasses from "./Components/BuyPasses";
 import Leaderboard from "./Components/Leaderboard";
 import { Redirect } from "react-router";
 import CreatePTSession from "./Components/CreatePTSession";
+import About from "./Components/About";
 
 class App extends React.Component {
   state = {
@@ -77,6 +78,9 @@ class App extends React.Component {
         <PrivateRoute exact path="/clients" component={Clients} />
         <PrivateRoute exact path="/buypasses" component={BuyPasses} />
         <PrivateRoute exact path="/leaderboard" component={Leaderboard} />
+        <Route exact path="/about">
+          <About />
+        </Route>
         <PrivateRoute
           exact
           path="/createptsession"

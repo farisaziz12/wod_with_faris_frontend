@@ -47,6 +47,11 @@ export default function NavBar(props) {
                 Home
               </StyledLink>
             </Nav.Link>
+            <Nav.Link>
+              <StyledLink name="/about" onClick={handleNavChange} to="/about">
+                About
+              </StyledLink>
+            </Nav.Link>
             {currentUser && (
               <Nav.Link>
                 <StyledLink

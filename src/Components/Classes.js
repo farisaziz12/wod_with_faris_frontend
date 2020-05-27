@@ -32,7 +32,12 @@ export default class Classes extends Component {
     chosenClass: null,
     user: null,
     isLoading: true,
+    screenWidth: window.innerWidth,
   };
+
+  componentWillMount() {
+    window.addEventListener("resize", this.handleWindowSizeChange);
+  }
 
   componentDidMount() {
     initializeReactGA();
@@ -52,6 +57,10 @@ export default class Classes extends Component {
       .then((resp) => resp.json())
       .then((user) => this.setState({ user }));
   }
+
+  handleWindowSizeChange = () => {
+    this.setState({ screenWidth: window.innerWidth });
+  };
 
   handleDateChange = (e) => {
     this.setState({
@@ -137,7 +146,8 @@ export default class Classes extends Component {
   };
 
   render() {
-    const { classes, isLoading, chosenClass } = this.state;
+    const { classes, isLoading, chosenClass, screenWidth } = this.state;
+    const isMobile = screenWidth <= 500;
     return (
       <div>
         <h1 style={{ color: "white" }}>Book Class</h1>
@@ -145,7 +155,7 @@ export default class Classes extends Component {
         <div className="container">
           <Calendar
             onSelectEvent={this.handlePickClass}
-            defaultView={"week"}
+            defaultView={isMobile ? "day" : "week"}
             localizer={localizer}
             events={this.formatedClasses(classes)}
             startAccessor="start"
