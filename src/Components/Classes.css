@@ -67,6 +67,7 @@ input[type="date"]::-webkit-clear-button {
   color: black;
   position: relative;
   font-size: 14px;
+  top: -8%;
 }
 
 .attending-progress-bar {
