@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import ClassModal from "./ClassModal";
 import ReactGA from "react-ga";
 import { Calendar, momentLocalizer } from "react-big-calendar";
-import Date from "datejs";
 import moment from "moment";
 import "./Classes.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
