@@ -115,6 +115,7 @@ export default class Classes extends Component {
   };
 
   formatedClasses = (classes) => {
+    // eslint-disable-next-line
     Date.prototype.addHours = function (h) {
       this.setHours(this.getHours() + h);
       return this;

@@ -10,6 +10,7 @@ import Button from "react-bootstrap/Button";
 const lastPage = localStorage.getItem("prevUrl");
 
 export default function NavBar(props) {
+  // eslint-disable-next-line
   const [page, setPage] = useState(null);
 
   useEffect(() => {
