@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ClassModal from "./ClassModal";
 import ReactGA from "react-ga";
 import { Calendar, momentLocalizer } from "react-big-calendar";
+import Date from "datejs";
 import moment from "moment";
 import "./Classes.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -115,15 +116,15 @@ export default class Classes extends Component {
   };
 
   formatedClasses = (classes) => {
-    // eslint-disable-next-line
-    Date.prototype.addHours = function (h) {
-      this.setHours(this.getHours() + h);
-      return this;
-    };
     return classes.map((oneClass) => ({
       title: oneClass.name,
-      start: new Date(oneClass.date + "T" + oneClass.time),
-      end: new Date(oneClass.date + "T" + oneClass.time).addHours(1),
+      start: moment(
+        oneClass.date + " " + oneClass.time,
+        "YYYY-MM-DD HH:mm"
+      ).toDate(),
+      end: moment(oneClass.date + " " + oneClass.time, "YYYY-MM-DD HH:mm")
+        .add(1, "hours")
+        .toDate(),
       allDay: false,
       id: oneClass.id,
     }));
