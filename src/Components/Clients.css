@@ -1,85 +1,84 @@
-.search-bar{
-    display: block;
-    margin-right: auto;
-    margin-left:auto ;
-    height: 30px;
-    width: 200px;
-    border-radius: 15px;
-    text-align: center;
-    font-size: 17px;
+.search-bar {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  height: 30px;
+  width: 200px;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 17px;
 }
 
-.clients-container{
-    text-align: center;
-    margin-top: 7%;
+.clients-container {
+  text-align: center;
+  margin-top: 7%;
 }
-.client{
-    border: solid lightblue;
-    background-color: lightblue;
-    color: black;
-    width: 220px;
-    height: 25px;
-    border-radius: 15px;
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
+.client {
+  border: solid lightblue;
+  background-color: lightblue;
+  color: black;
+  width: 220px;
+  height: 25px;
+  border-radius: 15px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 19px;
 }
 
-.low-on-tokens-client{
-    border: solid rgb(187, 86, 86);
-    background-color: rgb(187, 86, 86);
-    color: black;
-    width: 220px;
-    height: 25px;
-    border-radius: 15px;
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
+.low-on-tokens-client {
+  font-size: 19px;
+  border: solid rgb(187, 86, 86);
+  background-color: rgb(187, 86, 86);
+  color: black;
+  width: 220px;
+  height: 25px;
+  border-radius: 15px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 @media (min-width: 768px) {
-    .clients-container{
-        margin-top: 5%;
-    }
+  .clients-container {
+    margin-top: 5%;
+  }
 }
 
-
-.client-txt{
-    color: black;
+.client-txt {
+  color: black;
 }
 
-.client-modal-container{
-    min-width: 250px;
-    min-height: 150px;
+.client-modal-container {
+  min-width: 250px;
+  min-height: 150px;
 }
 
-
-.edit-btn{
-    text-align: center;
-    margin-top: 4%;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    color: white;
-    border-color: white;
-    background-color: rgb(3, 151, 250);
-    width: 180px;
-    height: 35px;
-    border-radius: 15px;
-    font-family: 'Permanent Marker', cursive;
-    font-size: 15px;
-    transition: all 0.2s ease-in-out;
+.edit-btn {
+  text-align: center;
+  margin-top: 4%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  color: white;
+  border-color: white;
+  background-color: rgb(3, 151, 250);
+  width: 180px;
+  height: 35px;
+  border-radius: 15px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 15px;
+  transition: all 0.2s ease-in-out;
 }
 
-
-.edit-btn:hover{
-    background-color: lightslategray;
-    border-radius: 10px;
+.edit-btn:hover {
+  background-color: lightslategray;
+  border-radius: 10px;
 }
 
-.edit-input{
-    height: 30px;
-    width: 190px;
-    border-radius: 15px;
-    text-align: center;
+.edit-input {
+  height: 30px;
+  width: 190px;
+  border-radius: 15px;
+  text-align: center;
 }
