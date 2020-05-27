@@ -1,97 +1,94 @@
-.purchase-box{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: white;
-    width: 500px;
-    height: 500px;
-    border-radius: 15px;
+.purchase-box {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  width: 500px;
+  height: 500px;
+  border-radius: 15px;
 }
 
 @media only screen and (max-device-width: 480px) {
-    .purchase-box{
-        width: 300px;
-        height: 500px;
-    }
-    .quantity{
-        font-size: 90px !important;
-    }
-    .quantity-title{
-        font-size: 40px !important;
-    }
+  .purchase-box {
+    width: 300px;
+    height: 500px;
+  }
+  .quantity {
+    font-size: 90px !important;
+  }
+  .quantity-title {
+    font-size: 40px !important;
+  }
 }
 
-.quantity{
-    margin-top: -10%;
-    font-family: 'Permanent Marker', cursive;
-    color: black;
-    font-size: 100px;
-    margin-bottom: -2%;
-    font-weight: 400;
+.quantity {
+  font-family: "Permanent Marker", cursive;
+  color: black;
+  font-size: 100px;
+  margin-bottom: -2%;
+  font-weight: 400;
 }
 
-.quantity-title{
-    font-size: 50px;
-    font-weight: 400;
-    font-family: 'Permanent Marker', cursive;
-    color: black;
+.quantity-title {
+  font-size: 50px;
+  font-weight: 400;
+  font-family: "Permanent Marker", cursive;
+  color: black;
 }
 
-.quantity-btn{
-    text-align: center;
-    color: white;
-    border-color: white;
-    background-color: rgb(3, 151, 250);
-    width: 110px;
-    height: 50px;
-    border-radius: 15px;
-    font-family: 'Permanent Marker', cursive;
-    font-size: 15px;
-    transition: all 0.2s ease-in-out;
-}
-    
-.quantity-btn:hover{
-    background-color: lightslategray;
-    border-radius: 10px;
+.quantity-btn {
+  text-align: center;
+  color: white;
+  border-color: white;
+  background-color: rgb(3, 151, 250);
+  width: 110px;
+  height: 50px;
+  border-radius: 15px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 15px;
+  transition: all 0.2s ease-in-out;
 }
 
-
-.total{
-    margin-top: 5%;
-    font-weight: 400;
-    font-family: 'Permanent Marker', cursive;
-    color: black;
+.quantity-btn:hover {
+  background-color: lightslategray;
+  border-radius: 10px;
 }
 
-.buttons-container{
-    text-align: center;
+.total {
+  margin-top: 5%;
+  font-weight: 400;
+  font-family: "Permanent Marker", cursive;
+  color: black;
 }
 
-.limit{
-    text-align: center;
-    color: red;
-    font-size: 20px;
+.buttons-container {
+  text-align: center;
 }
 
-.checkout-btn{
-    margin-top: 10%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    color: white;
-    border-color: white;
-    background-color: rgb(3, 151, 250);
-    width: 220px;
-    height: 50px;
-    border-radius: 15px;
-    font-family: 'Permanent Marker', cursive;
-    font-size: 25px;
-    transition: all 0.2s ease-in-out;
+.limit {
+  text-align: center;
+  color: red;
+  font-size: 20px;
 }
 
-    
-.checkout-btn:hover{
-    background-color: lightslategray;
-    border-radius: 10px;
+.checkout-btn {
+  margin-top: 10%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: white;
+  border-color: white;
+  background-color: rgb(3, 151, 250);
+  width: 220px;
+  height: 50px;
+  border-radius: 15px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 25px;
+  transition: all 0.2s ease-in-out;
+}
+
+.checkout-btn:hover {
+  background-color: lightslategray;
+  border-radius: 10px;
 }

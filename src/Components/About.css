@@ -1,0 +1,63 @@
+h1 {
+  color: white;
+  font-family: "Permanent Marker", cursive;
+}
+
+.about-txt {
+  margin-top: 5%;
+  color: white;
+  text-align: center;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+/* @media (max-device-width: 380px) {
+  .about-team-img {
+    max-width: 300px;
+    max-height: 300px;
+  }
+} */
+
+.qualifications-txt {
+  margin-top: 1%;
+  color: white;
+  text-align: center;
+}
+
+.about-team-heading {
+  color: white;
+  text-align: center;
+  margin-top: 2%;
+  font-weight: 400;
+  font-family: "Permanent Marker", cursive;
+}
+.about-team-heading-2 {
+  color: white;
+  text-align: center;
+  font-size: 24px;
+  margin-top: 2%;
+  font-weight: 400;
+  font-family: "Permanent Marker", cursive;
+}
+
+.about-team-img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  max-width: 350px;
+  max-height: 350px;
+  overflow: hidden;
+}
+
+.experience-pill {
+  margin-right: 0.25%;
+  margin-left: 0.25%;
+}
+
+.contact-button {
+  text-decoration: none;
+  color: white;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

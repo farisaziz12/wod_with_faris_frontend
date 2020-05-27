@@ -1,130 +1,182 @@
-import React, { Component } from 'react'
-import DatePick from './DatePick'
-import ClassModal from './ClassModal'
-import ReactGA from 'react-ga';
-import './Classes.css'
+import React, { Component } from "react";
+import ClassModal from "./ClassModal";
+import ReactGA from "react-ga";
+import { Calendar, momentLocalizer } from "react-big-calendar";
+import moment from "moment";
+import "./Classes.css";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 
 function initializeReactGA() {
-    ReactGA.initialize(process.env.REACT_APP_GOOGLE_MEASUREMENT_ID);
-    ReactGA.pageview('/classes');
+  ReactGA.initialize(process.env.REACT_APP_GOOGLE_MEASUREMENT_ID);
+  ReactGA.pageview("/classes");
 }
 
-let today = new Date()
-let dd = today.getDate(); 
-let mm = today.getMonth() + 1; 
+const localizer = momentLocalizer(moment);
 
-let yyyy = today.getFullYear(); 
-if (dd < 10) { 
-    dd = '0' + dd; 
-} 
-if (mm < 10) { 
-    mm = '0' + mm; 
-} 
-let todaydate = yyyy + '-' + mm + '-' + dd; 
+let today = new Date();
+let dd = today.getDate();
+let mm = today.getMonth() + 1;
+
+let yyyy = today.getFullYear();
+if (dd < 10) {
+  dd = "0" + dd;
+}
+if (mm < 10) {
+  mm = "0" + mm;
+}
+let todaydate = yyyy + "-" + mm + "-" + dd;
 
 export default class Classes extends Component {
+  state = {
+    classes: [],
+    chosenClass: null,
+    user: null,
+    isLoading: true,
+    screenWidth: window.innerWidth,
+  };
 
-    state = {
-        classes: [],
-        date: todaydate, 
-        chosenClass: null,
-        user: null,
-        isLoading: true
-    }
+  componentWillMount() {
+    window.addEventListener("resize", this.handleWindowSizeChange);
+  }
 
-    componentDidMount(){
-        initializeReactGA()
+  componentDidMount() {
+    initializeReactGA();
 
-        fetch(`https://wod-with-faris-backend.herokuapp.com/sessions?date=${this.state.date}`)
-        .then(resp => resp.json())
-        .then(classes => this.setState({classes: classes, isLoading: false}))
-
-        fetch(`https://wod-with-faris-backend.herokuapp.com/user/getuser?email=${this.props.currentUser.email}`)
-        .then(resp => resp.json())
-        .then(user => this.setState({user}))
-    }
-
-    handleDateChange = e => {
+    fetch(`https://wod-with-faris-backend.herokuapp.com/sessions`)
+      .then((resp) => resp.json())
+      .then((classes) =>
         this.setState({
-           [e.target.name]: e.target.value,
-           isLoading: true
+          classes: classes,
+          isLoading: false,
         })
-        this.dateFetch(e.target.value)
-     }
+      );
 
-     handlePickClass = id => { 
-        const pickedClass = this.state.classes.find( oneClass => oneClass.id === id)
-        this.setState({chosenClass: pickedClass})
-     }
+    fetch(
+      `https://wod-with-faris-backend.herokuapp.com/user/getuser?email=${this.props.currentUser.email}`
+    )
+      .then((resp) => resp.json())
+      .then((user) => this.setState({ user }));
+  }
 
-     handleDateClick = (arg) => {
-        alert(arg.dateStr)
-    }
+  handleWindowSizeChange = () => {
+    this.setState({ screenWidth: window.innerWidth });
+  };
 
-     deductToken = () => {
-        const { user } = this.state 
-        this.setState({user: {
-            id: user.id,
-            coach: user.coach,
-            first_name: user.first_name,
-            last_name: user.last_name, 
-            email: user.email,
-            tokens: user.tokens - 1
-        }})
-        ReactGA.event({
-            category: 'User',
-            action: `${this.state.user.first_name + " " + this.state.user.last_name} Booked a Class`
-        });
-     }
-     addToken = () => {
-        const { user } = this.state 
-        this.setState({user: {
-            id: user.id,
-            coach: user.coach,
-            first_name: user.first_name,
-            last_name: user.last_name, 
-            email: user.email,
-            tokens: user.tokens + 1
-        }})
-        ReactGA.event({
-            category: 'User',
-            action: `${this.state.user.first_name + " " + this.state.user.last_name} Cancelled a Class`
-        });
-     }
+  handleDateChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+      isLoading: true,
+    });
+    this.dateFetch(e.target.value);
+  };
 
-    dateFetch = date => {
-        fetch(`https://wod-with-faris-backend.herokuapp.com/sessions?date=${date}`)
-        .then(resp => resp.json())
-        .then(classes => this.setState({classes: classes, isLoading: false}))
-    }
+  handlePickClass = (e) => {
+    const pickedClass = this.state.classes.find(
+      (oneClass) => oneClass.id === e.id
+    );
+    this.setState({ chosenClass: pickedClass });
+  };
 
-    handleDayOffset = offset => {
-        let d = new Date(this.state.date)
-        let prev = new Date(d.setDate(d.getDate() + offset)).toISOString().slice(0,10)
-        this.setState({date: prev})
-        this.dateFetch(prev)
-    }
+  deductToken = () => {
+    const { user } = this.state;
+    this.setState({
+      user: {
+        id: user.id,
+        coach: user.coach,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        email: user.email,
+        tokens: user.tokens - 1,
+      },
+    });
+    ReactGA.event({
+      category: "User",
+      action: `${
+        this.state.user.first_name + " " + this.state.user.last_name
+      } Booked a Class`,
+    });
+  };
+  addToken = () => {
+    const { user } = this.state;
+    this.setState({
+      user: {
+        id: user.id,
+        coach: user.coach,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        email: user.email,
+        tokens: user.tokens + 1,
+      },
+    });
+    ReactGA.event({
+      category: "User",
+      action: `${
+        this.state.user.first_name + " " + this.state.user.last_name
+      } Cancelled a Class`,
+    });
+  };
 
+  dateFetch = (date) => {
+    fetch(`https://wod-with-faris-backend.herokuapp.com/sessions?date=${date}`)
+      .then((resp) => resp.json())
+      .then((classes) =>
+        this.setState({
+          classes: classes,
+          isLoading: false,
+        })
+      );
+  };
 
-    render() {
-        const  { date, classes, isLoading } = this.state
-        const filteredClasses = classes.filter(oneClass => oneClass.date === date)
-        const timeOrderedClasses = filteredClasses.sort((a, b) => new Date(a.date + " " + a.time) - new Date(b.date + " " + b.time))
-        return (
-            <div>
-                <h1>Book Class</h1>
-                <DatePick  handleOffset={this.handleDayOffset} date={date} handleChange={this.handleDateChange}/>
-                <div className='container'>
-                    {isLoading&& <button className='loading'></button >}
-                    {classes[0]?
-                    timeOrderedClasses.map(oneClass => (
-                        <ClassModal addToken={this.addToken} deductToken={this.deductToken} user={this.state.user} oneClass={oneClass} handlePickClass={this.handlePickClass}/>
-                    ))
-                    :
-                    !isLoading&& <h1>No Classes</h1>
-                    }
-                </div>
-            </div>
-        )
-    }
+  formatedClasses = (classes) => {
+    Date.prototype.addHours = function (h) {
+      this.setHours(this.getHours() + h);
+      return this;
+    };
+    return classes.map((oneClass) => ({
+      title: oneClass.name,
+      start: new Date(oneClass.date + "T" + oneClass.time),
+      end: new Date(oneClass.date + "T" + oneClass.time).addHours(1),
+      allDay: false,
+      id: oneClass.id,
+    }));
+  };
+
+  removeSelectedClass = () => {
+    this.setState({ chosenClass: null });
+  };
+
+  render() {
+    const { classes, isLoading, chosenClass, screenWidth } = this.state;
+    const isMobile = screenWidth <= 500;
+    return (
+      <div>
+        <h1 style={{ color: "white" }}>Book Class</h1>
+
+        <div className="container">
+          <Calendar
+            onSelectEvent={this.handlePickClass}
+            defaultView={isMobile ? "day" : "week"}
+            localizer={localizer}
+            events={this.formatedClasses(classes)}
+            startAccessor="start"
+            endAccessor="end"
+            style={{ height: 600, color: "black", backgroundColor: "white" }}
+          />
+          {isLoading && <button className="loading"></button>}
+          {classes[0]
+            ? chosenClass && (
+                <ClassModal
+                  addToken={this.addToken}
+                  deductToken={this.deductToken}
+                  user={this.state.user}
+                  oneClass={chosenClass}
+                  handlePickClass={this.handlePickClass}
+                  removeSelectedClass={this.removeSelectedClass}
+                />
+              )
+            : !isLoading && <h1 style={{ color: "white" }}>No Classes</h1>}
+        </div>
+      </div>
+    );
+  }
 }

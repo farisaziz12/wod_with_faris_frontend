@@ -1,273 +1,262 @@
-@import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
-.date-picker{
-    border-color: white;
-    margin-left: 2%;
-    margin-right: 2%;
-    width: 200px;
-    height: 25px;
-    text-align: center;
-    font-size: 15px;
-    margin-bottom: 5%;
-    font-family: Arial, Helvetica, sans-serif;
+@import url("https://fonts.googleapis.com/css?family=Fredoka+One&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap");
+.date-picker {
+  border-color: white;
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 200px;
+  height: 25px;
+  text-align: center;
+  font-size: 15px;
+  margin-bottom: 5%;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.date-picker-container{
-    display: block;
-    text-align: center;
+.date-picker-container {
+  display: block;
+  text-align: center;
 }
 
 input[type="date"]::-webkit-clear-button {
-    -webkit-appearance: none;
-     display: none;
-   }
+  -webkit-appearance: none;
+  display: none;
+}
 
-.class-btn{
-    text-align: center;
-    margin-top: 6%;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    color: white;
-    border-color: white;
-    background-color: rgb(3, 151, 250);
-    width: 220px;
+.class-btn {
+  text-align: center;
+  margin-top: 6%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  color: white;
+  border-color: white;
+  background-color: rgb(3, 151, 250);
+  width: 220px;
+  height: 50px;
+  border-radius: 15px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 15px;
+  transition: all 0.2s ease-in-out;
+}
+
+.class-btn:hover {
+  background-color: lightslategray;
+  border-radius: 10px;
+}
+
+@media (min-width: 768px) {
+  .date-picker {
+    width: 250px;
+    height: 30px;
+    border-radius: 15px;
+  }
+
+  .class-btn {
+    margin-top: 2%;
+    width: 300px;
+    height: 60px;
+  }
+}
+
+.desc-txt {
+  color: black;
+  margin-left: 5%;
+}
+
+.attending-txt {
+  color: black;
+  position: relative;
+  font-size: 14px;
+}
+
+.attending-progress-bar {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border: solid blue 2px;
+  border-radius: 20px;
+  width: 104px;
+  height: 25px;
+}
+
+.inner-progress-bar {
+  background-color: lightblue;
+  height: 21.2px;
+  border-radius: 20px;
+  min-width: 30px;
+  float: left;
+}
+
+.book-btn {
+  text-align: center;
+  margin-top: 4%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  color: white;
+  border-color: white;
+  background-color: rgb(3, 151, 250);
+  width: 180px;
+  height: 35px;
+  border-radius: 15px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 15px;
+  transition: all 0.2s ease-in-out;
+}
+.past-btn {
+  text-align: center;
+  margin-top: 4%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  color: white;
+  border-color: white;
+  background-color: lightslategray;
+  width: 180px;
+  height: 35px;
+  border-radius: 15px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 15px;
+  transition: all 0.2s ease-in-out;
+}
+
+.book-btn:hover {
+  background-color: lightslategray;
+  border-radius: 10px;
+}
+
+.workout-title {
+  color: black;
+  font-size: 20px;
+}
+
+@media (min-width: 768px) {
+  .workout-title {
+    font-size: 30px;
+    width: 500px;
     height: 50px;
-    border-radius: 15px;
-    font-family: 'Permanent Marker', cursive;
-    font-size: 15px;
-    transition: all 0.2s ease-in-out;
-}
-
-.class-btn:hover{
-    background-color: lightslategray;
-    border-radius: 10px;
-}
-
-@media (min-width: 768px) {
-    
-    .container{
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-        border: solid white 2px;
-        width: 650px;
-        height: 550px;
-    }
-
-    .date-picker{
-        width: 250px;
-        height: 30px;
-        border-radius: 15px;
-    }
-
-    .class-btn{
-        margin-top: 2%;
-        width: 300px;
-        height: 60px;
-    }
-}
-
-.desc-txt{ 
-    color: black;
-    margin-left: 5%;
-}
-
-.attending-txt{
-    color: black ;
-    position: relative;
-    font-size: 14px;
-}
-
-
-
-.attending-progress-bar{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    border: solid blue 2px;
-    border-radius: 20px;
-    width: 100px;
-    height: 20px;
-}
-
-.inner-progress-bar{
-    background-color: lightblue;
-    height: 20px;
-    border-radius: 20px;
-    min-width: 30px;
-    float: left;
-}
-
-
-
-.book-btn{
-    text-align: center;
-    margin-top: 4%;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    color: white;
-    border-color: white;
-    background-color: rgb(3, 151, 250);
-    width: 180px;
-    height: 35px;
-    border-radius: 15px;
-    font-family: 'Permanent Marker', cursive;
-    font-size: 15px;
-    transition: all 0.2s ease-in-out;
-}
-.past-btn{
-    text-align: center;
-    margin-top: 4%;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    color: white;
-    border-color: white;
-    background-color: lightslategray;
-    width: 180px;
-    height: 35px;
-    border-radius: 15px;
-    font-family: 'Permanent Marker', cursive;
-    font-size: 15px;
-    transition: all 0.2s ease-in-out;
-}
-
-.book-btn:hover{
-    background-color: lightslategray;
-    border-radius: 10px;
-}
-
-.workout-title{
-    color: black;
-    font-size: 20px;
-}
-
-@media (min-width: 768px) {
-    .workout-title{
-        font-size: 30px;
-        width: 500px;
-        height: 50px;
-    }
+  }
 }
 
 .loading {
-    margin-top: 10%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 40px;
-    width: 40px;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 50%;
-    border: 2px solid rgba(0, 0, 0, 0.4);
-    border-top-color: #fff;
-    animation: spinner2 600ms linear infinite;
-    }
-    @keyframes spinner2 {
-    to {
+  margin-top: 10%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 40px;
+  width: 40px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.4);
+  border-top-color: #fff;
+  animation: spinner2 600ms linear infinite;
+}
+@keyframes spinner2 {
+  to {
     transform: rotate(360deg);
-    }
+  }
 }
 
-
-.error{ 
-    text-align: center;
-    margin-top: 5%;
-    color: red;
-    font-size: 15px;
+.error {
+  text-align: center;
+  margin-top: 5%;
+  color: red;
+  font-size: 15px;
 }
 
-.class-card{
+.class-card {
+  background-color: white;
+  color: black;
+  width: 300px;
+  height: 130px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 15px;
+  text-align: center;
+  margin-top: 2%;
+}
+.coach-class-card {
+  background-color: white;
+  color: black;
+  width: 300px;
+  height: 160px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 15px;
+  text-align: center;
+  margin-top: 2%;
+}
+
+.card-title {
+  margin-left: 2%;
+  margin-top: 4%;
+  font-size: 20px;
+  font-family: "Permanent Marker", cursive;
+  font-weight: 400;
+}
+.card-date {
+  margin-left: 2%;
+}
+
+@media (min-width: 768px) {
+  .class-card {
     background-color: white;
     color: black;
     width: 300px;
     height: 130px;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    float: left;
+    margin-left: 8%;
     border-radius: 15px;
     text-align: center;
     margin-top: 2%;
-}
-.coach-class-card{
+  }
+  .coach-class-card {
     background-color: white;
     color: black;
     width: 300px;
-    height: 155px;
+    height: 165px;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    float: left;
+    margin-left: 8%;
     border-radius: 15px;
     text-align: center;
-    margin-top: 2%;
+    margin-top: 1%;
+    overflow: scroll;
+  }
 }
 
-.card-title{
-    margin-left: 2%;
-    margin-bottom: -4%;
-    margin-top: 4%;
-    font-size: 20px;
-    font-family: 'Permanent Marker', cursive;
-    font-weight: 400;
-}
-.card-date{
-    margin-left: 2%;
-}
-
-@media (min-width: 768px) {
-    .class-card{
-        background-color: white;
-        color: black;
-        width: 300px;
-        height: 130px;
-        display: block;
-        float: left;
-        margin-left: 8%;
-        border-radius: 15px;
-        text-align: center;
-        margin-top: 2%;
-    }
-    .coach-class-card{
-        background-color: white;
-        color: black;
-        width: 300px;
-        height: 165px;
-        display: block;
-        float: left;
-        margin-left: 8%;
-        border-radius: 15px;
-        text-align: center;
-        margin-top: 1%;
-        overflow: scroll;
-    }
-}
-
-.edit-desc{
-    min-height: 200px;
-    min-width: 300px;
-    border-radius: 10px;
+.edit-desc {
+  min-height: 200px;
+  min-width: 300px;
+  border-radius: 10px;
 }
 
 .i {
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 5px;
-  }
-  
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 5px;
+}
+
 .right {
-transform: rotate(-45deg);
--webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
 }
 
 .left {
-    transform: rotate(135deg);
-    -webkit-transform: rotate(135deg);
-  }
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
 
-.activity-input{ 
-    color: black;
+.activity-input {
+  color: black;
+}
+
+.coach-name {
+  margin-top: 5%;
+  text-align: center;
 }

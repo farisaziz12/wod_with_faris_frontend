@@ -1,66 +1,63 @@
-.insta-post{
-    height: 350px;
-    width: 350px;
-    border: bisque solid;
-    overflow: hidden;
-    object-fit: cover;
-    object-position: 100% 100%;
-    margin-bottom: 5px;
-    margin-left: 2px;
-    margin-right: 2px;
+.insta-post {
+  height: 323px;
+  width: 323px;
+  border: bisque solid;
+  overflow: hidden;
+  object-fit: cover;
+  object-position: 100% 100%;
+  margin-bottom: 5px;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
 .title {
-    margin-top: 3%;
-    font-size: 40px;
-    text-align: center;
-    color: white;
-    font-family: 'Permanent Marker', cursive;
-    font-weight: 400;
+  margin-top: 3%;
+  font-size: 40px;
+  text-align: center;
+  color: white;
+  font-family: "Permanent Marker", cursive;
+  font-weight: 400;
+  text-decoration: none;
 }
 
 @media (max-width: 768px) {
-    .title {
-        font-size: 35px;
-        text-align: center;
-    }
-    .insta-post{
-        height: 300px;
-        width: 300px;
-        margin-bottom: 5px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
-
-
-.class-schedule-btn{
+  .title {
+    font-size: 35px;
     text-align: center;
-    margin-top: 4%;
+  }
+  .insta-post {
+    height: 300px;
+    width: 300px;
+    margin-bottom: 5px;
+    display: block;
     margin-left: auto;
     margin-right: auto;
-    display: block;
-    color: white;
-    border-color: white;
-    background-color: black;
-    width: 220px;
-    height: 40px;
-    border-radius: 15px;
-    font-family: 'Permanent Marker', cursive;
-    font-size: 15px;
-    transition: all 0.2s ease-in-out;
+  }
 }
 
+.class-schedule-btn {
+  text-align: center;
+  margin-top: 4%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  color: white;
+  border-color: white;
+  background-color: black;
+  width: 220px;
+  height: 40px;
+  border-radius: 15px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 15px;
+  transition: all 0.2s ease-in-out;
+}
 
-
-.class-schedule-btn:hover{
-    background-color: lightslategray;
-    border-radius: 10px;
+.class-schedule-btn:hover {
+  background-color: lightslategray;
+  border-radius: 10px;
 }
 
 @media (max-width: 500px) {
-    .class-schedule-btn{
-        
-    }
+  .class-schedule-btn {
+  }
 }
