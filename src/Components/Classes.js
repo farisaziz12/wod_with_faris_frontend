@@ -133,6 +133,16 @@ export default class Classes extends Component {
     this.setState({ chosenClass: null });
   };
 
+  earliestClassOftheWeek = () => {
+    return this.formatedClasses(this.state.classes).sort((a, b) =>
+      moment(a.end).format("HH:mm") > moment(b.end).format("HH:mm")
+        ? 1
+        : moment(a.end).format("HH:mm") < moment(b.end).format("HH:mm")
+        ? -1
+        : 0
+    );
+  };
+
   render() {
     const { classes, isLoading, chosenClass, screenWidth } = this.state;
     const isMobile = screenWidth <= 500;
@@ -144,7 +154,9 @@ export default class Classes extends Component {
           <Calendar
             onSelectEvent={this.handlePickClass}
             defaultView={isMobile ? "day" : "week"}
+            views={["month", "week", "day"]}
             localizer={localizer}
+            scrollToTime={classes[0] && this.earliestClassOftheWeek()[0].start}
             events={this.formatedClasses(classes)}
             startAccessor="start"
             endAccessor="end"

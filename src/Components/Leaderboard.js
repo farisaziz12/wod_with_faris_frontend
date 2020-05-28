@@ -42,7 +42,7 @@ export default function Leaderboard() {
           <tr>
             <th>Name</th>
             <th>Classes</th>
-            <th>Calories Burned</th>
+            <th>Cal. Burned</th>
           </tr>
           {sortedLeaderboardStats &&
             sortedLeaderboardStats.map((stat) => (
