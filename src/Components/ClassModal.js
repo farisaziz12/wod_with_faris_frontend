@@ -8,6 +8,7 @@ export default class ClassModal extends Component {
     show: this.props.oneClass ? true : false,
     clients: [],
     error: null,
+    bookingGif: null,
   };
 
   componentDidMount() {
@@ -22,6 +23,26 @@ export default class ClassModal extends Component {
   toggleShow = (show) => {
     this.setState({ show: show, error: null });
     this.props.removeSelectedClass();
+  };
+
+  bookingGif = (bookingStatus) => {
+    if (bookingStatus) {
+      this.setState({
+        bookingGif:
+          "https://media.giphy.com/media/cOogUoOWsZZ2hAVurb/giphy.gif",
+      });
+      setTimeout(() => {
+        this.setState({ bookingGif: null });
+      }, 4000);
+    } else if (bookingStatus === undefined) {
+      this.setState({
+        bookingGif:
+          "https://media.giphy.com/media/hpGAm7uGHsWhi7HVji/giphy.gif",
+      });
+      setTimeout(() => {
+        this.setState({ bookingGif: null });
+      }, 4000);
+    }
   };
 
   handleBookandUnBookClass = (id) => {
@@ -48,7 +69,8 @@ export default class ClassModal extends Component {
         .then((ClientsWithNewBooking) =>
           this.setState({ clients: ClientsWithNewBooking, error: null })
         )
-        .then(this.props.deductToken);
+        .then(this.props.deductToken)
+        .then(this.bookingGif(isBooked));
 
       fetch("https://api.pushover.net/1/messages.json", {
         method: "POST",
@@ -89,7 +111,8 @@ export default class ClassModal extends Component {
             error: null,
           })
         )
-        .then(this.props.addToken);
+        .then(this.props.addToken)
+        .then(this.bookingGif(isBooked));
 
       fetch("https://api.pushover.net/1/messages.json", {
         method: "POST",
@@ -124,7 +147,7 @@ export default class ClassModal extends Component {
   };
 
   render() {
-    const { show, clients, error } = this.state;
+    const { show, clients, error, bookingGif } = this.state;
     const { oneClass } = this.props;
     const isBooked =
       clients[0] &&
@@ -170,9 +193,13 @@ export default class ClassModal extends Component {
             <strong>Coach: </strong>
             {oneClass.coach.first_name + " " + oneClass.coach.last_name}
           </h3>
-          {oneClass.description.split("\n").map((sentence) => (
-            <p className="desc-txt">{sentence}</p>
-          ))}
+          {!bookingGif ? (
+            oneClass.description
+              .split("\n")
+              .map((sentence) => <p className="desc-txt">{sentence}</p>)
+          ) : (
+            <img className="book-gif" alt="" src={bookingGif} />
+          )}
           {!isInPast ? (
             <button
               onClick={() =>

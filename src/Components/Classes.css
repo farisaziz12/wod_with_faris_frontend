@@ -262,3 +262,16 @@ input[type="date"]::-webkit-clear-button {
   margin-top: 5%;
   text-align: center;
 }
+
+.book-gif {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+@media (max-width: 500px) {
+  .book-gif {
+    width: 250px;
+    height: auto;
+  }
+}
