@@ -5,6 +5,7 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "./Classes.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import Toast from "react-bootstrap/Toast";
 
 function initializeReactGA() {
   ReactGA.initialize(process.env.REACT_APP_GOOGLE_MEASUREMENT_ID);
@@ -20,6 +21,9 @@ export default class Classes extends Component {
     user: null,
     isLoading: true,
     screenWidth: window.innerWidth,
+    showClassAttendNotification: false,
+    attendanceResp: "",
+    ShowLowTokenNotification: false,
   };
 
   componentWillMount() {
@@ -143,13 +147,122 @@ export default class Classes extends Component {
     );
   };
 
+  getPrevWeekAttendances = () => {
+    fetch(
+      `https://wod-with-faris-backend.herokuapp.com/usersession/prevsessionsandtokens/${this.state.user.id}`
+    )
+      .then((resp) => resp.json())
+      .then((resp) => attendanceAndTokensNotificationResponse(resp));
+
+    const attendanceAndTokensNotificationResponse = (attendancesAndTokens) => {
+      console.log(attendancesAndTokens);
+      const responses = [
+        "Let's Go!",
+        "Love the energy!",
+        "Wohooo!",
+        "💪💪💪",
+        "Keep the streak going!",
+        "Absolute Machine!",
+        "Beast!",
+      ];
+
+      if (attendancesAndTokens.sessions_prev_week === 1) {
+        this.setState({ attendanceResp: "1st class this week! Nice Start!" });
+        this.toggleShowClassAttendNotification(true);
+      } else if (attendancesAndTokens.sessions_prev_week > 1) {
+        this.setState({
+          attendanceResp: `Class No.${
+            attendancesAndTokens.sessions_prev_week
+          } this week! ${
+            responses[Math.floor(Math.random() * responses.length)]
+          }`,
+        });
+        this.toggleShowClassAttendNotification(true);
+      }
+      if (attendancesAndTokens.tokens <= 1) {
+        this.toggleShowLowTokenNotification();
+      }
+    };
+  };
+
+  toggleShowClassAttendNotification = (show) => {
+    this.setState({
+      showClassAttendNotification: show,
+    });
+  };
+
+  toggleShowLowTokenNotification = () => {
+    this.setState({
+      ShowLowTokenNotification: !this.state.ShowLowTokenNotification,
+    });
+  };
+
   render() {
-    const { classes, isLoading, chosenClass, screenWidth } = this.state;
+    const {
+      classes,
+      isLoading,
+      chosenClass,
+      screenWidth,
+      showClassAttendNotification,
+      attendanceResp,
+      ShowLowTokenNotification,
+    } = this.state;
     const isMobile = screenWidth <= 500;
     return (
       <div>
+        <div
+          aria-live="polite"
+          aria-atomic="true"
+          style={{
+            position: "fixed",
+            minHeight: "200px",
+          }}
+        >
+          <div
+            style={{
+              position: "fixed",
+              top: "2%",
+              right: "1%",
+            }}
+          >
+            <Toast
+              show={showClassAttendNotification}
+              onClose={() => this.toggleShowClassAttendNotification(false)}
+            >
+              <Toast.Header>
+                <img
+                  src="holder.js/20x20?text=%20"
+                  className="rounded mr-2"
+                  alt=""
+                />
+                <strong className="mr-auto">Notification</strong>
+                <small>just now</small>
+              </Toast.Header>
+              <Toast.Body>{attendanceResp}</Toast.Body>
+            </Toast>
+            <Toast
+              show={ShowLowTokenNotification}
+              onClose={this.toggleShowLowTokenNotification}
+            >
+              <Toast.Header>
+                <img
+                  src="holder.js/20x20?text=%20"
+                  className="rounded mr-2"
+                  alt=""
+                />
+                <strong className="mr-auto">Notification</strong>
+                <small>just now</small>
+              </Toast.Header>
+              <Toast.Body>
+                {
+                  // eslint-disable-next-line
+                }
+                You're running low on tokens 😣. Time to buy some more!
+              </Toast.Body>
+            </Toast>
+          </div>
+        </div>
         <h1 style={{ color: "white" }}>Book Class</h1>
-
         <div className="container">
           <Calendar
             onSelectEvent={this.handlePickClass}
@@ -172,6 +285,7 @@ export default class Classes extends Component {
                   oneClass={chosenClass}
                   handlePickClass={this.handlePickClass}
                   removeSelectedClass={this.removeSelectedClass}
+                  bookedNotification={this.getPrevWeekAttendances}
                 />
               )
             : !isLoading && <h1 style={{ color: "white" }}>No Classes</h1>}

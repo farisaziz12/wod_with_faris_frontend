@@ -3,6 +3,7 @@ import app from "../base";
 import "./Home.css";
 import Schedule from "./Schedule";
 import ReactGA from "react-ga";
+import { Helmet } from "react-helmet";
 const IG = require("instagrammer");
 const instagramUsername = "faziz_training";
 
@@ -31,9 +32,11 @@ export default class Home extends Component {
       this.props.setUser(user);
     };
 
-    IG.profile(instagramUsername).then((instaPosts) => {
-      this.setState({ instaPosts });
-    });
+    IG.profile(instagramUsername)
+      .then((instaPosts) => {
+        this.setState({ instaPosts });
+      })
+      .catch((error) => console.log(error));
   }
 
   toggleShow = (show) => {
@@ -52,6 +55,14 @@ export default class Home extends Component {
     const SlicedPosts = instaPosts[0] ? instaPosts.slice(0, 8) : [];
     return (
       <>
+        <Helmet>
+          <title>WOD-WITH-FARIS</title>
+          <meta name="description" content="WOD-WITH-FARIS Home Page" />
+          <meta
+            name="keywords"
+            content="wod,with,faris,aziz,crossfit,workout,hiit,bodybuilding,mies,functional,training,outdoor,workout of the day,geneva,switzerland,versoix,coppet,coach,personal trainer,fitness"
+          />
+        </Helmet>
         <button
           onClick={() => this.toggleShow(true)}
           className="class-schedule-btn"

@@ -70,7 +70,8 @@ export default class ClassModal extends Component {
           this.setState({ clients: ClientsWithNewBooking, error: null })
         )
         .then(this.props.deductToken)
-        .then(this.bookingGif(isBooked));
+        .then(this.bookingGif(isBooked))
+        .then(this.props.bookedNotification);
 
       fetch("https://api.pushover.net/1/messages.json", {
         method: "POST",

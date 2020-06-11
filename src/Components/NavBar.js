@@ -99,15 +99,6 @@ export default function NavBar(props) {
             )}
             {currentUser && userData && !userData.coach && (
               <>
-                <Nav.Link>
-                  <StyledLink
-                    name="/leaderboard"
-                    onClick={handleNavChange}
-                    to="/leaderboard"
-                  >
-                    Leaderboard
-                  </StyledLink>
-                </Nav.Link>
                 <NavDropdown title="Classes" id="collasible-nav-dropdown">
                   <NavDropdown.Item>
                     <StyledDropdownLink
