@@ -238,7 +238,11 @@ export default class Classes extends Component {
                 <strong className="mr-auto">Notification</strong>
                 <small>just now</small>
               </Toast.Header>
-              <Toast.Body>{attendanceResp}</Toast.Body>
+              <Toast.Body>
+                <h4 style={{ color: "black", fontSize: "15px" }}>
+                  {attendanceResp}
+                </h4>
+              </Toast.Body>
             </Toast>
             <Toast
               show={ShowLowTokenNotification}
@@ -257,7 +261,10 @@ export default class Classes extends Component {
                 {
                   // eslint-disable-next-line
                 }
-                You're running low on tokens 😣. Time to buy some more!
+                <h4 style={{ color: "black", fontSize: "15px" }}>
+                  You're running low on tokens <span role="img">😣</span>. Time
+                  to buy some more!
+                </h4>
               </Toast.Body>
             </Toast>
           </div>
