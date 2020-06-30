@@ -105,6 +105,22 @@ input[type="date"]::-webkit-clear-button {
   font-size: 15px;
   transition: all 0.2s ease-in-out;
 }
+.pay-cash-btn {
+  text-align: center;
+  margin-top: 4%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  color: white;
+  border-color: white;
+  background-color: rgb(0, 180, 54);
+  width: 180px;
+  height: 35px;
+  border-radius: 15px;
+  font-family: "Permanent Marker", cursive;
+  font-size: 15px;
+  transition: all 0.2s ease-in-out;
+}
 .past-btn {
   text-align: center;
   margin-top: 4%;
@@ -123,6 +139,10 @@ input[type="date"]::-webkit-clear-button {
 }
 
 .book-btn:hover {
+  background-color: lightslategray;
+  border-radius: 10px;
+}
+.pay-cash-btn:hover {
   background-color: lightslategray;
   border-radius: 10px;
 }
