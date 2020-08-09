@@ -18,34 +18,30 @@ export default class Schedule extends Component {
           <h1 className="schedule-title">Schedule</h1>
           <div className="schedule-container">
             <h3 className="schedule-h3">
-              Classes with less than 2 people will be cancelled up to 4 hours
+              Classes with less than 3 people will be cancelled up to 4 hours
               before class start time and early morning classes before 10:00
               will be cancelled the night before at 20:00
             </h3>
             <p>
-              <strong>Monday:</strong> Outdoor Workout of the Day @ 12:15 &
-              Teens Outdoor WOD & 17:30
+              <strong>Monday:</strong> Outdoor Workout of the Day @ 07:00
             </p>
             <p>
-              <strong>Tuesday:</strong> Outdoor Workout of the Day @ 12:15
+              <strong>Tuesday:</strong> None
             </p>
             <p>
-              <strong>Wednesday:</strong> Outdoor Workout of the Day @ 9:00 &
-              Teens Outdoor WOD & 17:30
+              <strong>Wednesday:</strong> Outdoor Workout of the Day @ 07:00
             </p>
             <p>
-              <strong>Thursday:</strong> Zoom Workout of the Day @ 7:00 &
-              Outdoor Workout of the Day @ 12:15
+              <strong>Thursday:</strong> None
             </p>
             <p>
-              <strong>Friday:</strong> Outdoor Workout of the Day @ 9:00
+              <strong>Friday:</strong> Outdoor Workout of the Day @ 07:00
             </p>
             <p>
-              <strong>Saturday:</strong> Outdoor Mobility Class @ 10:00 &
-              Outdoor WOD @ 10:30
+              <strong>Saturday:</strong> Outdoor Workout of the Day @ 11:00
             </p>
             <p>
-              <strong>Sunday:</strong> Outdoor Workout of the Day @ 10:00
+              <strong>Sunday:</strong> None
             </p>
             <p>
               <strong>

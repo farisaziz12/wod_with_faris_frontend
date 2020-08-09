@@ -262,8 +262,11 @@ export default class Classes extends Component {
                   // eslint-disable-next-line
                 }
                 <h4 style={{ color: "black", fontSize: "15px" }}>
-                  You're running low on tokens <span role="img">😣</span>. Time
-                  to buy some more!
+                  You're running low on tokens{" "}
+                  <span role="img" aria-label="">
+                    😣
+                  </span>
+                  . Time to buy some more!
                 </h4>
               </Toast.Body>
             </Toast>
