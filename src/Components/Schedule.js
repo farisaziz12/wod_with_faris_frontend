@@ -23,19 +23,19 @@ export default class Schedule extends Component {
               will be cancelled the night before at 20:00
             </h3>
             <p>
-              <strong>Monday:</strong> Outdoor Workout of the Day @ 07:00
+              <strong>Monday:</strong> Outdoor Workout of the Day @ 07:15
             </p>
             <p>
               <strong>Tuesday:</strong> None
             </p>
             <p>
-              <strong>Wednesday:</strong> Outdoor Workout of the Day @ 07:00
+              <strong>Wednesday:</strong> Outdoor Workout of the Day @ 07:15
             </p>
             <p>
               <strong>Thursday:</strong> None
             </p>
             <p>
-              <strong>Friday:</strong> Outdoor Workout of the Day @ 07:00
+              <strong>Friday:</strong> Outdoor Workout of the Day @ 07:15
             </p>
             <p>
               <strong>Saturday:</strong> Outdoor Workout of the Day @ 11:00
