@@ -34,7 +34,7 @@
     "react-helmet": "^6.0.0",
     "react-poppop": "^1.5.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1",
+    "react-scripts": "5.0.1",
     "react-select": "^3.1.0",
     "react-stripe-checkout": "^2.6.3",
     "react-toolbox": "^2.0.0-beta.13",
